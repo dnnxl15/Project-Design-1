@@ -4,15 +4,4 @@ public interface IConstant
 {
 
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
