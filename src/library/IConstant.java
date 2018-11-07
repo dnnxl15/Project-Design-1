@@ -1,5 +1,7 @@
 package library;
 
-public interface IConstant {
+public interface IConstant 
+{
 
+    
 }
