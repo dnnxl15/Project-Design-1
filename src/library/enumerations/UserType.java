@@ -3,12 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfacePackage;
+package library.enumerations;
 
 /**
  *
  * @author egapb
  */
-public interface IChart {
-    public void generate();
+public enum UserType {
+    Client_Type,
+    Waiter_Type,
+    Chef_Type,
+    Delivery_Type,
+    Cashier_Type,
+    Manager_Type;
 }

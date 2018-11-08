@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package enumPackage;
+package library.enumerations;
 
 /**
  *
  * @author egapb
  */
-public enum FactoryType {
-    ControlFactory_Type,
-    FalcadeFactory_Type,
-    PersonFactory_Type,
-    ReportFactory_Type;
+public enum FacadeType {
+    ManagerFacade_Type,
+    ClientFacade_Type;
 }

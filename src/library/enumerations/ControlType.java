@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package interfacePackage;
+package library.enumerations;
 
 /**
  *
  * @author egapb
  */
-public interface ISubject {
-    public void update();
+public enum ControlType {
+    Controluser,
+    ConstrolService,
+    ControlReport,
+    ControlMenu;
 }

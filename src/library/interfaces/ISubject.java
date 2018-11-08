@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package enumPackage;
+package library.interfaces;
 
 /**
  *
  * @author egapb
  */
-public enum UserType {
-    Client_Type,
-    Waiter_Type,
-    Chef_Type,
-    Delivery_Type,
-    Cashier_Type,
-    Manager_Type;
+public interface ISubject {
+    public void update();
 }
