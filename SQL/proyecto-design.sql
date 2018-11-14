@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-11-2018 a las 23:41:08
+-- Tiempo de generación: 14-11-2018 a las 19:12:55
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.10
 
@@ -26,15 +26,6 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getPurchase` ()  NO SQL
-BEGIN
-SELECT DISTINCT getProductName(o.productID) AS productName,
-o.quantity, o.price, getClientName(pbc.personID) AS Username, getRestNum(pbc.restID) AS RestaurantNum, pbc.timeOfPurchase 
-FROM orders o, client c, purchasebyclient pbc
-WHERE o.orderID = pbc.orderID
-ORDER BY pbc.timeOfPurchase;
-END$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertClient` (IN `pName` VARCHAR(100), IN `pLastname` VARCHAR(100), IN `pIdentification` VARCHAR(100), IN `pUsername` VARCHAR(100), IN `pEmail` VARCHAR(100), IN `pPassword` VARCHAR(100))  NO SQL
     COMMENT 'Procedure that insert into the table Client'
 BEGIN 
@@ -49,6 +40,29 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `insertCombo` (IN `pName` VARCHAR(10
 BEGIN 
 	INSERT IGNORE INTO Combo(comboID, name, price, description, status, personID)
 	VALUES(NULL, pName, pPrice, pDescription, 1, getPersonID(pIdentificator));
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertComboPurchase` (IN `pCombo` VARCHAR(100), IN `pQuantity` INT(11), IN `pTime` DATETIME, IN `pUsername` VARCHAR(100), IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN)  NO SQL
+    COMMENT 'Procedure that insert into the table ComboPurchase'
+BEGIN 
+	INSERT INTO ComboPurchase(comboPurchaseID, quantity, purchaseTime, comboID)
+	VALUES(NULL, pQuantity, pTime, getComboID(pCombo));
+	CALL insertComboPurchaseByClient(pUsername);
+	CALL insertComboPurchaseInfo(pDeliveryType, pPayMethod);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertComboPurchaseByClient` (IN `pUsername` VARCHAR(100))  NO SQL
+    COMMENT 'Procedure that insert into the table ComboPurchaseByClient'
+BEGIN 
+	INSERT INTO ComboPurchaseByClient(ComboPurchaseByClientID, personID, ComboPurchaseID)
+	VALUES(NULL, getClientID(pUsername), (SELECT comboPurchaseID FROM ComboPurchase ORDER BY ComboPurchaseID DESC LIMIT 1));
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertComboPurchaseInfo` (IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN)  NO SQL
+    COMMENT 'Procedure that insert into the table ComboPurchaseInfo'
+BEGIN 
+	INSERT INTO ComboPurchaseInfo(comboPurchaseInfoID, comboPurchaseID, deliveryType, payMethod, startOfPreparation, endOfPreparation, startOfDelivery, endOfDelivery)
+	VALUES(NULL, (SELECT ComboPurchaseID FROM ComboPurchase ORDER BY ComboPurchaseID DESC LIMIT 1), pDeliveryType, pPayMethod, NULL, NULL, NULL, NULL);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertEmployee` (IN `pName` VARCHAR(100), IN `pLastname` VARCHAR(100), IN `pIdentification` VARCHAR(100), IN `pEmail` VARCHAR(100), IN `pJobTitle` VARCHAR(100), IN `pSalary` FLOAT(11))  NO SQL
@@ -67,11 +81,18 @@ BEGIN
 	VALUES(NULL, getPersonID(pIdentificator), getRestID(pLegalNumber));
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertEmployeeDoOrder` (IN `pPercentage` VARCHAR(100), IN `pEmployee` VARCHAR(100))  NO SQL
-    COMMENT 'Procedure that insert into the table EmployeeDoOrder'
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertEmployeeDoCombo` (IN `pTime` DATETIME, IN `pEmail` VARCHAR(100), IN `pPercentage` FLOAT(11))  NO SQL
+    COMMENT 'Procedure that insert into the table EmployeeDoCombo'
 BEGIN 
-	INSERT INTO EmployeeDoOrder(employeeDoOrderID, percentage, personID, orderID)
-	VALUES(NULL, pPercentage, getPersonID(pEmployee), (SELECT orderID FROM orders ORDER BY orderID DESC LIMIT 1));
+	INSERT INTO EmployeeDoCombo(employeeDoComboID, personID, comboPurchaseID, percentage)
+	SELECT NULL, getPersonID(pEmail), cp.comboPurchaseID, pPercentage FROM ComboPurchase cp WHERE cp.purchaseTime = pTime;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertEmployeeDoProduct` (IN `pTime` DATETIME, IN `pEmail` VARCHAR(100), IN `pPercentage` FLOAT(11))  NO SQL
+    COMMENT 'Procedure that insert into the table EmployeeDoProduct'
+BEGIN 
+	INSERT INTO EmployeeDoProduct(employeeDoProductID, personID, productPurchaseID, percentage)
+	SELECT NULL, getPersonID(pEmail), pp.productPurchaseID, pPercentage FROM ProductPurchase pp WHERE pp.purchaseTime = pTime;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertJobTitle` (IN `pName` VARCHAR(100), IN `pMinSalary` FLOAT(11), IN `pMaxSalary` FLOAT(11))  NO SQL
@@ -92,13 +113,6 @@ BEGIN
 	VALUES(NULL, pUsername, pPassword, pSalary, getJobTitleID(pJobTitle), (SELECT personID FROM person ORDER BY personID DESC LIMIT 1));
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertOrderInfo` (IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN)  NO SQL
-    COMMENT 'Procedure that insert into the table Order information'
-BEGIN 
-	INSERT INTO OrderInformation(orderInfoID, orderID, deliveryType, payMethod, startOfPreparation, endOfPreparation, startOfDelivery, endOfDelivery)
-	VALUES(NULL, (SELECT orderID FROM orders ORDER BY orderID DESC LIMIT 1), pDeliveryType, pPayMethod, NULL, NULL, NULL, NULL);
-END$$
-
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProduct` (IN `pName` VARCHAR(100), IN `pPrice` FLOAT(11), IN `pDescription` VARCHAR(100), IN `pIdentificator` VARCHAR(100))  NO SQL
     COMMENT 'Procedure that insert into the table Product'
 BEGIN 
@@ -113,19 +127,27 @@ BEGIN
 	VALUES(NULL, pQuantity, getProductID(pProduct), getComboID(pCombo));
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProductOrder` (IN `pProduct` VARCHAR(100), IN `pQuantity` INT(11), IN `pClient` VARCHAR(100), IN `pRest` VARCHAR(100), IN `pCardNum` VARCHAR(100))  NO SQL
-    COMMENT 'Procedure that insert into the table Order'
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProductPurchase` (IN `pProduct` VARCHAR(100), IN `pQuantity` INT(11), IN `pTime` DATETIME, IN `pUsername` VARCHAR(100), IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN)  NO SQL
+    COMMENT 'Procedure that insert into the table ProductPurchase'
 BEGIN 
-	INSERT INTO Orders(orderID, productID, quantity, price)
-	VALUES(NULL, getProductID(pProduct), pQuantity, pQuantity*getProductPrice(pProduct));
-	CALL insertPurchaseByClient(pClient, pRest, pCardNum);
+	INSERT INTO ProductPurchase(productPurchaseID, quantity, purchaseTime, productID)
+	VALUES(NULL, pQuantity, pTime, getProductID(pProduct));
+	CALL insertProductPurchaseByClient(pUsername);
+	CALL insertProductPurchaseInfo(pDeliveryType, pPayMethod);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertPurchaseByClient` (IN `pClient` VARCHAR(100), IN `pRest` VARCHAR(100), IN `pCardNum` VARCHAR(100))  NO SQL
-    COMMENT 'Procedure that insert into the table Purchase by client'
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProductPurchaseByClient` (IN `pUsername` VARCHAR(100))  NO SQL
+    COMMENT 'Procedure that insert into the table ProductPurchaseByClient'
 BEGIN 
-	INSERT INTO PurchaseByClient(purchaseByClientID, personID, orderID, restID, cardNum, timeOfPurchase)
-	VALUES(NULL, getClientID(pClient), (SELECT orderID FROM orders ORDER BY orderID DESC LIMIT 1), getRestID(pRest), pCardNum, NOW());
+	INSERT INTO ProductPurchaseByClient(productPurchaseByClientID, personID, productPurchaseID)
+	VALUES(NULL, getClientID(pUsername), (SELECT productPurchaseID FROM ProductPurchase ORDER BY productPurchaseID DESC LIMIT 1));
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProductPurchaseInfo` (IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN)  NO SQL
+    COMMENT 'Procedure that insert into the table ProductPurchaseInfo'
+BEGIN 
+	INSERT INTO ProductPurchaseInfo(productPurchaseInfoID, productPurchaseID, deliveryType, payMethod, startOfPreparation, endOfPreparation, startOfDelivery, endOfDelivery)
+	VALUES(NULL, (SELECT productPurchaseID FROM ProductPurchase ORDER BY productPurchaseID DESC LIMIT 1), pDeliveryType, pPayMethod, NULL, NULL, NULL, NULL);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertRestaurant` (IN `pAddress` VARCHAR(100), IN `pLegalNumber` VARCHAR(100))  NO SQL
@@ -149,36 +171,104 @@ BEGIN
 	VALUES(NULL, getPersonID(pIdentificator), getVehicleID(pRegNum));
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateEndOfDelivery` ()  NO SQL
-    COMMENT 'Procedure that update the startOfPreparation'
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateComboEndOfDelivery` (IN `pTime` DATETIME)  NO SQL
+    COMMENT 'Procedure that update the endOfDelivery'
 BEGIN 
-	UPDATE orderInformation oi  
-    SET oi.endOfDelivery = NOW() 
-    WHERE oi.orderID = (SELECT orderID FROM orders ORDER BY orderID DESC LIMIT 1);
+	UPDATE ComboPurchaseInfo cpi
+	INNER JOIN ComboPurchase cp  
+    SET cpi.endOfDelivery = NOW() 
+    WHERE cpi.ComboPurchaseID = cp.ComboPurchaseID AND cp.purchaseTime = pTime;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateEndOfPreparation` ()  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateComboEndOfPreparation` (IN `pTime` DATETIME)  NO SQL
     COMMENT 'Procedure that update the endOfPreparation'
 BEGIN 
-	UPDATE orderInformation oi  
-    SET oi.endOfPreparation = NOW() 
-    WHERE oi.orderID = (SELECT orderID FROM orders ORDER BY orderID DESC LIMIT 1);
+	UPDATE ComboPurchaseInfo cpi
+	INNER JOIN ComboPurchase cp  
+    SET cpi.endOfPreparation = NOW() 
+    WHERE cpi.comboPurchaseID = cp.comboPurchaseID AND cp.purchaseTime = pTime;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStartOfDelivery` ()  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateComboStartOfDelivery` (IN `pTime` DATETIME)  NO SQL
     COMMENT 'Procedure that update the startOfDelivery'
 BEGIN 
-	UPDATE orderInformation oi  
-    SET oi.startOfDelivery = NOW() 
-    WHERE oi.orderID = (SELECT orderID FROM orders ORDER BY orderID DESC LIMIT 1);
+	UPDATE ComboPurchaseInfo cpi
+	INNER JOIN ComboPurchase cp  
+    SET cpi.startOfDelivery = NOW() 
+    WHERE cpi.productPurchaseID = cp.ComboPurchaseID AND cp.purchaseTime = pTime;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStartOfPreparation` ()  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateComboStartOfPreparation` (IN `pTime` DATETIME)  NO SQL
     COMMENT 'Procedure that update the startOfPreparation'
 BEGIN 
-	UPDATE orderInformation oi  
-    SET oi.startOfPreparation = NOW() 
-    WHERE oi.orderID = (SELECT orderID FROM orders ORDER BY orderID DESC LIMIT 1);
+	UPDATE ComboPurchaseInfo cpi
+	INNER JOIN ComboPurchase cp  
+    SET cpi.startOfPreparation = NOW() 
+    WHERE cpi.comboPurchaseID = cp.comboPurchaseID AND cp.purchaseTime = pTime;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateEndOfDelivery` (IN `pTime` DATETIME)  NO SQL
+    COMMENT 'Procedure that update the endOfDelivery'
+BEGIN 
+	CALL updateProductEndOfDelivery(pTime);
+	CALL updateComboEndOfDelivery(pTime);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateEndOfPreparation` (IN `pTime` DATETIME)  NO SQL
+    COMMENT 'Procedure that update the EndOfPreparation'
+BEGIN 
+	CALL updateProductEndOfPreparation(pTime);
+	CALL updateComboEndOfPreparation(pTime);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateProductEndOfDelivery` (IN `pTime` DATETIME)  NO SQL
+    COMMENT 'Procedure that update the endOfDelivery'
+BEGIN 
+	UPDATE ProductPurchaseInfo ppi
+	INNER JOIN ProductPurchase pp  
+    SET ppi.endOfDelivery = NOW() 
+    WHERE ppi.productPurchaseID = pp.productPurchaseID AND pp.purchaseTime = pTime;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateProductEndOfPreparation` (IN `pTime` DATETIME)  NO SQL
+    COMMENT 'Procedure that update the endOfPreparation'
+BEGIN 
+	UPDATE ProductPurchaseInfo ppi
+	INNER JOIN ProductPurchase pp  
+    SET ppi.endOfPreparation = NOW() 
+    WHERE ppi.productPurchaseID = pp.productPurchaseID AND pp.purchaseTime = pTime;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateProductStartOfDelivery` (IN `pTime` DATETIME)  NO SQL
+    COMMENT 'Procedure that update the startOfDelivery'
+BEGIN 
+	UPDATE ProductPurchaseInfo ppi
+	INNER JOIN ProductPurchase pp  
+    SET ppi.startOfDelivery = NOW() 
+    WHERE ppi.productPurchaseID = pp.productPurchaseID AND pp.purchaseTime = pTime;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateProductStartOfPreparation` (IN `pTime` DATETIME)  NO SQL
+    COMMENT 'Procedure that update the startOfPreparation'
+BEGIN 
+	UPDATE ProductPurchaseInfo ppi
+	INNER JOIN ProductPurchase pp  
+    SET ppi.startOfPreparation = NOW() 
+    WHERE ppi.productPurchaseID = pp.productPurchaseID AND pp.purchaseTime = pTime;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStartOfDelivery` (IN `pTime` DATETIME)  NO SQL
+    COMMENT 'Procedure that update the startOfDelivery'
+BEGIN 
+	CALL updateProductStartOfDelivery(pTime);
+	CALL updateComboStartOfDelivery(pTime);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStartOfPreparation` (IN `pTime` DATETIME)  NO SQL
+    COMMENT 'Procedure that update the startOfPreparation'
+BEGIN 
+	CALL updateProductStartOfPreparation(pTime);
+	CALL updateComboStartOfPreparation(pTime);
 END$$
 
 --
@@ -306,6 +396,69 @@ INSERT INTO `combo` (`comboID`, `name`, `price`, `description`, `status`, `perso
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `combopurchase`
+--
+
+CREATE TABLE `combopurchase` (
+  `comboPurchaseID` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `purchaseTime` datetime NOT NULL,
+  `comboID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `combopurchase`
+--
+
+INSERT INTO `combopurchase` (`comboPurchaseID`, `quantity`, `purchaseTime`, `comboID`) VALUES
+(1, 1, '2018-11-14 11:00:00', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `combopurchasebyclient`
+--
+
+CREATE TABLE `combopurchasebyclient` (
+  `comboPurchaseByClientID` int(11) NOT NULL,
+  `personID` int(11) NOT NULL,
+  `comboPurchaseID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `combopurchasebyclient`
+--
+
+INSERT INTO `combopurchasebyclient` (`comboPurchaseByClientID`, `personID`, `comboPurchaseID`) VALUES
+(1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `combopurchaseinfo`
+--
+
+CREATE TABLE `combopurchaseinfo` (
+  `comboPurchaseInfoID` int(11) NOT NULL,
+  `comboPurchaseID` int(11) NOT NULL,
+  `deliveryType` tinyint(1) NOT NULL,
+  `payMethod` tinyint(1) NOT NULL,
+  `startOfPreparation` datetime DEFAULT NULL,
+  `endOfPreparation` datetime DEFAULT NULL,
+  `startOfDelivery` datetime DEFAULT NULL,
+  `endOfDelivery` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `combopurchaseinfo`
+--
+
+INSERT INTO `combopurchaseinfo` (`comboPurchaseInfoID`, `comboPurchaseID`, `deliveryType`, `payMethod`, `startOfPreparation`, `endOfPreparation`, `startOfDelivery`, `endOfDelivery`) VALUES
+(1, 1, 0, 0, '2018-11-14 12:02:35', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `employee`
 --
 
@@ -316,6 +469,13 @@ CREATE TABLE `employee` (
   `jobTitleID` int(11) NOT NULL,
   `personID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `employee`
+--
+
+INSERT INTO `employee` (`employeeID`, `email`, `salary`, `jobTitleID`, `personID`) VALUES
+(1, 'jperez@gmail.com', 1250, 3, 5);
 
 -- --------------------------------------------------------
 
@@ -334,27 +494,49 @@ CREATE TABLE `employeebyrest` (
 --
 
 INSERT INTO `employeebyrest` (`employeeByRestID`, `personID`, `restID`) VALUES
-(1, 3, 1);
+(1, 3, 1),
+(2, 5, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `employeedoorder`
+-- Estructura de tabla para la tabla `employeedocombo`
 --
 
-CREATE TABLE `employeedoorder` (
-  `employeeDoOrderID` int(11) NOT NULL,
-  `percentage` float NOT NULL,
+CREATE TABLE `employeedocombo` (
+  `employeeDoComboID` int(11) NOT NULL,
   `personID` int(11) NOT NULL,
-  `orderID` int(11) NOT NULL
+  `comboPurchaseID` int(11) NOT NULL,
+  `percentage` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `employeedoorder`
+-- Volcado de datos para la tabla `employeedocombo`
 --
 
-INSERT INTO `employeedoorder` (`employeeDoOrderID`, `percentage`, `personID`, `orderID`) VALUES
-(1, 5, 3, 1);
+INSERT INTO `employeedocombo` (`employeeDoComboID`, `personID`, `comboPurchaseID`, `percentage`) VALUES
+(1, 5, 1, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `employeedoproduct`
+--
+
+CREATE TABLE `employeedoproduct` (
+  `employeeDoProductID` int(11) NOT NULL,
+  `personID` int(11) NOT NULL,
+  `productPurchaseID` int(11) NOT NULL,
+  `percentage` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `employeedoproduct`
+--
+
+INSERT INTO `employeedoproduct` (`employeeDoProductID`, `personID`, `productPurchaseID`, `percentage`) VALUES
+(1, 5, 1, 2),
+(2, 5, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -374,7 +556,8 @@ CREATE TABLE `jobtitle` (
 
 INSERT INTO `jobtitle` (`jobTitleID`, `name`, `salaryID`) VALUES
 (1, 'General Manager', 1),
-(2, 'Branch Manager', 2);
+(2, 'Branch Manager', 2),
+(3, 'Deliver', 3);
 
 -- --------------------------------------------------------
 
@@ -402,52 +585,6 @@ INSERT INTO `manager` (`managerID`, `username`, `password`, `salary`, `jobTitleI
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `orderinformation`
---
-
-CREATE TABLE `orderinformation` (
-  `orderInfoID` int(11) NOT NULL,
-  `orderID` int(11) NOT NULL,
-  `deliveryType` tinyint(1) NOT NULL,
-  `payMethod` tinyint(1) NOT NULL,
-  `startOfPreparation` datetime DEFAULT NULL,
-  `endOfPreparation` datetime DEFAULT NULL,
-  `startOfDelivery` datetime DEFAULT NULL,
-  `endOfDelivery` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `orderinformation`
---
-
-INSERT INTO `orderinformation` (`orderInfoID`, `orderID`, `deliveryType`, `payMethod`, `startOfPreparation`, `endOfPreparation`, `startOfDelivery`, `endOfDelivery`) VALUES
-(1, 1, 1, 1, '2018-11-05 15:55:59', '2018-11-05 15:56:15', '2018-11-05 15:56:32', '2018-11-05 15:56:48');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `orders`
---
-
-CREATE TABLE `orders` (
-  `orderID` int(11) NOT NULL,
-  `productID` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `price` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `orders`
---
-
-INSERT INTO `orders` (`orderID`, `productID`, `quantity`, `price`) VALUES
-(1, 1, 1, 650),
-(2, 2, 2, 1500),
-(3, 3, 3, 1500);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `person`
 --
 
@@ -466,7 +603,8 @@ INSERT INTO `person` (`personID`, `name`, `lastname`, `identification`) VALUES
 (1, 'Esteban', 'Coto', '12345678'),
 (2, 'Carlos', 'Rojas', '87654321'),
 (3, 'Danny', 'Xie', '987654321'),
-(4, 'Ana', 'Blanco', '987654');
+(4, 'Ana', 'Blanco', '987654'),
+(5, 'Juan', 'Perez', '875421');
 
 -- --------------------------------------------------------
 
@@ -517,26 +655,68 @@ INSERT INTO `productbycombo` (`productByComboID`, `quantity`, `productID`, `comb
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `purchasebyclient`
+-- Estructura de tabla para la tabla `productpurchase`
 --
 
-CREATE TABLE `purchasebyclient` (
-  `purchaseByClientID` int(11) NOT NULL,
-  `personID` int(11) NOT NULL,
-  `orderID` int(11) NOT NULL,
-  `restID` int(11) NOT NULL,
-  `cardNum` varchar(100) NOT NULL,
-  `timeOfPurchase` datetime NOT NULL
+CREATE TABLE `productpurchase` (
+  `productPurchaseID` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `purchaseTime` datetime NOT NULL,
+  `productID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Volcado de datos para la tabla `purchasebyclient`
+-- Volcado de datos para la tabla `productpurchase`
 --
 
-INSERT INTO `purchasebyclient` (`purchaseByClientID`, `personID`, `orderID`, `restID`, `cardNum`, `timeOfPurchase`) VALUES
-(1, 1, 1, 1, '123456', '2018-11-05 15:45:30'),
-(2, 1, 2, 2, '123456', '2018-11-05 16:07:37'),
-(3, 4, 3, 1, '654321', '2018-11-05 16:08:20');
+INSERT INTO `productpurchase` (`productPurchaseID`, `quantity`, `purchaseTime`, `productID`) VALUES
+(1, 2, '2018-11-14 11:00:00', 1),
+(3, 3, '2018-11-14 11:00:00', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `productpurchasebyclient`
+--
+
+CREATE TABLE `productpurchasebyclient` (
+  `productPurchaseByClientID` int(11) NOT NULL,
+  `personID` int(11) NOT NULL,
+  `productPurchaseID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `productpurchasebyclient`
+--
+
+INSERT INTO `productpurchasebyclient` (`productPurchaseByClientID`, `personID`, `productPurchaseID`) VALUES
+(1, 1, 1),
+(3, 1, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `productpurchaseinfo`
+--
+
+CREATE TABLE `productpurchaseinfo` (
+  `productPurchaseInfoID` int(11) NOT NULL,
+  `productPurchaseID` int(11) NOT NULL,
+  `deliveryType` tinyint(1) NOT NULL,
+  `payMethod` tinyint(1) NOT NULL,
+  `startOfPreparation` datetime DEFAULT NULL,
+  `endOfPreparation` datetime DEFAULT NULL,
+  `startOfDelivery` datetime DEFAULT NULL,
+  `endOfDelivery` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `productpurchaseinfo`
+--
+
+INSERT INTO `productpurchaseinfo` (`productPurchaseInfoID`, `productPurchaseID`, `deliveryType`, `payMethod`, `startOfPreparation`, `endOfPreparation`, `startOfDelivery`, `endOfDelivery`) VALUES
+(1, 1, 0, 0, '2018-11-14 12:02:35', NULL, NULL, NULL),
+(2, 3, 0, 0, '2018-11-14 12:02:35', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -576,7 +756,8 @@ CREATE TABLE `salary` (
 
 INSERT INTO `salary` (`salaryID`, `minSalary`, `maxSalary`) VALUES
 (1, 5000, 8000),
-(2, 4000, 7000);
+(2, 4000, 7000),
+(3, 1000, 1500);
 
 -- --------------------------------------------------------
 
@@ -615,7 +796,7 @@ CREATE TABLE `vehiclebyemployee` (
 --
 
 INSERT INTO `vehiclebyemployee` (`vehicleByEmployeeID`, `personID`, `vehicleID`) VALUES
-(1, 3, 1);
+(2, 5, 1);
 
 --
 -- Índices para tablas volcadas
@@ -636,6 +817,28 @@ ALTER TABLE `combo`
   ADD KEY `personID` (`personID`);
 
 --
+-- Indices de la tabla `combopurchase`
+--
+ALTER TABLE `combopurchase`
+  ADD PRIMARY KEY (`comboPurchaseID`),
+  ADD KEY `comboID` (`comboID`);
+
+--
+-- Indices de la tabla `combopurchasebyclient`
+--
+ALTER TABLE `combopurchasebyclient`
+  ADD PRIMARY KEY (`comboPurchaseByClientID`),
+  ADD KEY `personID` (`personID`),
+  ADD KEY `comboPurchaseID` (`comboPurchaseID`);
+
+--
+-- Indices de la tabla `combopurchaseinfo`
+--
+ALTER TABLE `combopurchaseinfo`
+  ADD PRIMARY KEY (`comboPurchaseInfoID`),
+  ADD KEY `comboPurchaseID` (`comboPurchaseID`);
+
+--
 -- Indices de la tabla `employee`
 --
 ALTER TABLE `employee`
@@ -652,10 +855,20 @@ ALTER TABLE `employeebyrest`
   ADD KEY `restID` (`restID`);
 
 --
--- Indices de la tabla `employeedoorder`
+-- Indices de la tabla `employeedocombo`
 --
-ALTER TABLE `employeedoorder`
-  ADD PRIMARY KEY (`employeeDoOrderID`);
+ALTER TABLE `employeedocombo`
+  ADD PRIMARY KEY (`employeeDoComboID`),
+  ADD KEY `personID` (`personID`),
+  ADD KEY `comboPurchaseID` (`comboPurchaseID`);
+
+--
+-- Indices de la tabla `employeedoproduct`
+--
+ALTER TABLE `employeedoproduct`
+  ADD PRIMARY KEY (`employeeDoProductID`),
+  ADD KEY `personID` (`personID`),
+  ADD KEY `productPurchaseID` (`productPurchaseID`);
 
 --
 -- Indices de la tabla `jobtitle`
@@ -671,19 +884,6 @@ ALTER TABLE `manager`
   ADD PRIMARY KEY (`managerID`),
   ADD KEY `personID` (`personID`),
   ADD KEY `jobTitleID` (`jobTitleID`);
-
---
--- Indices de la tabla `orderinformation`
---
-ALTER TABLE `orderinformation`
-  ADD PRIMARY KEY (`orderInfoID`),
-  ADD KEY `orderID` (`orderID`);
-
---
--- Indices de la tabla `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`orderID`);
 
 --
 -- Indices de la tabla `person`
@@ -707,13 +907,26 @@ ALTER TABLE `productbycombo`
   ADD KEY `comboID` (`comboID`);
 
 --
--- Indices de la tabla `purchasebyclient`
+-- Indices de la tabla `productpurchase`
 --
-ALTER TABLE `purchasebyclient`
-  ADD PRIMARY KEY (`purchaseByClientID`),
+ALTER TABLE `productpurchase`
+  ADD PRIMARY KEY (`productPurchaseID`),
+  ADD KEY `productID` (`productID`);
+
+--
+-- Indices de la tabla `productpurchasebyclient`
+--
+ALTER TABLE `productpurchasebyclient`
+  ADD PRIMARY KEY (`productPurchaseByClientID`),
   ADD KEY `personID` (`personID`),
-  ADD KEY `orderID` (`orderID`),
-  ADD KEY `restID` (`restID`);
+  ADD KEY `productPurchaseID` (`productPurchaseID`);
+
+--
+-- Indices de la tabla `productpurchaseinfo`
+--
+ALTER TABLE `productpurchaseinfo`
+  ADD PRIMARY KEY (`productPurchaseInfoID`),
+  ADD KEY `productPurchaseID` (`productPurchaseID`);
 
 --
 -- Indices de la tabla `restaurant`
@@ -758,28 +971,52 @@ ALTER TABLE `combo`
   MODIFY `comboID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `combopurchase`
+--
+ALTER TABLE `combopurchase`
+  MODIFY `comboPurchaseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `combopurchasebyclient`
+--
+ALTER TABLE `combopurchasebyclient`
+  MODIFY `comboPurchaseByClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `combopurchaseinfo`
+--
+ALTER TABLE `combopurchaseinfo`
+  MODIFY `comboPurchaseInfoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `employeeID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `employeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `employeebyrest`
 --
 ALTER TABLE `employeebyrest`
-  MODIFY `employeeByRestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `employeeByRestID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `employeedoorder`
+-- AUTO_INCREMENT de la tabla `employeedocombo`
 --
-ALTER TABLE `employeedoorder`
-  MODIFY `employeeDoOrderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `employeedocombo`
+  MODIFY `employeeDoComboID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `employeedoproduct`
+--
+ALTER TABLE `employeedoproduct`
+  MODIFY `employeeDoProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `jobtitle`
 --
 ALTER TABLE `jobtitle`
-  MODIFY `jobTitleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `jobTitleID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `manager`
@@ -788,22 +1025,10 @@ ALTER TABLE `manager`
   MODIFY `managerID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `orderinformation`
---
-ALTER TABLE `orderinformation`
-  MODIFY `orderInfoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `orders`
---
-ALTER TABLE `orders`
-  MODIFY `orderID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
 -- AUTO_INCREMENT de la tabla `person`
 --
 ALTER TABLE `person`
-  MODIFY `personID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID for the table person', AUTO_INCREMENT=5;
+  MODIFY `personID` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID for the table person', AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `product`
@@ -818,10 +1043,22 @@ ALTER TABLE `productbycombo`
   MODIFY `productByComboID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT de la tabla `purchasebyclient`
+-- AUTO_INCREMENT de la tabla `productpurchase`
 --
-ALTER TABLE `purchasebyclient`
-  MODIFY `purchaseByClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `productpurchase`
+  MODIFY `productPurchaseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `productpurchasebyclient`
+--
+ALTER TABLE `productpurchasebyclient`
+  MODIFY `productPurchaseByClientID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `productpurchaseinfo`
+--
+ALTER TABLE `productpurchaseinfo`
+  MODIFY `productPurchaseInfoID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `restaurant`
@@ -833,7 +1070,7 @@ ALTER TABLE `restaurant`
 -- AUTO_INCREMENT de la tabla `salary`
 --
 ALTER TABLE `salary`
-  MODIFY `salaryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `salaryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `vehicle`
@@ -845,7 +1082,7 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT de la tabla `vehiclebyemployee`
 --
 ALTER TABLE `vehiclebyemployee`
-  MODIFY `vehicleByEmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `vehicleByEmployeeID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
@@ -864,6 +1101,25 @@ ALTER TABLE `combo`
   ADD CONSTRAINT `combo_ibfk_1` FOREIGN KEY (`personID`) REFERENCES `person` (`personID`);
 
 --
+-- Filtros para la tabla `combopurchase`
+--
+ALTER TABLE `combopurchase`
+  ADD CONSTRAINT `combopurchase_ibfk_1` FOREIGN KEY (`comboID`) REFERENCES `combo` (`comboID`);
+
+--
+-- Filtros para la tabla `combopurchasebyclient`
+--
+ALTER TABLE `combopurchasebyclient`
+  ADD CONSTRAINT `combopurchasebyclient_ibfk_1` FOREIGN KEY (`personID`) REFERENCES `person` (`personID`),
+  ADD CONSTRAINT `combopurchasebyclient_ibfk_2` FOREIGN KEY (`comboPurchaseID`) REFERENCES `combopurchase` (`comboPurchaseID`);
+
+--
+-- Filtros para la tabla `combopurchaseinfo`
+--
+ALTER TABLE `combopurchaseinfo`
+  ADD CONSTRAINT `combopurchaseinfo_ibfk_1` FOREIGN KEY (`comboPurchaseID`) REFERENCES `combopurchase` (`comboPurchaseID`);
+
+--
 -- Filtros para la tabla `employee`
 --
 ALTER TABLE `employee`
@@ -876,6 +1132,20 @@ ALTER TABLE `employee`
 ALTER TABLE `employeebyrest`
   ADD CONSTRAINT `employeebyrest_ibfk_1` FOREIGN KEY (`personID`) REFERENCES `person` (`personID`),
   ADD CONSTRAINT `employeebyrest_ibfk_2` FOREIGN KEY (`restID`) REFERENCES `restaurant` (`restID`);
+
+--
+-- Filtros para la tabla `employeedocombo`
+--
+ALTER TABLE `employeedocombo`
+  ADD CONSTRAINT `employeedocombo_ibfk_1` FOREIGN KEY (`personID`) REFERENCES `person` (`personID`),
+  ADD CONSTRAINT `employeedocombo_ibfk_2` FOREIGN KEY (`comboPurchaseID`) REFERENCES `combopurchase` (`comboPurchaseID`);
+
+--
+-- Filtros para la tabla `employeedoproduct`
+--
+ALTER TABLE `employeedoproduct`
+  ADD CONSTRAINT `employeedoproduct_ibfk_1` FOREIGN KEY (`personID`) REFERENCES `person` (`personID`),
+  ADD CONSTRAINT `employeedoproduct_ibfk_2` FOREIGN KEY (`productPurchaseID`) REFERENCES `productpurchase` (`productPurchaseID`);
 
 --
 -- Filtros para la tabla `jobtitle`
@@ -891,12 +1161,6 @@ ALTER TABLE `manager`
   ADD CONSTRAINT `manager_ibfk_2` FOREIGN KEY (`jobTitleID`) REFERENCES `jobtitle` (`jobTitleID`);
 
 --
--- Filtros para la tabla `orderinformation`
---
-ALTER TABLE `orderinformation`
-  ADD CONSTRAINT `orderinformation_ibfk_1` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`);
-
---
 -- Filtros para la tabla `product`
 --
 ALTER TABLE `product`
@@ -910,12 +1174,23 @@ ALTER TABLE `productbycombo`
   ADD CONSTRAINT `productbycombo_ibfk_2` FOREIGN KEY (`comboID`) REFERENCES `combo` (`comboID`);
 
 --
--- Filtros para la tabla `purchasebyclient`
+-- Filtros para la tabla `productpurchase`
 --
-ALTER TABLE `purchasebyclient`
-  ADD CONSTRAINT `purchasebyclient_ibfk_1` FOREIGN KEY (`personID`) REFERENCES `person` (`personID`),
-  ADD CONSTRAINT `purchasebyclient_ibfk_2` FOREIGN KEY (`orderID`) REFERENCES `orders` (`orderID`),
-  ADD CONSTRAINT `purchasebyclient_ibfk_3` FOREIGN KEY (`restID`) REFERENCES `restaurant` (`restID`);
+ALTER TABLE `productpurchase`
+  ADD CONSTRAINT `productpurchase_ibfk_1` FOREIGN KEY (`productID`) REFERENCES `product` (`productID`);
+
+--
+-- Filtros para la tabla `productpurchasebyclient`
+--
+ALTER TABLE `productpurchasebyclient`
+  ADD CONSTRAINT `productpurchasebyclient_ibfk_1` FOREIGN KEY (`personID`) REFERENCES `person` (`personID`),
+  ADD CONSTRAINT `productpurchasebyclient_ibfk_2` FOREIGN KEY (`productPurchaseID`) REFERENCES `productpurchase` (`productPurchaseID`);
+
+--
+-- Filtros para la tabla `productpurchaseinfo`
+--
+ALTER TABLE `productpurchaseinfo`
+  ADD CONSTRAINT `productpurchaseinfo_ibfk_1` FOREIGN KEY (`productPurchaseID`) REFERENCES `productpurchase` (`productPurchaseID`);
 
 --
 -- Filtros para la tabla `vehiclebyemployee`

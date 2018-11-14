@@ -179,135 +179,330 @@ BEGIN
 END$$
 DELIMITER ;
 
--- Procedure to insert a Order
+-- Procedure to insert a product purchase
 -- Author: Esteban Coto Alfaro
--- Description: This procedure insert into the table Order all the data.
--- Last modification: 05/11/18
+-- Description: This procedure insert into the table ProductPurchase all the data.
+-- Last modification: 14/11/18
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProductOrder`(IN `pProduct` VARCHAR(100), IN `pQuantity` INT(11), IN `pClient` VARCHAR(100),
-	IN `pRest` VARCHAR(100), IN `pCardNum` VARCHAR(100))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProductPurchase`(IN `pProduct` VARCHAR(100), IN `pQuantity` INT(11), IN `pTime` DATETIME,
+	IN `pUsername` VARCHAR(100), IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN)
     NO SQL
-    COMMENT 'Procedure that insert into the table Order'
+    COMMENT 'Procedure that insert into the table ProductPurchase'
 BEGIN 
-	INSERT INTO Orders(orderID, productID, quantity, price)
-	VALUES(NULL, getProductID(pProduct), pQuantity, pQuantity*getProductPrice(pProduct));
-	CALL insertPurchaseByClient(pClient, pRest, pCardNum);
+	INSERT INTO ProductPurchase(productPurchaseID, quantity, purchaseTime, productID)
+	VALUES(NULL, pQuantity, pTime, getProductID(pProduct));
+	CALL insertProductPurchaseByClient(pUsername);
+	CALL insertProductPurchaseInfo(pDeliveryType, pPayMethod);
 END$$
 DELIMITER ;
 
--- Procedure to insert a Purchase of a client
+-- Procedure to insert a product purchase by client
 -- Author: Esteban Coto Alfaro
--- Description: This procedure insert into the table Purchase by client all the data.
--- Last modification: 05/11/18
+-- Description: This procedure insert into the table ProductPurchaseByClient all the data.
+-- Last modification: 14/11/18
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertPurchaseByClient`(IN `pClient` VARCHAR(100),	IN `pRest` VARCHAR(100), IN `pCardNum` VARCHAR(100))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProductPurchaseByClient`(IN `pUsername` VARCHAR(100))
     NO SQL
-    COMMENT 'Procedure that insert into the table Purchase by client'
+    COMMENT 'Procedure that insert into the table ProductPurchaseByClient'
 BEGIN 
-	INSERT INTO PurchaseByClient(purchaseByClientID, personID, orderID, restID, cardNum, timeOfPurchase)
-	VALUES(NULL, getClientID(pClient), (SELECT orderID FROM orders ORDER BY orderID DESC LIMIT 1), getRestID(pRest), pCardNum, NOW());
+	INSERT INTO ProductPurchaseByClient(productPurchaseByClientID, personID, productPurchaseID)
+	VALUES(NULL, getClientID(pUsername), (SELECT productPurchaseID FROM ProductPurchase ORDER BY productPurchaseID DESC LIMIT 1));
 END$$
 DELIMITER ;
 
--- Procedure to insert a Order information
+-- Procedure to insert a product purchase info
 -- Author: Esteban Coto Alfaro
--- Description: This procedure insert into the table Order information all the data.
--- Last modification: 05/11/18
+-- Description: This procedure insert into the table ProductPurchaseInfo all the data.
+-- Last modification: 14/11/18
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertOrderInfo`(IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProductPurchaseInfo`(IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN)
     NO SQL
-    COMMENT 'Procedure that insert into the table Order information'
+    COMMENT 'Procedure that insert into the table ProductPurchaseInfo'
 BEGIN 
-	INSERT INTO OrderInformation(orderInfoID, orderID, deliveryType, payMethod, startOfPreparation, endOfPreparation, startOfDelivery, endOfDelivery)
-	VALUES(NULL, (SELECT orderID FROM orders ORDER BY orderID DESC LIMIT 1), pDeliveryType, pPayMethod, NULL, NULL, NULL, NULL);
+	INSERT INTO ProductPurchaseInfo(productPurchaseInfoID, productPurchaseID, deliveryType, payMethod, startOfPreparation, endOfPreparation, startOfDelivery, endOfDelivery)
+	VALUES(NULL, (SELECT productPurchaseID FROM ProductPurchase ORDER BY productPurchaseID DESC LIMIT 1), pDeliveryType, pPayMethod, NULL, NULL, NULL, NULL);
 END$$
 DELIMITER ;
 
--- Procedure to insert a Employee do a order
+-- Procedure to insert a combo purchase
 -- Author: Esteban Coto Alfaro
--- Description: This procedure insert into the table EmployeeDoOrder all the data.
--- Last modification: 05/11/18
+-- Description: This procedure insert into the table ComboPurchase all the data.
+-- Last modification: 14/11/18
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertEmployeeDoOrder`(IN `pPercentage` VARCHAR(100),	IN `pEmployee` VARCHAR(100))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertComboPurchase`(IN `pCombo` VARCHAR(100), IN `pQuantity` INT(11), IN `pTime` DATETIME,
+	IN `pUsername` VARCHAR(100), IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN)
     NO SQL
-    COMMENT 'Procedure that insert into the table EmployeeDoOrder'
+    COMMENT 'Procedure that insert into the table ComboPurchase'
 BEGIN 
-	INSERT INTO EmployeeDoOrder(employeeDoOrderID, percentage, personID, orderID)
-	VALUES(NULL, pPercentage, getPersonID(pEmployee), (SELECT orderID FROM orders ORDER BY orderID DESC LIMIT 1));
+	INSERT INTO ComboPurchase(comboPurchaseID, quantity, purchaseTime, comboID)
+	VALUES(NULL, pQuantity, pTime, getComboID(pCombo));
+	CALL insertComboPurchaseByClient(pUsername);
+	CALL insertComboPurchaseInfo(pDeliveryType, pPayMethod);
+END$$
+DELIMITER ;
+
+-- Procedure to insert a product Combo by client
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure insert into the table ComboPurchaseByClient all the data.
+-- Last modification: 14/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertComboPurchaseByClient`(IN `pUsername` VARCHAR(100))
+    NO SQL
+    COMMENT 'Procedure that insert into the table ComboPurchaseByClient'
+BEGIN 
+	INSERT INTO ComboPurchaseByClient(ComboPurchaseByClientID, personID, ComboPurchaseID)
+	VALUES(NULL, getClientID(pUsername), (SELECT comboPurchaseID FROM ComboPurchase ORDER BY ComboPurchaseID DESC LIMIT 1));
+END$$
+DELIMITER ;
+
+-- Procedure to insert a product Combo info
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure insert into the table ComboPurchaseInfo all the data.
+-- Last modification: 14/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertComboPurchaseInfo`(IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN)
+    NO SQL
+    COMMENT 'Procedure that insert into the table ComboPurchaseInfo'
+BEGIN 
+	INSERT INTO ComboPurchaseInfo(comboPurchaseInfoID, comboPurchaseID, deliveryType, payMethod, startOfPreparation, endOfPreparation, startOfDelivery, endOfDelivery)
+	VALUES(NULL, (SELECT ComboPurchaseID FROM ComboPurchase ORDER BY ComboPurchaseID DESC LIMIT 1), pDeliveryType, pPayMethod, NULL, NULL, NULL, NULL);
+END$$
+DELIMITER ;
+
+-- Procedure to insert a employee do product
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure insert into the table EmployeeDoProduct all the data.
+-- Last modification: 14/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertEmployeeDoProduct`(IN `pTime` DATETIME, IN `pEmail` VARCHAR(100), IN `pPercentage` FLOAT(11))
+    NO SQL
+    COMMENT 'Procedure that insert into the table EmployeeDoProduct'
+BEGIN 
+	INSERT INTO EmployeeDoProduct(employeeDoProductID, personID, productPurchaseID, percentage)
+	SELECT NULL, getPersonID(pEmail), pp.productPurchaseID, pPercentage FROM ProductPurchase pp WHERE pp.purchaseTime = pTime;
+END$$
+DELIMITER ;
+
+-- Procedure to insert a employee do Combo
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure insert into the table EmployeeDoCombo all the data.
+-- Last modification: 14/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertEmployeeDoCombo`(IN `pTime` DATETIME, IN `pEmail` VARCHAR(100), IN `pPercentage` FLOAT(11))
+    NO SQL
+    COMMENT 'Procedure that insert into the table EmployeeDoCombo'
+BEGIN 
+	INSERT INTO EmployeeDoCombo(employeeDoComboID, personID, comboPurchaseID, percentage)
+	SELECT NULL, getPersonID(pEmail), cp.comboPurchaseID, pPercentage FROM ComboPurchase cp WHERE cp.purchaseTime = pTime;
 END$$
 DELIMITER ;
 
 -- --------------------------------------------------------------------------------
 --                                  UPDATE
 -- --------------------------------------------------------------------------------
-
 -- Procedure to updateStartOfPreparation
 -- Author: Esteban Coto Alfaro
--- Description: This procedure update into the table orderInformation.
--- Last modification: 05/11/18
+-- Description: This procedure call the procedures to update the start of preparation.
+-- Last modification: 14/11/18
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStartOfPreparation`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStartOfPreparation`(IN `pTime` DATETIME)
     NO SQL
     COMMENT 'Procedure that update the startOfPreparation'
 BEGIN 
-	UPDATE orderInformation oi  
-    SET oi.startOfPreparation = NOW() 
-    WHERE oi.orderID = (SELECT orderID FROM orders ORDER BY orderID DESC LIMIT 1);
+	CALL updateProductStartOfPreparation(pTime);
+	CALL updateComboStartOfPreparation(pTime);
 END$$
-DELIMITER ; 
+DELIMITER ;
 
 -- Procedure to updateEndOfPreparation
 -- Author: Esteban Coto Alfaro
--- Description: This procedure update into the table orderInformation.
--- Last modification: 05/11/18
+-- Description: This procedure call the procedures to update the End of preparation.
+-- Last modification: 14/11/18
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateEndOfPreparation`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateEndOfPreparation`(IN `pTime` DATETIME)
     NO SQL
-    COMMENT 'Procedure that update the endOfPreparation'
+    COMMENT 'Procedure that update the EndOfPreparation'
 BEGIN 
-	UPDATE orderInformation oi  
-    SET oi.endOfPreparation = NOW() 
-    WHERE oi.orderID = (SELECT orderID FROM orders ORDER BY orderID DESC LIMIT 1);
+	CALL updateProductEndOfPreparation(pTime);
+	CALL updateComboEndOfPreparation(pTime);
 END$$
 DELIMITER ;
 
 -- Procedure to updateStartOfDelivery
 -- Author: Esteban Coto Alfaro
--- Description: This procedure update into the table orderInformation.
--- Last modification: 05/11/18
+-- Description: This procedure call the procedures to update the start of Delivery.
+-- Last modification: 14/11/18
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStartOfDelivery`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateStartOfDelivery`(IN `pTime` DATETIME)
     NO SQL
     COMMENT 'Procedure that update the startOfDelivery'
 BEGIN 
-	UPDATE orderInformation oi  
-    SET oi.startOfDelivery = NOW() 
-    WHERE oi.orderID = (SELECT orderID FROM orders ORDER BY orderID DESC LIMIT 1);
+	CALL updateProductStartOfDelivery(pTime);
+	CALL updateComboStartOfDelivery(pTime);
 END$$
-DELIMITER ;  
+DELIMITER ;
 
 -- Procedure to updateEndOfDelivery
 -- Author: Esteban Coto Alfaro
--- Description: This procedure update into the table orderInformation.
--- Last modification: 05/11/18
+-- Description: This procedure call the procedures to update the end of Delivery.
+-- Last modification: 14/11/18
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateEndOfDelivery`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateEndOfDelivery`(IN `pTime` DATETIME)
+    NO SQL
+    COMMENT 'Procedure that update the endOfDelivery'
+BEGIN 
+	CALL updateProductEndOfDelivery(pTime);
+	CALL updateComboEndOfDelivery(pTime);
+END$$
+DELIMITER ;
+
+-- Procedure to updateProductStartOfPreparation
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure update into the table ProductPurchaseInfo.
+-- Last modification: 14/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateProductStartOfPreparation`(IN `pTime` DATETIME)
     NO SQL
     COMMENT 'Procedure that update the startOfPreparation'
 BEGIN 
-	UPDATE orderInformation oi  
-    SET oi.endOfDelivery = NOW() 
-    WHERE oi.orderID = (SELECT orderID FROM orders ORDER BY orderID DESC LIMIT 1);
+	UPDATE ProductPurchaseInfo ppi
+	INNER JOIN ProductPurchase pp  
+    SET ppi.startOfPreparation = NOW() 
+    WHERE ppi.productPurchaseID = pp.productPurchaseID AND pp.purchaseTime = pTime;
 END$$
-DELIMITER ;
+DELIMITER ; 
+
+-- Procedure to updateProductEndOfPreparation
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure update into the table ProductPurchaseInfo.
+-- Last modification: 14/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateProductEndOfPreparation`(IN `pTime` DATETIME)
+    NO SQL
+    COMMENT 'Procedure that update the endOfPreparation'
+BEGIN 
+	UPDATE ProductPurchaseInfo ppi
+	INNER JOIN ProductPurchase pp  
+    SET ppi.endOfPreparation = NOW() 
+    WHERE ppi.productPurchaseID = pp.productPurchaseID AND pp.purchaseTime = pTime;
+END$$
+DELIMITER ; 
+
+-- Procedure to updateProductStartOfDelivery
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure update into the table ProductPurchaseInfo.
+-- Last modification: 14/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateProductStartOfDelivery`(IN `pTime` DATETIME)
+    NO SQL
+    COMMENT 'Procedure that update the startOfDelivery'
+BEGIN 
+	UPDATE ProductPurchaseInfo ppi
+	INNER JOIN ProductPurchase pp  
+    SET ppi.startOfDelivery = NOW() 
+    WHERE ppi.productPurchaseID = pp.productPurchaseID AND pp.purchaseTime = pTime;
+END$$
+DELIMITER ; 
+
+-- Procedure to updateProductEndOfDelivery
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure update into the table ProductPurchaseInfo.
+-- Last modification: 14/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateProductEndOfDelivery`(IN `pTime` DATETIME)
+    NO SQL
+    COMMENT 'Procedure that update the endOfDelivery'
+BEGIN 
+	UPDATE ProductPurchaseInfo ppi
+	INNER JOIN ProductPurchase pp  
+    SET ppi.endOfDelivery = NOW() 
+    WHERE ppi.productPurchaseID = pp.productPurchaseID AND pp.purchaseTime = pTime;
+END$$
+DELIMITER ; 
+
+-- Procedure to updateComboStartOfPreparation
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure update into the table ComboPurchaseInfo.
+-- Last modification: 14/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateComboStartOfPreparation`(IN `pTime` DATETIME)
+    NO SQL
+    COMMENT 'Procedure that update the startOfPreparation'
+BEGIN 
+	UPDATE ComboPurchaseInfo cpi
+	INNER JOIN ComboPurchase cp  
+    SET cpi.startOfPreparation = NOW() 
+    WHERE cpi.comboPurchaseID = cp.comboPurchaseID AND cp.purchaseTime = pTime;
+END$$
+DELIMITER ; 
+
+-- Procedure to updateComboEndOfPreparation
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure update into the table ComboPurchaseInfo.
+-- Last modification: 14/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateComboEndOfPreparation`(IN `pTime` DATETIME)
+    NO SQL
+    COMMENT 'Procedure that update the endOfPreparation'
+BEGIN 
+	UPDATE ComboPurchaseInfo cpi
+	INNER JOIN ComboPurchase cp  
+    SET cpi.endOfPreparation = NOW() 
+    WHERE cpi.comboPurchaseID = cp.comboPurchaseID AND cp.purchaseTime = pTime;
+END$$
+DELIMITER ; 
+
+-- Procedure to updateComboStartOfDelivery
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure update into the table ComboPurchaseInfo.
+-- Last modification: 14/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateComboStartOfDelivery`(IN `pTime` DATETIME)
+    NO SQL
+    COMMENT 'Procedure that update the startOfDelivery'
+BEGIN 
+	UPDATE ComboPurchaseInfo cpi
+	INNER JOIN ComboPurchase cp  
+    SET cpi.startOfDelivery = NOW() 
+    WHERE cpi.productPurchaseID = cp.ComboPurchaseID AND cp.purchaseTime = pTime;
+END$$
+DELIMITER ; 
+
+-- Procedure to updateComboEndOfDelivery
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure update into the table ComboPurchaseInfo.
+-- Last modification: 14/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateComboEndOfDelivery`(IN `pTime` DATETIME)
+    NO SQL
+    COMMENT 'Procedure that update the endOfDelivery'
+BEGIN 
+	UPDATE ComboPurchaseInfo cpi
+	INNER JOIN ComboPurchase cp  
+    SET cpi.endOfDelivery = NOW() 
+    WHERE cpi.ComboPurchaseID = cp.ComboPurchaseID AND cp.purchaseTime = pTime;
+END$$
+DELIMITER ; 
 
 -- --------------------------------------------------------------------------------
 -- 								GET INFORMATION
@@ -329,3 +524,5 @@ WHERE o.orderID = pbc.orderID
 ORDER BY pbc.timeOfPurchase;
 END$$
 DELIMITER ; 
+
+/*Select c.price/(SUM(getproductprice(p.name)*pbc.quantity)) FROM productbycombo pbc, combo c, product p WHERE pbc.comboID = c.comboID AND pbc.productID = p.productID;*/
