@@ -7,7 +7,11 @@ package userInterface;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -15,6 +19,12 @@ import javafx.fxml.Initializable;
  * @author egapb
  */
 public class MainController implements Initializable {
+	
+	@FXML private Button enter_button;
+	@FXML private Button sign_up_button;
+	@FXML private Button sign_in_button;
+	@FXML private TextField textfield_username;
+	@FXML private TextField textfield_password;
 
     /**
      * Initializes the controller class.
@@ -23,5 +33,4 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
 }

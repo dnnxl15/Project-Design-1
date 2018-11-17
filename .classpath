@@ -2,5 +2,12 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/dnnxl/Documents/Java_library/controlsfx-8.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dnnxl/Documents/Java_library/controlsfx-8.40.14.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dnnxl/Documents/Java_library/controlsfx-samples-8.40.14.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dnnxl/Documents/Java_library/fxsampler-1.0.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dnnxl/Documents/Java_library/javafx-ui-controls.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dnnxl/Documents/Java_library/java-json.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dnnxl/Documents/Java_library/jfoenix.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

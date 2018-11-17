@@ -1,11 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.MainController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1" fx:controller="userInterface.MainController">
+   <children>
+      <AnchorPane layoutX="70.0" layoutY="138.0" prefHeight="425.0" prefWidth="738.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <JFXButton fx:id="sign_in_button" layoutX="29.0" layoutY="128.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #1a6dd7;" text="Sign in" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="sign_up_button" layoutX="29.0" layoutY="298.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #1a6dd7;" text="Sign up" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="59.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/sign-in%20(3).png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="59.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/contract.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="541.0" layoutY="45.0" text="Sign in" textFill="#1a6dd7">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="textfield_username" labelFloat="true" layoutX="487.0" layoutY="170.0" prefHeight="26.0" prefWidth="209.0" promptText="Username" />
+            <JFXButton fx:id="enter_button" layoutX="537.0" layoutY="337.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Enter" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="553.0" layoutY="96.0" text="Password" textFill="#d61c30">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <JFXPasswordField fx:id="textfield_password" labelFloat="true" layoutX="487.0" layoutY="245.0" prefHeight="26.0" prefWidth="210.0" promptText="Password" />
+            <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="447.0" layoutY="243.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/lock%20(1).png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="447.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/man-user%20(2).png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="216.0" layoutY="59.0" prefHeight="590.0" prefWidth="270.0" style="-fx-background-color: #1a33d5;">
+         <children>
+            <Label layoutX="20.0" layoutY="361.0" text="Welcome Ovnirestaurant" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="54.0" layoutY="437.0" text="Is a pleasure to eat here" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="224.0" fitWidth="220.0" layoutX="25.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/ovni.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>
