@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #1b69d4;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.MainController">
+   <children>
+      <AnchorPane layoutX="-3.0" layoutY="-1.0" prefHeight="687.0" prefWidth="222.0" style="-fx-background-color: #1a33d5;">
+         <children>
+            <ImageView fitHeight="69.0" fitWidth="68.0" layoutX="78.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/ovni.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="40.0" layoutY="92.0" text="Client panel" textFill="WHITE">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="18.0" layoutY="187.0" prefHeight="39.0" prefWidth="186.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="249.0" layoutY="137.0" prefHeight="521.0" prefWidth="599.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <JFXButton fx:id="enter_button" layoutX="275.0" layoutY="290.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Enter" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="306.0" layoutY="74.0" text="Password" textFill="#d61c30">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="31.0" fitWidth="33.0" layoutX="296.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/man-user%20(2).png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
