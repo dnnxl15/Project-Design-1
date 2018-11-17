@@ -7,10 +7,14 @@ package userInterface;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/dnnxl15/Project-Design-1.git
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+<<<<<<< HEAD
 import javafx.scene.control.TextField;
 
 /**
@@ -26,9 +30,7 @@ public class MainController implements Initializable {
 	@FXML private TextField textfield_username;
 	@FXML private TextField textfield_password;
 
-    /**
-     * Initializes the controller class.
-     */
+       
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
