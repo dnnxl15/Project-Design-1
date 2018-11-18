@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.validation.DoubleValidator?>
@@ -12,7 +11,6 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.EmployeeRegisterController">
-    
    <children>
       <DoubleValidator layoutX="459.0" layoutY="197.0" />
       <AnchorPane layoutX="52.0" layoutY="48.0" prefHeight="590.0" prefWidth="342.0" style="-fx-background-color: #239e62;">
@@ -46,17 +44,17 @@
       </AnchorPane>
       <AnchorPane layoutX="458.0" layoutY="48.0" prefHeight="590.0" prefWidth="351.0" style="-fx-background-color: #ffffff;">
          <children>
-            <Label layoutX="130.0" layoutY="26.0" text="Sign up" textFill="#1a6dd7">
+            <Label layoutX="130.0" layoutY="38.0" text="Sign up" textFill="#1a6dd7">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="name_textfield" labelFloat="true" layoutX="62.0" layoutY="98.0" prefHeight="26.0" prefWidth="251.0" promptText="Name" />
-            <JFXTextField fx:id="lastName_textfield" labelFloat="true" layoutX="62.0" layoutY="159.0" prefHeight="26.0" prefWidth="251.0" promptText="Lastname" />
-            <JFXTextField fx:id="email_textfield" layoutX="62.0" layoutY="221.0" prefHeight="26.0" prefWidth="251.0" promptText="E-Mail" />
-            <JFXTextField fx:id="username_textfield" layoutX="62.0" layoutY="282.0" prefHeight="26.0" prefWidth="251.0" promptText="Username" />
-            <JFXPasswordField fx:id="password_textfield" layoutX="62.0" layoutY="347.0" prefHeight="26.0" prefWidth="251.0" promptText="Password" />
-            <JFXPasswordField fx:id="rePassword_textfield" layoutX="62.0" layoutY="408.0" prefHeight="26.0" prefWidth="251.0" promptText="Confirm password" />
+            <JFXTextField fx:id="name_textfield" labelFloat="true" layoutX="62.0" layoutY="119.0" prefHeight="26.0" prefWidth="251.0" promptText="Name" />
+            <JFXTextField fx:id="lastName_textfield" labelFloat="true" layoutX="62.0" layoutY="182.0" prefHeight="26.0" prefWidth="251.0" promptText="Lastname" />
+            <JFXTextField fx:id="email_textfield" layoutX="62.0" layoutY="248.0" prefHeight="26.0" prefWidth="251.0" promptText="E-Mail" />
+            <JFXTextField fx:id="username_textfield" layoutX="62.0" layoutY="312.0" prefHeight="26.0" prefWidth="251.0" promptText="Username" />
+            <JFXPasswordField fx:id="password_textfield" layoutX="62.0" layoutY="374.0" prefHeight="26.0" prefWidth="251.0" promptText="Password" />
+            <JFXPasswordField fx:id="rePassword_textfield" layoutX="62.0" layoutY="435.0" prefHeight="26.0" prefWidth="251.0" promptText="Confirm password" />
             <JFXButton fx:id="signUp_button" layoutX="51.0" layoutY="523.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Sign up" textFill="WHITE">
                <font>
                   <Font size="18.0" />
@@ -67,7 +65,6 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXComboBox layoutX="62.0" layoutY="465.0" prefHeight="26.0" prefWidth="251.0" promptText="Role" />
          </children>
       </AnchorPane>
    </children>
