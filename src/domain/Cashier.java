@@ -7,10 +7,7 @@ package domain;
 
 import library.enumerations.UserType;
 
-/**
- *
- * @author Personal
- */
+
 public class Cashier extends Employee{
     private int cashierId;
     private int machine;
