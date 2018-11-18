@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #1b69d4;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.MainController">
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #1b69d4; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/01.jpg');;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.MainController">
    <children>
       <AnchorPane layoutX="70.0" layoutY="138.0" prefHeight="425.0" prefWidth="738.0" style="-fx-background-color: #ffffff;">
          <children>
@@ -33,7 +33,7 @@
                   <Image url="@../image/contract.png" />
                </image>
             </ImageView>
-            <Label layoutX="541.0" layoutY="45.0" text="Sign in" textFill="#1a6dd7">
+            <Label layoutX="541.0" layoutY="45.0" text="Sign in" textFill="#239e62">
                <font>
                   <Font size="27.0" />
                </font>
@@ -62,9 +62,9 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="216.0" layoutY="59.0" prefHeight="590.0" prefWidth="270.0" style="-fx-background-color: #1a33d5;">
+      <AnchorPane layoutX="216.0" layoutY="59.0" prefHeight="590.0" prefWidth="270.0" style="-fx-background-color: #239e62;">
          <children>
-            <Label layoutX="20.0" layoutY="361.0" text="Welcome Ovnirestaurant" textFill="WHITE">
+            <Label layoutX="10.0" layoutY="362.0" text="Welcome to Ovnirestaurant" textFill="WHITE">
                <font>
                   <Font size="21.0" />
                </font>
