@@ -1,5 +1,7 @@
 package userInterface;
 
+import domain.Chef;
+import domain.Waiter;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import library.*;
+
 
 public class MainUserInterface extends Application implements IConstant 
 {
