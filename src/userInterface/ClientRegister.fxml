@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.EmployeeRegisterController">
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ClientRegisterController">
    <children>
       <DoubleValidator layoutX="459.0" layoutY="197.0" />
       <AnchorPane layoutX="52.0" layoutY="48.0" prefHeight="590.0" prefWidth="342.0" style="-fx-background-color: #239e62;">
@@ -35,7 +35,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXButton fx:id="signUp_button" layoutX="120.0" layoutY="510.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #5d95f0;" text="Sign in" textFill="WHITE">
+            <JFXButton fx:id="signIn_button" layoutX="120.0" layoutY="510.0" onAction="#signIn" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #5d95f0;" text="Sign in" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -51,11 +51,11 @@
             </Label>
             <JFXTextField fx:id="name_textfield" labelFloat="true" layoutX="62.0" layoutY="119.0" prefHeight="26.0" prefWidth="251.0" promptText="Name" />
             <JFXTextField fx:id="lastName_textfield" labelFloat="true" layoutX="62.0" layoutY="182.0" prefHeight="26.0" prefWidth="251.0" promptText="Lastname" />
-            <JFXTextField fx:id="email_textfield" layoutX="62.0" layoutY="248.0" prefHeight="26.0" prefWidth="251.0" promptText="E-Mail" />
-            <JFXTextField fx:id="username_textfield" layoutX="62.0" layoutY="312.0" prefHeight="26.0" prefWidth="251.0" promptText="Username" />
-            <JFXPasswordField fx:id="password_textfield" layoutX="62.0" layoutY="374.0" prefHeight="26.0" prefWidth="251.0" promptText="Password" />
-            <JFXPasswordField fx:id="rePassword_textfield" layoutX="62.0" layoutY="435.0" prefHeight="26.0" prefWidth="251.0" promptText="Confirm password" />
-            <JFXButton fx:id="signUp_button" layoutX="51.0" layoutY="523.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Sign up" textFill="WHITE">
+            <JFXTextField fx:id="email_textfield" labelFloat="true" layoutX="62.0" layoutY="248.0" prefHeight="26.0" prefWidth="251.0" promptText="E-Mail" />
+            <JFXTextField fx:id="username_textfield" labelFloat="true" layoutX="62.0" layoutY="312.0" prefHeight="26.0" prefWidth="251.0" promptText="Username" />
+            <JFXPasswordField fx:id="password_textfield" labelFloat="true" layoutX="62.0" layoutY="374.0" prefHeight="26.0" prefWidth="251.0" promptText="Password" />
+            <JFXPasswordField fx:id="rePassword_textfield" labelFloat="true" layoutX="62.0" layoutY="435.0" prefHeight="26.0" prefWidth="251.0" promptText="Confirm password" />
+            <JFXButton fx:id="signUp_button" layoutX="51.0" layoutY="523.0" onAction="#signUp" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Sign up" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

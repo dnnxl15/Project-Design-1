@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" opacity="0.91" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #1b69d4; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.MainController">
+<AnchorPane id="AnchorPane" opacity="0.91" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #1b69d4; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ClientWindowController">
    <children>
       <AnchorPane layoutX="-1.0" opacity="0.47" prefHeight="694.0" prefWidth="879.0" style="-fx-background-color: #373737;" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#239e62" height="57.0" layoutX="315.0" layoutY="139.0" smooth="false" stroke="#239e62" strokeType="INSIDE" width="255.0" />
