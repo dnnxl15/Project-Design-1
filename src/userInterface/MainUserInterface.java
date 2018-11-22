@@ -11,9 +11,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import library.*;
+import library.interfaces.IConstantWindow;
 
 
-public class MainUserInterface extends Application implements IConstant 
+public class MainUserInterface extends Application implements IConstantWindow 
 {
 	/**
 	 * Attributes of the window

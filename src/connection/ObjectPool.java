@@ -6,14 +6,16 @@ import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public abstract class ObjectPool <Connection>
+import library.IConstant;
+
+public abstract class ObjectPool <Connection> implements IConstant
 {
 	private long expirationTime;
 	private Hashtable<Connection, Long> locked, unlocked;
 	
 	public ObjectPool() 
 	{
-		expirationTime = 30000; // 30 seconds
+		expirationTime = EXPIRATION_TIME;
 		locked = new Hashtable<Connection, Long>();
 		unlocked = new Hashtable<Connection, Long>();
 	}
@@ -25,7 +27,7 @@ public abstract class ObjectPool <Connection>
 	{
 		long now = System.currentTimeMillis();
 		Connection t;
-	    if (unlocked.size() > 0) 
+	    if (unlocked.size() > CERO) 
 	    {
 	    	Enumeration<Connection> e = unlocked.keys();
 	    	while (e.hasMoreElements())

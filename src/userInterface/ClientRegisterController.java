@@ -9,8 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import library.IConstant;
+import library.interfaces.IConstantWindow;
 
-public class ClientRegisterController extends Controller implements Initializable, IConstant
+public class ClientRegisterController extends Controller implements Initializable, IConstantWindow
 {	
 	@FXML private Button signUp_button;
 	@FXML private Button signIn_button;
