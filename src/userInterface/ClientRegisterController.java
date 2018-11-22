@@ -25,7 +25,7 @@ public class ClientRegisterController extends Controller implements Initializabl
 
     public void signIn() throws IOException
     {
-    	openWindow(SIGN_IN_CLIENT_WINDOW_UI);
+    	openWindow(SIGN_IN_CLIENT_WINDOW_UI, 879, 687, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
     	closeWindow(signUp_button);
     }
     
@@ -33,9 +33,7 @@ public class ClientRegisterController extends Controller implements Initializabl
     {
     	String username = username_textfield.getText().toString();
     	String password = password_textfield.getText().toString();
-    	
-    	
-    	openWindow(SIGN_UP_CLIENT_WINDOW_UI);
+       	openWindow(SIGN_UP_CLIENT_WINDOW_UI, 879, 687, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
     	closeWindow(signUp_button);
     }
 

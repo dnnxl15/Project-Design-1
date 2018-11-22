@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import library.IConstant;
@@ -23,12 +24,15 @@ public class Controller implements IConstant
 	 * Description: The next method open view window.
 	 * Last modification: 08/10/18
 	 */
-	public void openWindow(String pNameWindow) throws IOException
+	public void openWindow(String pNameWindow, int pHeight, int pWidth, String pIcon, String pTitle) throws IOException
 	{
 		Parent root = FXMLLoader.load(getClass().getResource(pNameWindow));
         Stage stage = new Stage();
-        stage.setScene(new Scene(root));  
+        stage.setScene(new Scene(root, pHeight, pWidth));  
+        stage.setResizable(false);
         stage.initStyle(StageStyle.DECORATED);
+        stage.getIcons().add(new Image(pIcon));
+        stage.setTitle(pTitle);
         stage.show();
 	}
 

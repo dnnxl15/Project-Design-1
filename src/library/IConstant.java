@@ -17,5 +17,4 @@ public interface IConstant
     public final String MENU_TEXT = "Menu";
     public final String REPORT_TEXT = "Report";
     public final String USER_TEXT = "User";
-
 }
