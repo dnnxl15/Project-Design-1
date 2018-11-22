@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.EmployeeRegisterController">
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ManagerWindowController">
    <children>
       <AnchorPane layoutX="208.0" layoutY="14.0" opacity="0.7" prefHeight="92.0" prefWidth="662.0" style="-fx-background-color: #000000;" />
       <DoubleValidator layoutX="459.0" layoutY="197.0" />
@@ -33,7 +33,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="8.0" />
                            </HBox.margin>
                         </ImageView>
-                        <JFXButton fx:id="enter_button11" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #49A34D;" text="Home" textFill="WHITE">
+                        <JFXButton fx:id="home_button" onAction="#showComponentHome" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #49A34D;" text="Home" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -56,7 +56,7 @@
                               <Insets left="15.0" top="8.0" />
                            </HBox.margin>
                         </ImageView>
-                        <JFXButton fx:id="enter_button111" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #49A34D;" text="Menu" textFill="WHITE">
+                        <JFXButton fx:id="menu_button" onAction="#showComponentMenu" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #49A34D;" text="Menu" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -69,9 +69,9 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="45.0" prefWidth="162.0" style="-fx-background-color: #49a34d;">
+                  <HBox onDragDetected="#showReport" prefHeight="45.0" prefWidth="162.0" style="-fx-background-color: #49a34d;">
                      <children>
-                        <ImageView fitHeight="32.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="32.0" fitWidth="31.0" onDragDetected="#showReport" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../image/diagram%20(5).png" />
                            </image>
@@ -79,7 +79,7 @@
                               <Insets left="15.0" top="8.0" />
                            </HBox.margin>
                         </ImageView>
-                        <JFXButton fx:id="enter_button112" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #49A34D;" text="Report" textFill="WHITE">
+                        <JFXButton fx:id="report_button" onAction="#showReport" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #49A34D;" text="Report" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -102,7 +102,7 @@
                               <Insets left="15.0" top="8.0" />
                            </HBox.margin>
                         </ImageView>
-                        <JFXButton fx:id="enter_button113" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #49A34D;" text="User" textFill="WHITE">
+                        <JFXButton fx:id="user_button" onAction="#showComponentUser" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #49A34D;" text="User" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -125,7 +125,7 @@
                               <Insets left="15.0" top="8.0" />
                            </HBox.margin>
                         </ImageView>
-                        <JFXButton fx:id="enter_button1131" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #d32a0f;" text="Sign off" textFill="WHITE">
+                        <JFXButton fx:id="signOff_button" onAction="#closeWindow" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #d32a0f;" text="Sign off" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -162,51 +162,51 @@
       </AnchorPane>
       <AnchorPane layoutX="208.0" layoutY="131.0" opacity="0.58" prefHeight="546.0" prefWidth="662.0" style="-fx-background-color: #000000;">
          <children>
-            <JFXTextField labelFloat="true" layoutX="42.0" layoutY="97.0" prefHeight="26.0" prefWidth="156.0" promptText="Search" unFocusColor="WHITE" />
+            <JFXTextField fx:id="search_report_textfield" labelFloat="true" layoutX="42.0" layoutY="97.0" prefHeight="26.0" prefWidth="156.0" promptText="Search" unFocusColor="WHITE" />
          </children>
       </AnchorPane>
-      <Label layoutX="306.0" layoutY="45.0" text="Report" textFill="WHITE">
+      <Label fx:id="main_label" layoutX="306.0" layoutY="45.0" text="Report" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <ImageView fitHeight="68.0" fitWidth="81.0" layoutX="221.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="main_image" fitHeight="68.0" fitWidth="81.0" layoutX="221.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/diagram%20(5).png" />
          </image>
       </ImageView>
-      <JFXTreeTableView layoutX="236.0" layoutY="279.0" prefHeight="371.0" prefWidth="606.0" />
-      <Label layoutX="244.0" layoutY="160.0" text="Reporte general" textFill="WHITE">
+      <JFXTreeTableView fx:id="report_table" layoutX="236.0" layoutY="279.0" prefHeight="371.0" prefWidth="606.0" />
+      <Label fx:id="report_general_label" layoutX="244.0" layoutY="160.0" text="Reporte general" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="444.0" layoutY="161.0" text="(0)" textFill="WHITE">
+      <Label fx:id="mount_register_label" layoutX="444.0" layoutY="161.0" text="(0)" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <JFXButton fx:id="enter_button114" layoutX="559.0" layoutY="211.0" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #5d95f0;" text="Bar" textFill="WHITE">
+      <JFXButton fx:id="bar_button" layoutX="559.0" layoutY="211.0" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #5d95f0;" text="Bar" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="enter_button1141" layoutX="655.0" layoutY="211.0" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #5d95f0;" text="Pie" textFill="WHITE">
+      <JFXButton fx:id="pie_button" layoutX="655.0" layoutY="211.0" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #5d95f0;" text="Pie" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="enter_button11411" layoutX="750.0" layoutY="210.0" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #5d95f0;" text="Line" textFill="WHITE">
+      <JFXButton fx:id="line_button" layoutX="750.0" layoutY="210.0" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #5d95f0;" text="Line" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="enter_button1142" layoutX="420.0" layoutY="220.0" prefHeight="38.0" prefWidth="79.0" style="-fx-background-color: #49A34D;" text="Search" textFill="WHITE">
+      <JFXButton fx:id="search_button" layoutX="420.0" layoutY="220.0" prefHeight="38.0" prefWidth="79.0" style="-fx-background-color: #49A34D;" text="Search" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <Label layoutX="556.0" layoutY="166.0" text="Generate graphics" textFill="WHITE">
+      <Label fx:id="generate_graphics_label" layoutX="556.0" layoutY="166.0" text="Generate graphics" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>

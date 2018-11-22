@@ -1,17 +1,20 @@
 package userInterface;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import library.IConstant;
 
-public class Controller 
+public class Controller implements IConstant
 {
 	
 	/**
@@ -47,11 +50,21 @@ public class Controller
 	 * Description: The next method show alert.
 	 * Last modification: 08/10/18
 	 */
-	public void showAlert(AlertType pType, String pHeader, String pContent)
+	public boolean showAlert(AlertType pType, String pHeader, String pContent)
 	{
         Alert alert = new Alert(pType);
 		alert.setHeaderText(pHeader);
 		alert.setContentText(pContent);
-		alert.showAndWait();
+		alert.setTitle(CONFIRMATION);
+		Optional<ButtonType> result = alert.showAndWait();
+		if(result.get() == ButtonType.OK)
+		{
+			return true;
+		}
+		else if(result.get() == ButtonType.CANCEL)
+		{
+			return false;
+		}
+		return false;
 	}
 }
