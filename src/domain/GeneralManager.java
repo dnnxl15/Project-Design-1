@@ -6,6 +6,7 @@
 package domain;
 import domain.Manager;
 import library.enumerations.UserType;
+import static library.enumerations.UserType.GeneralManager_Type;
 
 /**
  *
@@ -17,5 +18,8 @@ public class GeneralManager extends Manager{
     
     public GeneralManager(String username, String password, String email, String name, String lastName, int id) {
         super(username, password, email, name, lastName, id);
+    }
+    public UserType getType() {
+        return GeneralManager_Type;
     }
 }

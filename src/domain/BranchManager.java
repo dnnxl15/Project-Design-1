@@ -6,11 +6,9 @@
 package domain;
 
 import library.enumerations.UserType;
+import static library.enumerations.UserType.BranchManager_Type;
 
-/**
- *
- * @author Personal
- */
+
 public class BranchManager extends Manager{
     private String branch;
 
@@ -26,6 +24,8 @@ public class BranchManager extends Manager{
     public void setBranch(String branch) {
         this.branch = branch;
     }
-    
+    public UserType getType() {
+        return BranchManager_Type;
+    }
     
 }

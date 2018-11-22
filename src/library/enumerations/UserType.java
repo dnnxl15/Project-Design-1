@@ -15,5 +15,6 @@ public enum UserType {
     Chef_Type,
     Delivery_Type,
     Cashier_Type,
-    Manager_Type;
+    GeneralManager_Type,
+    BranchManager_Type;
 }

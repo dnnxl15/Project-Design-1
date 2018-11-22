@@ -13,12 +13,12 @@ import library.enumerations.UserType;
  */
 public class Chef extends Employee{
     private int chefId;
-    private int chefKitchenPlace;
 
-    public Chef( double salary, int branch,int chefId, int chefKitchenPlace) {
-        super( salary, branch);
-        this.chefId = chefId;
-        this.chefKitchenPlace = chefKitchenPlace;
+
+    public Chef( String name, String lastName, int id,double salary, int branch) {
+        super(name, lastName,id, salary, branch);
+        this.chefId = id;
+ 
         super.setMinimunSalary(1500);
         super.setMaximunSalary(3000);
     }
@@ -35,14 +35,5 @@ public class Chef extends Employee{
     public void setChefId(int chefId) {
         this.chefId = chefId;
     }
-
-    public int getChefKitchenPlace() {
-        return chefKitchenPlace;
-    }
-
-    public void setChefKitchenPlace(int chefKitchenPlace) {
-        this.chefKitchenPlace = chefKitchenPlace;
-    }
-    
     
 }

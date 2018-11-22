@@ -14,9 +14,9 @@ import library.enumerations.UserType;
 public class Waiter extends Employee{
     private int waiterId;
     
-    public Waiter( double salary, int branch, int waiterId) {
-        super( salary, branch);
-        this.waiterId = waiterId;
+    public Waiter(String name, String lastName, int id, double salary, int branch) {
+        super(name, lastName,id, salary, branch);
+        this.waiterId = id;
         super.setMinimunSalary(1100);
         super.setMaximunSalary(2000);
         

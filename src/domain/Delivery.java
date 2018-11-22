@@ -13,12 +13,12 @@ import library.enumerations.UserType;
  */
 public class Delivery extends Employee{
     private int deliveryId;
-    private int vehicleAssign;
 
-    public Delivery(double salary, int branch, int deliveryId, int vehicleAssign) {
-        super( salary, branch);
-        this.deliveryId = deliveryId;
-        this.vehicleAssign = vehicleAssign;
+
+    public Delivery(String name, String lastName, int id, double salary, int branch) {
+        super(name, lastName,id, salary, branch);
+        this.deliveryId = id;
+
         super.setMinimunSalary(1200);
         super.setMaximunSalary(2100);
     }
@@ -31,13 +31,6 @@ public class Delivery extends Employee{
         this.deliveryId = deliveryId;
     }
 
-    public int getVehicleAssign() {
-        return vehicleAssign;
-    }
-
-    public void setVehicleAssign(int vehicleAssign) {
-        this.vehicleAssign = vehicleAssign;
-    }
 
     @Override
     public UserType getType() {

@@ -1,5 +1,6 @@
 package userInterface;
 
+import domain.Cashier;
 import domain.Chef;
 import domain.Waiter;
 import javafx.application.Application;

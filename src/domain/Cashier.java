@@ -4,18 +4,18 @@
  * and open the template in the editor.
  */
 package domain;
-
+import java.util.Random;
 import library.enumerations.UserType;
 
 
 public class Cashier extends Employee{
     private int cashierId;
-    private int machine;
 
-    public Cashier(double salary, int branch, int cashierId, int machine) {
-        super(salary, branch);
-        this.cashierId = cashierId;
-        this.machine = machine;
+
+    public Cashier(String name, String lastName, int id,double salary, int branch) {
+        super(name, lastName,id, salary, branch);
+        this.cashierId = id;
+
         super.setMinimunSalary(1000);
         super.setMaximunSalary(1600);
     }
@@ -33,12 +33,6 @@ public class Cashier extends Employee{
         this.cashierId = cashierId;
     }
 
-    public int getMachine() {
-        return machine;
-    }
-
-    public void setMachine(int machine) {
-        this.machine = machine;
-    }
+ 
     
 }

@@ -12,20 +12,22 @@ import library.enumerations.UserType;
  *
  * @author Personal
  */
-abstract class Employee implements IConstant{
+abstract class Employee extends Person implements IConstant {
     private double minimunSalary;
     private double maximunSalary;
     private double salary;
     private int branch;
 
-    public Employee(double minimunSalary, double maximunSalary, double salary, int branch) {
+    public Employee(String name, String lastName, int id,double minimunSalary, double maximunSalary, double salary, int branch) {
+        super(name, lastName,id);
         this.minimunSalary = minimunSalary;
         this.maximunSalary = maximunSalary;
         this.salary = salary;
         this.branch = branch;
     }
     
-    public Employee(double salary, int branch){
+    public Employee(String name, String lastName, int id,double salary, int branch){
+        super(name, lastName,id);
         this.salary = salary;
         this.branch = branch;
         this.minimunSalary = MINIMUN_SALARY;
