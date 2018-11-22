@@ -7,6 +7,8 @@ public interface IConstant
     public final int EXPIRATION_TIME = 30000;
     public final int CERO = 0;
     public final int ONE = 1;
+    public final int MAX_HEIGHT_WINDOW = 879;
+    public final int MAX_WIDTH_WINDOW = 687;
     
     public final String CONFIRMATION ="Confimartion";
     public final String OVNIRESTAURANT_TITLE ="Ovnirestaurant";
@@ -17,4 +19,14 @@ public interface IConstant
     public final String MENU_TEXT = "Menu";
     public final String REPORT_TEXT = "Report";
     public final String USER_TEXT = "User";
+    public final String EMPTY = "";
+    
+    public final String NAME_PARAMETER = "@pName";
+    public final String LASTNAME_PARAMETER = "@pLastname";
+    public final String IDENTIFICATION_PARAMETER = "@pIdentification";
+    public final String USERNAME_PARAMETER = "@pUsername";
+    public final String EMAIL_PARAMETER = "@pEmail";
+    public final String PASSWORD_PARAMETER = "@pPassword";
+
+    
 }

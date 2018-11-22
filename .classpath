@@ -3,5 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/dnnxl/Documents/Java_library/jfoenix.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dnnxl/Documents/Java_library/Base conector/mysql-connector-java-5.1.44-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dnnxl/Documents/Java_library/Base conector/ojdbc14.jar"/>
+	<classpathentry kind="lib" path="C:/Users/dnnxl/Documents/Java_library/Base conector/org-apache-commons-codec.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

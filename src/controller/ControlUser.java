@@ -1,9 +1,13 @@
 package controller;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import connection.ConnectionPool;
 import domain.User;
+import library.interfaces.IProcedure;
 
-public class ControlUser extends Control
+public class ControlUser extends Control implements IProcedure
 {
 	private static ControlUser controlUser;
 	
@@ -21,18 +25,45 @@ public class ControlUser extends Control
 		return controlUser;
 	}
 	
-	public void createUser()
+	public void createUser(ArrayList<Object> pListObject)
 	{
-		
+		try {
+			connectionPool.request(INSERT_CLIENT_PROCEDURE, pListObject);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
 	}
 	
-	public boolean verifyUser(User pUser)
+	public boolean verifyUser(ArrayList<Object> pListObject)
 	{
+		try {
+			boolean value = connectionPool.requestWithOutParamenter(IS_CLIENT_FUNCTION, pListObject);
+			return value;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 	
-	public boolean removeUser(User pUser)
+	public boolean verifyManager(ArrayList<Object> pListObject)
 	{
+		try {
+			boolean value = connectionPool.requestWithOutParamenter(IS_MAIN_MANAGER_FUNCTION, pListObject);
+			return value;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean verifyManagerSub(ArrayList<Object> pListObject)
+	{
+		try {
+			boolean value = connectionPool.requestWithOutParamenter(IS_BRANCH_MANAGER_FUNCTION, pListObject);
+			return value;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 }

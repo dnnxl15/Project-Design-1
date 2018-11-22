@@ -44,7 +44,7 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <Label layoutX="553.0" layoutY="96.0" text="Password" textFill="#d61c30">
+            <Label fx:id="wrong_label" layoutX="478.0" layoutY="96.0" text="Password" textFill="#d61c30">
                <font>
                   <Font size="14.0" />
                </font>

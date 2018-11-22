@@ -29,6 +29,7 @@ public class ConnectionPool extends ObjectPool<Connection> implements IDatabaseI
 		try {
 			try {
 				Class.forName(DATABASE_DRIVER).newInstance();
+				create();
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
@@ -37,6 +38,7 @@ public class ConnectionPool extends ObjectPool<Connection> implements IDatabaseI
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		};
+		
 	}
 
 	public static ConnectionPool getInstance()
@@ -113,5 +115,31 @@ public class ConnectionPool extends ObjectPool<Connection> implements IDatabaseI
 	    	resultSet = callStatement.executeQuery();
 	    	return resultSet;
     	}
+    }
+    
+    /**
+     * Method to send a request
+     * Author: Danny Xie Li
+     * Description: The next method send a request to the database.
+     * Last modification: 28/10/17
+     */
+    public boolean requestWithOutParamenter(String pProcedure, ArrayList<Object> pParameters) throws SQLException
+    {
+    	int position = ONE + ONE;
+    	int positionArray = CERO;
+		System.out.println(connection);
+
+		CallableStatement callStatement = connection.prepareCall(pProcedure);
+		callStatement.registerOutParameter(1 ,java.sql.Types.BOOLEAN);
+    	while(position < pParameters.size()+ONE+ONE)
+    	{
+    		callStatement.setObject(position, pParameters.get(positionArray));
+    		position = position+ONE;
+    		positionArray = positionArray + ONE;
+    		continue;
+    	}
+		callStatement.execute();
+		Boolean outputValue = callStatement.getBoolean(ONE);
+    	return outputValue;
     }
 }
