@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -14,7 +15,7 @@ import library.*;
 import library.interfaces.IConstantWindow;
 
 
-public class MainUserInterface extends Application implements IConstantWindow 
+public class MainUserInterface extends Application implements IConstantWindow, IConstant 
 {
 	/**
 	 * Attributes of the window
@@ -35,7 +36,11 @@ public class MainUserInterface extends Application implements IConstantWindow
 		try 
 		{
 			Parent root = FXMLLoader.load(getClass().getResource(MAIN_WINDOW_UI));
-		    Scene scene = new Scene(root);
+		    Scene scene = new Scene(root, 879, 687);
+		    primaryStage.setResizable(false);
+		    primaryStage.getIcons().add(new Image(OVNI_IMAGE_COLOR_PATH));
+		    primaryStage.setTitle(OVNIRESTAURANT_TITLE);
+
 		    root.setOnMousePressed(new EventHandler<MouseEvent>() 
 		    {
 	            @Override
