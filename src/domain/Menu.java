@@ -22,4 +22,19 @@ public class Menu {
         listComodity = new ArrayList<>();
     }
 
+    public void addCombo(Combo combo){
+        listComodity.add(combo);
+    }
+    public void removeCombo(Combo combo){
+        listComodity.remove(combo);
+        combo.setEnabled(false);
+    }
+    public void addProduct(Product product){
+        listComodity.add(product);
+    }
+    public void removeProduct(Product product){
+        listComodity.remove(product);
+        product.setEnabled(false);
+    }
+    
 }
