@@ -36,40 +36,20 @@ public class ManagerFacade extends Facade
 	}
         
 
-        //Obtener todos los restaurantes
-        public ArrayList getRestaurant(){
-            try{
-                ResultSet resultSet = connectionPool.request(IProcedure.GET_RESTAURAN_PROCEDURE, null);
-                ArrayList<RestaurantUI> listProductTmp = new ArrayList<RestaurantUI>();
-                
-                    while (resultSet.next()) {
-                        
-                        int restID =  resultSet.getInt("restID");
-                        String address = resultSet.getString("address");
-                        String legalNumber = resultSet.getString("legalNumber");
-                        RestaurantUI restaurant = new RestaurantUI(address,legalNumber, restID);
-                        listProductTmp.add(restaurant);
-                        }
-                        
-                    return listProductTmp;
-                
-            }catch (SQLException e) {
-			e.printStackTrace();
-		}
-            return null;
-        }
-        
-        public void createRestarant(){
-            try {
-			connectionPool.request(INSERT_RESTAURANT_PROCEDURE, pListObject);
-                        
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-        }
+	//Obtener todos los restaurantes
+	public ArrayList<RestaurantUI> getRestaurant()
+	{
+		return ControlRestaurant.getInstance().getRestaurant();
+	}
+	
+	public void createRestarant(ArrayList<Object> pListObject)
+	{
+		ControlRestaurant.getInstance().createRestaurant(pListObject);
+	}
 
     @Override
     public void loadData() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }

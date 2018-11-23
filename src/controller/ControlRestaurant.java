@@ -17,6 +17,22 @@ import static library.interfaces.IProcedure.*;
 
 
 public class ControlRestaurant extends Control{
+	
+	private static ControlRestaurant instance;
+	
+	private ControlRestaurant()
+	{
+		
+	}
+	
+	public static ControlRestaurant getInstance()
+	{
+		if(instance == null)
+		{
+			instance = new ControlRestaurant();
+		}
+		return instance;
+	}
  
     //Insertar restaurante
         public void createRestaurant(ArrayList<Object> pListObject)
@@ -30,7 +46,7 @@ public class ControlRestaurant extends Control{
 	}
     
     //Obtener todos los restaurantes
-        public ArrayList getRestaurant(){
+        public ArrayList<RestaurantUI> getRestaurant(){
             try{
                 ResultSet resultSet = connectionPool.request(IProcedure.GET_RESTAURAN_PROCEDURE, null);
                 ArrayList<RestaurantUI> listProductTmp = new ArrayList<RestaurantUI>();

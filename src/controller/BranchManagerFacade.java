@@ -2,6 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 
+import library.RestaurantUI;
+
 public class BranchManagerFacade 
 {
 	
@@ -27,6 +29,19 @@ public class BranchManagerFacade
 		listParameters.add(pUsername);
 		listParameters.add(pPassword);
 		return ControlUser.getInstance().verifyManagerSub(listParameters);
+	}
+	
+	public ArrayList<RestaurantUI> getRestaurant()
+	{
+		return ControlRestaurant.getInstance().getRestaurant();
+	}
+	
+	public void createRestaurant(String pAddress, String pLegalNumber)
+	{
+		ArrayList<Object> listParameters = new ArrayList<Object>();
+		listParameters.add(pAddress);
+		listParameters.add(pLegalNumber);
+	    ManagerFacade.getInstance().createRestarant(listParameters);
 	}
 
 }

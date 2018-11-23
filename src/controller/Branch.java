@@ -41,7 +41,11 @@ public class Branch
 		return BranchManagerFacade.getInstance().verifyBranchManager(pUsername, pPassword);
 	}
 	
-        public void createRestaurant(){
-            createRestaurant();
-        }
+	public void createRestaurant(String pAddress, String pLegalNumber)
+	{
+		ArrayList<Object> listParameters = new ArrayList<Object>();
+		listParameters.add(pAddress);
+		listParameters.add(pLegalNumber);
+	    ManagerFacade.getInstance().createRestarant(listParameters);
+	}
 }

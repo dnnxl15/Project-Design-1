@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.JFXTreeView;
 
+import controller.Restaurant;
 import domain.User;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -179,8 +180,20 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	
 	public void addRestaurant()
 	{
-		//address_textfield;
-		//legal_number_textfield;
+		String address = address_textfield.getText().toString();
+		String legalNumber = legal_number_textfield.getText().toString();
+		if(address.equals(EMPTY) || legalNumber.equals(EMPTY))
+		{
+			showAlert(AlertType.ERROR ,"All fields" , "All fields must be complete");
+			return;
+		}
+		else
+		{
+			Restaurant.getInstance().createRestaurant(address, legalNumber);
+			showAlert(AlertType.CONFIRMATION ,"Restaurant register" , "Restaurant is registered in the system");
+			address_textfield.setText(EMPTY);
+			legal_number_textfield.setText(EMPTY);
+		}
 		//restaurant_table;
 	}
 
