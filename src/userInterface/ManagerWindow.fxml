@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import com.jfoenix.validation.DoubleValidator?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -209,55 +206,54 @@
       </AnchorPane>
       <AnchorPane layoutX="208.0" layoutY="131.0" opacity="0.58" prefHeight="546.0" prefWidth="662.0" style="-fx-background-color: #000000;">
          <children>
-            <JFXTextField fx:id="search_report_textfield" labelFloat="true" layoutX="42.0" layoutY="87.0" prefHeight="26.0" prefWidth="241.0" promptText="Search" unFocusColor="WHITE" />
-            <JFXTextField fx:id="address_textfield" layoutX="454.0" layoutY="257.0" prefHeight="26.0" prefWidth="176.0" promptText="Address" unFocusColor="WHITE" />
-            <JFXTextField fx:id="legal_number_textfield" layoutX="451.0" layoutY="347.0" prefHeight="26.0" prefWidth="176.0" promptText="Legal number" unFocusColor="WHITE" />
+            <Line fx:id="combo_line" endX="465.7999267578125" endY="1.52587890625E-5" layoutX="149.0" layoutY="97.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
+            <Line fx:id="product_line" endX="465.7999267578125" endY="1.52587890625E-5" layoutX="157.0" layoutY="356.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" />
          </children>
       </AnchorPane>
-      <Label fx:id="main_label" layoutX="234.0" layoutY="37.0" text="Restaurant" textFill="WHITE">
+      <Label fx:id="main_label" layoutX="234.0" layoutY="37.0" text="Menu" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <JFXTreeTableView fx:id="restaurant_table" layoutX="236.0" layoutY="289.0" prefHeight="362.0" prefWidth="349.0">
-         <columns>
-            <TreeTableColumn fx:id="columnAddress" prefWidth="178.39996337890625" text="Address" />
-            <TreeTableColumn fx:id="columnLegalName" prefWidth="170.39999389648438" text="Legal number" />
-         </columns></JFXTreeTableView>
-      <Label fx:id="restaurant_label" layoutX="244.0" layoutY="160.0" text="Restaurant" textFill="WHITE">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="mount_restaurant_label" layoutX="402.0" layoutY="159.0" text="(0)" textFill="WHITE">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <JFXButton fx:id="search_restaurant_button" layoutX="505.0" layoutY="213.0" prefHeight="38.0" prefWidth="79.0" style="-fx-background-color: #49A34D;" text="Search" textFill="WHITE">
+      <JFXButton fx:id="see_combo_button" layoutX="332.0" layoutY="277.0" onAction="#addCombo" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #1a6dd7;" text="See" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <Label fx:id="report_general_label1" layoutX="680.0" layoutY="294.0" text="Add restaurant" textFill="WHITE">
+      <Label fx:id="combo_label" layoutX="284.0" layoutY="180.0" text="Combo" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font size="24.0" />
          </font>
       </Label>
-      <JFXButton fx:id="add_restaurant_button" layoutX="699.0" layoutY="555.0" prefHeight="38.0" prefWidth="79.0" style="-fx-background-color: #49A34D;" text="Add" textFill="WHITE">
+      <Label fx:id="product_label" layoutX="285.0" layoutY="441.0" text="Product" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="update_combo_button" layoutX="497.0" layoutY="276.0" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #1a6dd7;" text="Update" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <Label fx:id="report_general_label11" layoutX="659.0" layoutY="353.0" text="Address" textFill="WHITE">
+      <JFXButton fx:id="update_product_button" layoutX="503.0" layoutY="532.0" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #1a6dd7;" text="Update" textFill="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font size="16.0" />
          </font>
-      </Label>
-      <Label fx:id="report_general_label111" layoutX="658.0" layoutY="446.0" text="Legal number" textFill="WHITE">
+      </JFXButton>
+      <JFXButton fx:id="see_product_button" layoutX="333.0" layoutY="532.0" onAction="#addProduct" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #1a6dd7;" text="See" textFill="WHITE">
          <font>
-            <Font size="15.0" />
+            <Font size="16.0" />
          </font>
-      </Label>
+      </JFXButton>
+      <JFXButton fx:id="dissable_combo_product" layoutX="660.0" layoutY="274.0" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #1a6dd7;" text="Dissable" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="dissable_product_button" layoutX="660.0" layoutY="532.0" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #1a6dd7;" text="Dissable" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

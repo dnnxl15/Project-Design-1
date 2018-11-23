@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.validation.DoubleValidator?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ProductRegisterController">
+   <children>
+      <DoubleValidator layoutX="459.0" layoutY="197.0" />
+      <AnchorPane layoutX="52.0" layoutY="48.0" prefHeight="590.0" prefWidth="365.0" style="-fx-background-color: #239e62;">
+         <children>
+            <Label layoutX="137.0" layoutY="34.0" text="Product" textFill="WHITE">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="95.0" layoutY="461.0" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TableView fx:id="restaurant_table" layoutX="19.0" layoutY="104.0" prefHeight="454.0" prefWidth="326.0">
+               <columns>
+                  <TableColumn fx:id="columnAddress" prefWidth="114.4000244140625" text="Name" />
+                  <TableColumn fx:id="columnLegalName" minWidth="0.0" prefWidth="94.40003967285156" text="Price" />
+                  <TableColumn fx:id="columnLegalName1" minWidth="0.0" prefWidth="115.19998779296873" text="Description" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="459.0" layoutY="48.0" prefHeight="590.0" prefWidth="366.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="84.0" layoutY="31.0" text="Register product" textFill="#1a6dd7">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="name_textfield" labelFloat="true" layoutX="64.0" layoutY="127.0" prefHeight="26.0" prefWidth="251.0" promptText="Name" />
+            <JFXTextField fx:id="price_textfield" labelFloat="true" layoutX="64.0" layoutY="195.0" prefHeight="26.0" prefWidth="251.0" promptText="Lastname" />
+            <JFXButton fx:id="signUp_button" layoutX="46.0" layoutY="510.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Register" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="cancel_button" layoutX="221.0" layoutY="510.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXTextArea fx:id="description_textarea" labelFloat="true" layoutX="64.0" layoutY="262.0" prefHeight="182.0" prefWidth="251.0" promptText="Description" />
+            <Label layoutX="46.0" layoutY="123.0" text="*" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="46.0" layoutY="194.0" text="*" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="46.0" layoutY="255.0" text="*" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="64.0" layoutY="451.0" text="*" textFill="RED">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="82.0" layoutY="457.0" text="Must complete" textFill="RED">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
