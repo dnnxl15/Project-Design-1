@@ -43,7 +43,7 @@ public class Branch
 		return BranchManagerFacade.getInstance().verifyBranchManager(pUsername, pPassword);
 	}
 	
-	public void createProduct(String name, float price,String description, int idPerson)
+	public void createProduct(String name, float price,String description, String idPerson)
 	{
 		ArrayList<Object> listParameters = new ArrayList<Object>();
 		listParameters.add(name);
@@ -52,7 +52,7 @@ public class Branch
                 listParameters.add(idPerson);
 	    ManagerFacade.getInstance().createProduct(listParameters);
 	}
-        public void createCombo(String cname, double price, String description, int cpersonid)
+        public void createCombo(String cname, double price, String description, String cpersonid)
 	{
 		ArrayList<Object> listParameters = new ArrayList<Object>();
 		listParameters.add(cname);

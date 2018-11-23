@@ -52,11 +52,11 @@ public class Restaurant
 	{
 		Branch.getInstance().createRestaurant(pAddress, pLegalNumber);
 	}
-        public void createProduct(String name, float price,String description, int idPerson)
+        public void createProduct(String name, float price,String description, String idPerson)
 	{
 		Branch.getInstance().createProduct(name, price,description,idPerson);
 	}
-	public void createCombo(String cname, double price,String description ,int cpersonid)
+	public void createCombo(String cname, double price,String description ,String cpersonid)
 	{
 		Branch.getInstance().createCombo(cname, price,description,cpersonid);
 	}
