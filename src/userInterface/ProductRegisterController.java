@@ -25,7 +25,7 @@ public class ProductRegisterController extends Controller
 		}
 		catch(Exception e)
 		{
-			showAlert(AlertType.ERROR ,"Identification" , "Must be a number");
+			showAlert(AlertType.ERROR ,"Price" , "Must be a number");
 			return;
 		}
     	if(name.equals(EMPTY) || description.equals(EMPTY))

@@ -32,6 +32,11 @@ public class ClientRegisterController extends Controller implements Initializabl
     	closeWindow(signUp_button);
     }
     
+    public void closeWindow()
+    {
+    	closeWindow(signUp_button);
+    }
+    
     public void signUp() throws IOException
     {
     	String username = username_textfield.getText().toString();

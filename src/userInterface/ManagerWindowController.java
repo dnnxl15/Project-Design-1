@@ -66,7 +66,13 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	@FXML private Line combo_line;
 	@FXML private Label combo_label;
 	@FXML private Label product_label;
-
+	
+	@FXML private ImageView search_image;
+	@FXML private ImageView search_image_product;
+	@FXML private ImageView update_image;
+	@FXML private ImageView update_product_image;
+	@FXML private ImageView disable_image;
+	@FXML private ImageView disable_image_product;
 	
 	public void showComponentReport(boolean pVisible)
 	{
@@ -107,6 +113,12 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		combo_line.setVisible(pBoolean);
 		combo_label.setVisible(pBoolean);
 		product_label.setVisible(pBoolean);
+		search_image.setVisible(pBoolean);
+	    search_image_product.setVisible(pBoolean);
+		update_image.setVisible(pBoolean);
+		update_product_image.setVisible(pBoolean);
+		disable_image.setVisible(pBoolean);
+		disable_image_product.setVisible(pBoolean);
 	}
 	
 	public void seeCombos()
@@ -152,7 +164,7 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		boolean value = showAlert(AlertType.CONFIRMATION, SIGN_OFF, MESSAGE_SIGN_OFF);
 		if(value)
 		{
-			closeWindow(bar_button);
+			closeWindow(home_button);
 		}
 	}
 	

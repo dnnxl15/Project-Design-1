@@ -9,7 +9,7 @@ package domain;
  *
  * @author Personal
  */
-class Commodity {
+public class Commodity {
     private String name;
     private double price;
     private String description;
@@ -17,7 +17,7 @@ class Commodity {
     public Commodity(String name, double price,String description) {
         this.name = name;
         this.price = price;
-        this.description = description;
+        this.setDescription(description);
     }
 
     public String getName() {
@@ -35,6 +35,14 @@ class Commodity {
     public void setPrice(double price) {
         this.price = price;
     }
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
     
     
 }
