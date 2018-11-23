@@ -15,8 +15,8 @@ class Combo extends Commodity{
     private ArrayList listProduct;
     private Boolean enabled;
     
-    public Combo(String name, double price) {
-        super(name, price);
+    public Combo(String name, double price,int cpersonid) {
+        super(name, price,cpersonid);
         listProduct = new ArrayList();
         enabled = true;
     }

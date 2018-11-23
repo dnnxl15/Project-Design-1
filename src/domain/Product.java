@@ -12,8 +12,8 @@ package domain;
 public class Product extends Commodity{
     private Boolean enabled;
     
-    public Product(String name, double price) {
-        super(name, price);
+    public Product(String name, float price, String descripcion,int idperson) {
+        super(name, price, descripcion,idperson);
         enabled = true;
     }
 
