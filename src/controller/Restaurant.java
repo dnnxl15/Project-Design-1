@@ -1,5 +1,9 @@
 package controller;
 
+import java.util.ArrayList;
+
+import library.RestaurantUI;
+
 public class Restaurant 
 {
 	private Branch branch;
@@ -47,4 +51,8 @@ public class Restaurant
 		Branch.getInstance().createRestaurant(pAddress, pLegalNumber);
 	}
 
+	public ArrayList<RestaurantUI> getRestaurant()
+	{
+		return BranchManagerFacade.getInstance().getRestaurant();
+	}
 }

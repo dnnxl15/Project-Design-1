@@ -19,6 +19,12 @@ public class Commodity {
         this.price = price;
         this.setDescription(description);
     }
+    
+    public Commodity(String name, double price) {
+        this.name = name;
+        this.price = price;
+        this.setDescription(description);
+    }
 
     public String getName() {
         return name;

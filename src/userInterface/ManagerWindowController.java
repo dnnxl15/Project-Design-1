@@ -3,6 +3,7 @@ package userInterface;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXTreeTableView;
@@ -27,6 +28,7 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
 import library.RestaurantUI;
 import library.interfaces.IConstantWindow;
@@ -55,6 +57,13 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	@FXML private TableView<RestaurantUI> restaurant_table;
 	@FXML private TableColumn<RestaurantUI, String> columnAddress;
 	@FXML private TableColumn<RestaurantUI, String> columnLegalName;
+	@FXML private Label mount_restaurant_label;
+	@FXML private Label restaurant_label;
+	@FXML private TextField search_restaurant_textfield;
+	@FXML private Button search_restaurant_button;
+	@FXML private Label report_general_label1;
+	@FXML private AnchorPane panel_restaurant;
+	@FXML private Button add_restaurant_button;
 	
 	@FXML private Button see_combo_button;
 	@FXML private Button update_combo_button;
@@ -75,35 +84,47 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	@FXML private ImageView disable_image;
 	@FXML private ImageView disable_image_product;
 	
-	public void showComponentReport(boolean pVisible)
+	
+	@FXML private Line employee_line;
+	@FXML private Line subamanager_line;
+	@FXML private Label employee_label;
+	@FXML private Label submanager_label;
+	@FXML private Button see_employee_button;
+	@FXML private Button see_submanager_button;
+	@FXML private Button add_submanager_buttton;
+	@FXML private Button add_employee_button;
+	@FXML private Button update_employee_button;
+	@FXML private Button update_submanager_button;
+	@FXML private Button inactive_employee_button;
+	@FXML private Button inactive_submanager_button;
+	
+	public void showHome()
 	{
-		search_report_textfield.setVisible(pVisible);
-		report_general_label.setVisible(pVisible);
-		mount_register_label.setVisible(pVisible);
-		generate_graphics_label.setVisible(pVisible);
-		bar_button.setVisible(pVisible);
-	    line_button.setVisible(pVisible);
-		pie_button.setVisible(pVisible);
-		search_button.setVisible(pVisible);
-		main_label.setText(REPORT_TEXT);
-		main_label.setVisible(true);
-
+		showComponentRestaurant(false);
+		showComponentMenu(false);
+		showComponentHome(true);
 	}
 	
-	public void showReport()
+	public void showComponentHome(boolean pVisible)
 	{
-		showComponentReport(false);
-		showMenu(false);
+		main_label.setText(HOME_TEXT);	
+		main_label.setVisible(pVisible);
 	}
 	
-	public void showComponentMenu()
+	public void showMenu()
 	{
-		showMenu(true);
+		showComponentHome(false);
+		showComponentRestaurant(false);	
+		showComponentEmployee(false);
+		showComponentUser(false);
+		//showComponentReport(false);
+		showComponentMenu(true);
 	}
 	
-	public void showMenu(boolean pBoolean)
+	public void showComponentMenu(boolean pBoolean)
 	{
 		main_label.setText(MENU_TEXT);
+		main_label.setVisible(pBoolean);
 		see_combo_button.setVisible(pBoolean);
 		update_combo_button.setVisible(pBoolean);
 		dissable_combo_product.setVisible(pBoolean);
@@ -120,6 +141,125 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		update_product_image.setVisible(pBoolean);
 		disable_image.setVisible(pBoolean);
 		disable_image_product.setVisible(pBoolean);
+	}
+	
+	public void showReport()
+	{
+		showComponentHome(false);
+		showComponentMenu(false);
+		showComponentRestaurant(false);	
+		showComponentEmployee(false);
+		showComponentUser(false);
+		//showComponentReport(true);
+
+	}
+	
+	public void showComponentReport(boolean pVisible)
+	{
+		search_report_textfield.setVisible(pVisible);
+		report_general_label.setVisible(pVisible);
+		mount_register_label.setVisible(pVisible);
+		generate_graphics_label.setVisible(pVisible);
+		bar_button.setVisible(pVisible);
+	    line_button.setVisible(pVisible);
+		pie_button.setVisible(pVisible);
+		search_button.setVisible(pVisible);
+		main_label.setText(REPORT_TEXT);
+		main_label.setVisible(true);
+	}
+	
+	public void showUser()
+	{
+		showComponentHome(false);
+		showComponentMenu(false);
+	  //showComponentReport(false);
+		showComponentRestaurant(false);	
+		showComponentEmployee(false);
+		showComponentUser(true);
+
+	}
+	
+	public void showComponentUser(boolean pVisible)
+	{
+		
+	}
+	
+	public void showEmployee()
+	{
+		showComponentHome(false);
+		showComponentMenu(false);
+		//showComponentReport(false);
+		showComponentUser(false);
+		showComponentRestaurant(false);	
+		showComponentEmployee(true);
+	}
+	
+	public void showComponentEmployee(boolean pVisible)
+	{
+		employee_line.setVisible(pVisible);
+		subamanager_line.setVisible(pVisible);
+		employee_label.setVisible(pVisible);
+		submanager_label.setVisible(pVisible);
+		see_employee_button.setVisible(pVisible);
+		see_submanager_button.setVisible(pVisible);
+		add_submanager_buttton.setVisible(pVisible);
+		add_employee_button.setVisible(pVisible);
+		update_employee_button.setVisible(pVisible);
+		update_submanager_button.setVisible(pVisible);
+		inactive_employee_button.setVisible(pVisible);
+		inactive_submanager_button.setVisible(pVisible);
+		main_label.setText("Employee");
+		main_label.setVisible(true);
+	}
+	
+	public void showRestaurant()
+	{
+		showComponentHome(false);
+		showComponentMenu(false);
+		//showComponentReport(false);
+		showComponentUser(false);
+		showComponentEmployee(false);
+		showComponentRestaurant(true);
+	}
+	
+	public void showComponentRestaurant(boolean pVisible)
+	{
+		restaurant_label.setVisible(pVisible);
+		restaurant_table.setVisible(pVisible);
+		address_textfield.setVisible(pVisible);
+		legal_number_textfield.setVisible(pVisible);
+        mount_restaurant_label.setVisible(pVisible);
+		restaurant_label.setVisible(pVisible);
+		search_restaurant_textfield.setVisible(pVisible);
+		search_restaurant_button.setVisible(pVisible);
+		main_label.setText("Restaurant");
+		main_label.setVisible(pVisible);
+		report_general_label1.setVisible(pVisible);
+		panel_restaurant.setVisible(pVisible);
+		add_restaurant_button.setVisible(pVisible);
+	}
+	
+
+	
+
+	public void openRegisterEmployee()
+	{
+		try {
+			openWindow(EMPLOYEE_REGISTER_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public void openRegisterManager()
+	{
+		try {
+			openWindow(MANAGER_REGISTER_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 	public void seeCombos()
@@ -145,19 +285,13 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		}
 	}
 	
-	public void showComponentHome()
-	{
-		main_label.setText(HOME_TEXT);
-		main_label.setVisible(true);
-		showMenu(false);
 
-	}
 	
 	public void showComponentUser()
 	{
 		main_label.setText(USER_TEXT);
 		main_label.setVisible(true);
-		showMenu(false);
+		showComponentRestaurant(false);
 	}
 	
 	public void closeWindow()
@@ -178,6 +312,8 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		}
 	}
 	
+
+	
 	public void addRestaurant()
 	{
 		String address = address_textfield.getText().toString();
@@ -193,29 +329,29 @@ public class ManagerWindowController extends Controller implements IConstantWind
 			showAlert(AlertType.CONFIRMATION ,"Restaurant register" , "Restaurant is registered in the system");
 			address_textfield.setText(EMPTY);
 			legal_number_textfield.setText(EMPTY);
+			initialize(null, null);
 		}
 		//restaurant_table;
 	}
+	
+
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1)
 	{
-		/*
+		
 		columnAddress.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getAddress()));
 		columnLegalName.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getLegalNumber()));
 	
-		ObservableList<RestaurantUI> newListProduct = null;
-		newListProduct = FXCollections.observableArrayList();//ControlSystem.getInstance().loadProduct());
-		RestaurantUI o = new RestaurantUI("San Jose", "52s");
-		RestaurantUI op = new RestaurantUI("San Jose", "529s");
-		newListProduct.add(o);
-		newListProduct.add(op);
+		ObservableList<RestaurantUI> newListRestaurant = null;
+		newListRestaurant = FXCollections.observableArrayList(Restaurant.getInstance().getRestaurant());//ControlSystem.getInstance().loadProduct());
+		mount_restaurant_label.setText("("+newListRestaurant.size()+")");
 		//restaurant_table.setItems(newListProduct);
 		//newListProduct = FXCollections.observableArrayList();
-		restaurant_table.setItems(newListProduct);
+		restaurant_table.setItems(newListRestaurant);
 
 
 		//tableProduct.setItems(newListProduct);
-		*/
+		
 	}
 }
