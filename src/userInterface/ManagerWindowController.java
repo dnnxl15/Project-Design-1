@@ -67,8 +67,6 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	
 	@FXML private Button see_combo_button;
 	@FXML private Button update_combo_button;
-	@FXML private Button dissable_combo_product;
-	@FXML private Button dissable_product_button;
 	@FXML private Button update_product_button;
 	@FXML private Button see_product_button;
 	
@@ -81,8 +79,7 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	@FXML private ImageView search_image_product;
 	@FXML private ImageView update_image;
 	@FXML private ImageView update_product_image;
-	@FXML private ImageView disable_image;
-	@FXML private ImageView disable_image_product;
+
 	
 	
 	@FXML private Line employee_line;
@@ -127,8 +124,6 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		main_label.setVisible(pBoolean);
 		see_combo_button.setVisible(pBoolean);
 		update_combo_button.setVisible(pBoolean);
-		dissable_combo_product.setVisible(pBoolean);
-		dissable_product_button.setVisible(pBoolean);
 		update_product_button.setVisible(pBoolean);
 		see_product_button.setVisible(pBoolean);
 		product_line.setVisible(pBoolean);
@@ -139,8 +134,6 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	    search_image_product.setVisible(pBoolean);
 		update_image.setVisible(pBoolean);
 		update_product_image.setVisible(pBoolean);
-		disable_image.setVisible(pBoolean);
-		disable_image_product.setVisible(pBoolean);
 	}
 	
 	public void showReport()
@@ -178,6 +171,8 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		showComponentUser(true);
 
 	}
+	
+
 	
 	public void showComponentUser(boolean pVisible)
 	{
@@ -239,7 +234,23 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		add_restaurant_button.setVisible(pVisible);
 	}
 	
-
+	public void openViewCombos()
+	{
+		try {
+			openWindow(COMBO_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void openViewProduct()
+	{
+		try {
+			openWindow(PRODUCT_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 	public void openRegisterEmployee()

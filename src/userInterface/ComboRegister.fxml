@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ProductRegisterController">
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ComboRegisterController">
    <children>
       <DoubleValidator layoutX="459.0" layoutY="197.0" />
       <AnchorPane layoutX="34.0" layoutY="48.0" prefHeight="590.0" prefWidth="351.0" style="-fx-background-color: #ffffff;">
@@ -22,7 +22,7 @@
             </Label>
             <JFXTextField fx:id="name_textfield" labelFloat="true" layoutX="64.0" layoutY="127.0" prefHeight="26.0" prefWidth="251.0" promptText="Name" />
             <JFXTextField fx:id="price_textfield" labelFloat="true" layoutX="64.0" layoutY="195.0" prefHeight="26.0" prefWidth="251.0" promptText="Price" />
-            <JFXButton fx:id="signUp_button" layoutX="46.0" layoutY="510.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Register" textFill="WHITE">
+            <JFXButton fx:id="signUp_button" layoutX="46.0" layoutY="510.0" onAction="#registerCombo" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Register" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -94,9 +94,9 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="name_textfield_t" labelFloat="true" layoutX="40.0" layoutY="377.0" prefHeight="26.0" prefWidth="150.0" promptText="Name" />
-            <JFXTextField fx:id="price_textfield11" labelFloat="true" layoutX="40.0" layoutY="462.0" prefHeight="26.0" prefWidth="150.0" promptText="Price" />
-            <JFXTextArea fx:id="description_textarea1" labelFloat="true" layoutX="221.0" layoutY="378.0" prefHeight="108.0" prefWidth="166.0" promptText="Description" />
+            <JFXTextField fx:id="name_textfield_t" editable="false" layoutX="40.0" layoutY="377.0" prefHeight="26.0" prefWidth="150.0" promptText="Name" />
+            <JFXTextField fx:id="price_textfield11" editable="false" layoutX="40.0" layoutY="462.0" prefHeight="26.0" prefWidth="150.0" promptText="Price" />
+            <JFXTextArea fx:id="description_textarea1" editable="false" layoutX="221.0" layoutY="378.0" prefHeight="108.0" prefWidth="166.0" promptText="Description" />
          </children>
       </AnchorPane>
    </children>

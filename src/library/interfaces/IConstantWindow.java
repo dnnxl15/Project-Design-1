@@ -13,5 +13,10 @@ public interface IConstantWindow
 	public final String PRODUCT_REGISTER_WINDOW = "ProductRegister.fxml";
 	
 	public final String MANAGER_REGISTER_WINDOW = "ManagerRegister.fxml";
+	
+	public final String PRODUCT_VIEW_WINDOW = "ProductView.fxml";
+	public final String COMBO_VIEW_WINDOW = "ComboView.fxml";
+
+
 
 }

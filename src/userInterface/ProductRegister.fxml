@@ -5,35 +5,14 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.validation.DoubleValidator?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ProductRegisterController">
    <children>
       <DoubleValidator layoutX="459.0" layoutY="197.0" />
-      <AnchorPane layoutX="52.0" layoutY="48.0" prefHeight="590.0" prefWidth="365.0" style="-fx-background-color: #239e62;">
-         <children>
-            <Label layoutX="137.0" layoutY="34.0" text="Product" textFill="WHITE">
-               <font>
-                  <Font size="26.0" />
-               </font>
-            </Label>
-            <Label layoutX="95.0" layoutY="461.0" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <TableView fx:id="restaurant_table" layoutX="19.0" layoutY="104.0" prefHeight="454.0" prefWidth="326.0">
-               <columns>
-                  <TableColumn fx:id="columnAddress" prefWidth="114.4000244140625" text="Name" />
-                  <TableColumn fx:id="columnLegalName" minWidth="0.0" prefWidth="94.40003967285156" text="Price" />
-                  <TableColumn fx:id="columnLegalName1" minWidth="0.0" prefWidth="115.19998779296873" text="Description" />
-               </columns>
-            </TableView>
-         </children>
-      </AnchorPane>
       <AnchorPane layoutX="459.0" layoutY="48.0" prefHeight="590.0" prefWidth="366.0" style="-fx-background-color: #ffffff;">
          <children>
             <Label layoutX="84.0" layoutY="31.0" text="Register product" textFill="#1a6dd7">
@@ -77,6 +56,30 @@
             <Label layoutX="82.0" layoutY="457.0" text="Must complete" textFill="RED">
                <font>
                   <Font size="10.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="62.0" layoutY="44.0" prefHeight="590.0" prefWidth="342.0" style="-fx-background-color: #239e62;">
+         <children>
+            <Label layoutX="68.0" layoutY="413.0" text="Register product" textFill="WHITE">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Label layoutX="44.0" layoutY="488.0" text="We have the best chef's in the world" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="265.0" fitWidth="251.0" layoutX="46.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/ovni.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="95.0" layoutY="461.0" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
                </font>
             </Label>
          </children>
