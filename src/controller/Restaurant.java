@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Product;
 import java.util.ArrayList;
 
 import library.RestaurantUI;
@@ -59,7 +60,11 @@ public class Restaurant
 		Branch.getInstance().createCombo(cname, price,cpersonid);
 	}
 
-
+	public ArrayList<Product> getProducts()
+	{
+		return Branch.getInstance().getProducts();
+	}
+        
 	public ArrayList<RestaurantUI> getRestaurant()
 	{
 		return BranchManagerFacade.getInstance().getRestaurant();
