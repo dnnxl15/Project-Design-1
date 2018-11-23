@@ -1,6 +1,9 @@
 package userInterface;
 
+import java.io.IOException;
+
 import com.jfoenix.controls.JFXTreeTableView;
+import com.jfoenix.controls.JFXTreeView;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
@@ -8,8 +11,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import library.interfaces.IConstantWindow;
 
-public class ManagerWindowController extends Controller
+public class ManagerWindowController extends Controller implements IConstantWindow
 {
 	@FXML private Button home_button;
 	@FXML private Button menu_button;
@@ -28,6 +32,10 @@ public class ManagerWindowController extends Controller
 	@FXML private Button line_button;
 	@FXML private Button pie_button;
 	@FXML private Button search_button;
+	
+	@FXML private TextField address_textfield;
+	@FXML private TextField legal_number_textfield;
+	@FXML private JFXTreeView restaurant_table;
 	
 	public void showComponentReport(boolean pVisible)
 	{
@@ -77,5 +85,21 @@ public class ManagerWindowController extends Controller
 		{
 			closeWindow(bar_button);
 		}
+	}
+	
+	public void showFormRegisterEmployee()
+	{
+    	try {
+			openWindow(EMPLOYEE_REGISTER_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void addRestaurant()
+	{
+		//address_textfield;
+		//legal_number_textfield;
+		//restaurant_table;
 	}
 }

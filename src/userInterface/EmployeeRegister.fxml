@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.validation.DoubleValidator?>
 <?import javafx.scene.control.Label?>
@@ -17,31 +16,26 @@
       <DoubleValidator layoutX="459.0" layoutY="197.0" />
       <AnchorPane layoutX="52.0" layoutY="48.0" prefHeight="590.0" prefWidth="342.0" style="-fx-background-color: #239e62;">
          <children>
-            <Label layoutX="13.0" layoutY="323.0" text="Welcome to Ovnirestaurant" textFill="WHITE">
+            <Label layoutX="57.0" layoutY="413.0" text="Register employee" textFill="WHITE">
                <font>
                   <Font size="26.0" />
                </font>
             </Label>
-            <Label layoutX="85.0" layoutY="384.0" text="Is a pleasure to eat here" textFill="WHITE">
+            <Label layoutX="72.0" layoutY="488.0" text="We have the best employee" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <ImageView fitHeight="246.0" fitWidth="261.0" layoutX="48.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="265.0" fitWidth="251.0" layoutX="46.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/ovni.png" />
                </image>
             </ImageView>
-            <Label layoutX="95.0" layoutY="461.0" text="Have an account?" textFill="WHITE">
+            <Label layoutX="95.0" layoutY="461.0" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <JFXButton fx:id="signUp_button" layoutX="120.0" layoutY="510.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #1a33d5;" text="Sign in" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </JFXButton>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="458.0" layoutY="48.0" prefHeight="590.0" prefWidth="351.0" style="-fx-background-color: #ffffff;">
@@ -54,20 +48,19 @@
             <JFXTextField fx:id="name_textfield" labelFloat="true" layoutX="62.0" layoutY="98.0" prefHeight="26.0" prefWidth="251.0" promptText="Name" />
             <JFXTextField fx:id="lastName_textfield" labelFloat="true" layoutX="62.0" layoutY="159.0" prefHeight="26.0" prefWidth="251.0" promptText="Lastname" />
             <JFXTextField fx:id="email_textfield" layoutX="62.0" layoutY="221.0" prefHeight="26.0" prefWidth="251.0" promptText="E-Mail" />
-            <JFXTextField fx:id="username_textfield" layoutX="62.0" layoutY="282.0" prefHeight="26.0" prefWidth="251.0" promptText="Username" />
-            <JFXPasswordField fx:id="password_textfield" layoutX="62.0" layoutY="347.0" prefHeight="26.0" prefWidth="251.0" promptText="Password" />
-            <JFXPasswordField fx:id="rePassword_textfield" layoutX="62.0" layoutY="408.0" prefHeight="26.0" prefWidth="251.0" promptText="Confirm password" />
-            <JFXButton fx:id="signUp_button" layoutX="51.0" layoutY="523.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Sign up" textFill="WHITE">
+            <JFXTextField fx:id="identification_textfield" layoutX="62.0" layoutY="288.0" prefHeight="26.0" prefWidth="251.0" promptText="Identification" />
+            <JFXButton fx:id="signUp_button" layoutX="50.0" layoutY="510.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Sign up" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="cancel_button" layoutX="215.0" layoutY="523.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
+            <JFXButton fx:id="cancel_button" layoutX="221.0" layoutY="510.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXComboBox layoutX="62.0" layoutY="465.0" prefHeight="26.0" prefWidth="251.0" promptText="Role" />
+            <JFXComboBox fx:id="role_combo" layoutX="62.0" layoutY="419.0" prefHeight="26.0" prefWidth="251.0" promptText="Role" />
+            <JFXTextField fx:id="salary_textfield" layoutX="62.0" layoutY="353.0" prefHeight="26.0" prefWidth="251.0" promptText="Salary" />
          </children>
       </AnchorPane>
    </children>
