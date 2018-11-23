@@ -29,6 +29,7 @@ public class ControlUser extends Control implements IProcedure
 	{
 		try {
 			connectionPool.request(INSERT_CLIENT_PROCEDURE, pListObject);
+                        
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}	
@@ -65,5 +66,28 @@ public class ControlUser extends Control implements IProcedure
 			e.printStackTrace();
 		}
 		return false;
+	}
+        
+        //Insertar empleaados
+        public void createEmployee(ArrayList<Object> pListObject)
+	{
+		try {
+			connectionPool.request(INSERT_EMPLOYEE_PROCEDURE, pListObject);
+                        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+        
+        
+        //Insertar manager
+        public void createManager(ArrayList<Object> pListObject)
+	{
+		try {
+			connectionPool.request(INSERT_MANAGER_PROCEDURE, pListObject);
+                        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
 	}
 }

@@ -41,4 +41,9 @@ public class ClientFacade extends Facade
 		listParameters.add(pPassword);
 		return ControlUser.getInstance().verifyUser(listParameters);
 	}
+
+    @Override
+    public void loadData() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

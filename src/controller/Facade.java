@@ -1,5 +1,7 @@
 package controller;
 
-public class Facade {
-
+public abstract class Facade {
+    
+    
+    public abstract void loadData();
 }

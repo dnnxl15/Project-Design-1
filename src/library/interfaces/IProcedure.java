@@ -10,4 +10,6 @@ public interface IProcedure
     public final String INSERT_EMPLOYEE_PROCEDURE  = "{? = call insertEmployee(?,?,?,?,?,?)}";
     public final String INSERT_RESTAURANT_PROCEDURE  = "{? = call insertRestaurant(?,?)}";
     public final String INSERT_MANAGER_PROCEDURE  = "{? = call insertManager(?,?,?,?,?,?,?)}";
+    
+    public final String GET_RESTAURAN_PROCEDURE = "{call getRestaurant()}";
 }

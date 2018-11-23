@@ -41,4 +41,7 @@ public class Branch
 		return BranchManagerFacade.getInstance().verifyBranchManager(pUsername, pPassword);
 	}
 	
+        public void createRestaurant(){
+            createRestaurant();
+        }
 }

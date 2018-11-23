@@ -4,11 +4,13 @@ public class RestaurantUI
 {
 	private String address;
 	private String legalNumber;
-	
-	public RestaurantUI(String pAddress, String pLegalNumber)
+	private int id;
+        
+	public RestaurantUI(String pAddress, String pLegalNumber, int pId)
 	{
 		address = pAddress;
 		legalNumber = pLegalNumber;
+                id = pId;
 	}
 	
 	public String getAddress() {
@@ -23,6 +25,14 @@ public class RestaurantUI
 	public void setLegalNumber(String legalNumber) {
 		this.legalNumber = legalNumber;
 	}
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
 
 	
 }

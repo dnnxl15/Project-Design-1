@@ -12,10 +12,12 @@ package domain;
 class Commodity {
     private String name;
     private double price;
-
-    public Commodity(String name, double price) {
+    private String description;
+    
+    public Commodity(String name, double price,String description) {
         this.name = name;
         this.price = price;
+        this.description = description;
     }
 
     public String getName() {
