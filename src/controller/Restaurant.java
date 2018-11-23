@@ -69,6 +69,21 @@ public class Restaurant
 	{
 		return BranchManagerFacade.getInstance().getRestaurant();
 	}
-        
+        public void enableProduct(String name)
+	{
+		Branch.getInstance().enableProduct(name);
+	}
+        public void disableProduct(String name )
+	{
+		Branch.getInstance().disableProduct(name);
+	}
+        public void enableCombo(String name)
+	{
+		Branch.getInstance().enableCombo(name);
+	}
+        public void disableCombo(String name )
+	{
+		Branch.getInstance().disableCombo(name);
+	}
         
 }

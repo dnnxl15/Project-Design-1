@@ -62,6 +62,26 @@ public class ManagerFacade extends Facade
 	{
 		ControlMenu.getInstance().createProduct(pListObject);
 	}
+        
+        //------------------------------------------
+        
+        
+        public void disableProduct(ArrayList<Object> pListObject)
+	{
+		ControlMenu.getInstance().disableProduct(pListObject);
+	}
+       public void disableCombo(ArrayList<Object> pListObject)
+	{
+		ControlMenu.getInstance().disableCombo(pListObject);
+	}
+       public void enableProduct(ArrayList<Object> pListObject)
+	{
+		ControlMenu.getInstance().enableProduct(pListObject);
+	}
+        public void enableCombo(ArrayList<Object> pListObject)
+	{
+		ControlMenu.getInstance().enableCombo(pListObject);
+	}
 
     @Override
     public void loadData() {

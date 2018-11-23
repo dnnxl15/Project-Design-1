@@ -70,4 +70,32 @@ public class Branch
 		listParameters.add(pLegalNumber);
 	    ManagerFacade.getInstance().createRestarant(listParameters);
 	}
+        
+        //-------------
+        
+        
+        public void disableProduct(String pname)
+	{
+	    ArrayList<Object> listParameters = new ArrayList<Object>();
+	    listParameters.add(pname);
+	    ManagerFacade.getInstance().disableProduct(listParameters);
+	}
+        public void disableCombo(String cname)
+	{
+	    ArrayList<Object> listParameters = new ArrayList<Object>();
+	    listParameters.add(cname);
+	    ManagerFacade.getInstance().disableProduct(listParameters);
+	}
+        public void enableProduct(String pname)
+	{
+	    ArrayList<Object> listParameters = new ArrayList<Object>();
+	    listParameters.add(pname);
+	    ManagerFacade.getInstance().disableProduct(listParameters);
+	}
+        public void enableCombo(String cname)
+	{
+	    ArrayList<Object> listParameters = new ArrayList<Object>();
+	    listParameters.add(cname);
+	    ManagerFacade.getInstance().disableProduct(listParameters);
+	}
 }

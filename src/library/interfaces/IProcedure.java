@@ -17,4 +17,9 @@ public interface IProcedure
     public final String GET_JOB_TITLE_PROCEDURE = "{call getJobTitle()}";
     public final String GET_PRODUCTS_PROCEDURE = "{call getAllProduct()}";
     
+    public final String DISABLE_PRODUCTS_PROCEDURE = "{call disableProduct(?)}";
+    public final String DISABLE_COMBO_PROCEDURE = "{call disableCombo(?)}";
+    
+    public final String ENABLE_PRODUCTS_PROCEDURE = "{call enableProduct(?)}";
+    public final String ENABLE_COMBO_PROCEDURE = "{call enableCombo(?)}";
 }

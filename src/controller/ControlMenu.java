@@ -11,6 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import library.JobTitleUI;
 import library.interfaces.IProcedure;
+import static library.interfaces.IProcedure.DISABLE_COMBO_PROCEDURE;
+import static library.interfaces.IProcedure.DISABLE_PRODUCTS_PROCEDURE;
+import static library.interfaces.IProcedure.ENABLE_COMBO_PROCEDURE;
+import static library.interfaces.IProcedure.ENABLE_PRODUCTS_PROCEDURE;
 import static library.interfaces.IProcedure.INSERT_COMBO_PROCEDURE;
 import static library.interfaces.IProcedure.INSERT_MANAGER_PROCEDURE;
 import static library.interfaces.IProcedure.INSERT_PRODUCT_PROCEDURE;
@@ -71,6 +75,42 @@ public class ControlMenu extends Control{
 	{
 		try {
 			connectionPool.request(INSERT_PRODUCT_PROCEDURE, pListObject);
+                        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+        public void disableProduct(ArrayList<Object> pName)
+	{
+		try {
+			connectionPool.request(DISABLE_PRODUCTS_PROCEDURE, pName);
+                        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+        public void disableCombo(ArrayList<Object> cName)
+	{
+		try {
+			connectionPool.request(DISABLE_COMBO_PROCEDURE, cName);
+                        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+        public void enableProduct(ArrayList<Object> pName)
+	{
+		try {
+			connectionPool.request(ENABLE_PRODUCTS_PROCEDURE, pName);
+                        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+        public void enableCombo(ArrayList<Object> cName)
+	{
+		try {
+			connectionPool.request(ENABLE_COMBO_PROCEDURE, cName);
                         
 		} catch (SQLException e) {
 			e.printStackTrace();
