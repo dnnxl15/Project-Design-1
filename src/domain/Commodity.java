@@ -12,14 +12,29 @@ package domain;
 public class Commodity {
     private String name;
     private double price;
-    private String description;
-    
-    public Commodity(String name, double price,String description) {
-        this.name = name;
-        this.price = price;
-        this.setDescription(description);
+    private int idPerson;
+
+    public int getIdPerson() {
+        return idPerson;
     }
 
+    public void setIdPerson(int idPerson) {
+        this.idPerson = idPerson;
+    }
+    private String description;
+    
+    public Commodity(String name, double price,String description,int idperson) {
+        this.name = name;
+        this.price = price;
+        this.idPerson = idperson;
+        this.setDescription(description);
+    }
+        public Commodity(String name, double price, int idperson) {
+        this.name = name;
+        this.price = price;
+        this.idPerson = idperson;
+        this.setDescription(description);
+    }
     public String getName() {
         return name;
     }

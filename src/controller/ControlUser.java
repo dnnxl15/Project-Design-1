@@ -2,9 +2,11 @@ package controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+import library.JobTitleUI;
 import connection.ConnectionPool;
 import domain.User;
+import java.sql.ResultSet;
+import library.RestaurantUI;
 import library.interfaces.IProcedure;
 
 public class ControlUser extends Control implements IProcedure
@@ -90,4 +92,25 @@ public class ControlUser extends Control implements IProcedure
 			e.printStackTrace();
 		}	
 	}
+        public ArrayList<JobTitleUI> getJobTitle(){
+            try{
+                ResultSet resultSet = connectionPool.request(IProcedure.GET_JOB_TITLE_PROCEDURE, null);
+                ArrayList<JobTitleUI> listJobsTmp = new ArrayList<JobTitleUI>();
+                
+                    while (resultSet.next()) {
+                        
+                        String jName =  resultSet.getString("name");
+                        int jMinSalary = resultSet.getInt("minSalary");
+                        int jMaxSalary = resultSet.getInt("maxSalary");
+                        JobTitleUI jobtitle = new JobTitleUI(jName,jMinSalary, jMaxSalary);
+                        listJobsTmp.add(jobtitle);
+                        }
+                        
+                    return listJobsTmp;
+                
+            }catch (SQLException e) {
+			e.printStackTrace();
+		}
+            return null;
+        }
 }
