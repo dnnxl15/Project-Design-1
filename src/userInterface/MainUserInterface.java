@@ -36,7 +36,7 @@ public class MainUserInterface extends Application implements IConstantWindow, I
 	{
 		try 
 		{
-			Parent root = FXMLLoader.load(getClass().getResource(MAIN_WINDOW_UI));
+			Parent root = FXMLLoader.load(getClass().getResource(MANAGER_WINDOW));
 		    Scene scene = new Scene(root, 879, 687);
 		    primaryStage.setResizable(false);
 		    primaryStage.getIcons().add(new Image(OVNI_IMAGE_COLOR_PATH));

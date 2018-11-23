@@ -6,6 +6,7 @@
 <?import com.jfoenix.validation.DoubleValidator?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -218,7 +219,11 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <JFXTreeTableView fx:id="restaurant_table" layoutX="236.0" layoutY="289.0" prefHeight="362.0" prefWidth="349.0" />
+      <JFXTreeTableView fx:id="restaurant_table" layoutX="236.0" layoutY="289.0" prefHeight="362.0" prefWidth="349.0">
+         <columns>
+            <TreeTableColumn fx:id="columnAddress" prefWidth="178.39996337890625" text="Address" />
+            <TreeTableColumn fx:id="columnLegalName" prefWidth="170.39999389648438" text="Legal number" />
+         </columns></JFXTreeTableView>
       <Label fx:id="restaurant_label" layoutX="244.0" layoutY="160.0" text="Restaurant" textFill="WHITE">
          <font>
             <Font size="24.0" />

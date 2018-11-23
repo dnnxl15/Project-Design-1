@@ -1,19 +1,31 @@
 package userInterface;
 
 import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.JFXTreeView;
 
+import domain.User;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.TreeTableView;
 import javafx.scene.image.ImageView;
 import library.interfaces.IConstantWindow;
 
-public class ManagerWindowController extends Controller implements IConstantWindow
+public class ManagerWindowController extends Controller implements IConstantWindow, Initializable
 {
 	@FXML private Button home_button;
 	@FXML private Button menu_button;
@@ -35,7 +47,9 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	
 	@FXML private TextField address_textfield;
 	@FXML private TextField legal_number_textfield;
-	@FXML private JFXTreeView restaurant_table;
+	@FXML private TreeTableView<String> restaurant_table;
+	@FXML private TreeTableColumn<String, String> columnAddress;
+	@FXML private TreeTableColumn<String, String> columnLegalName;
 	
 	public void showComponentReport(boolean pVisible)
 	{
@@ -101,5 +115,21 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		//address_textfield;
 		//legal_number_textfield;
 		//restaurant_table;
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1)
+	{
+		columnAddress.setCellValueFactory(cellData->new SimpleStringProperty("Address"));
+		columnLegalName.setCellValueFactory(cellData->new SimpleStringProperty("Legal number"));
+		restaurant_table.getColumns().add(columnAddress);
+		restaurant_table.getColumns().add(columnLegalName);
+
+		//ObservableList<Product> newListProduct = null;
+		
+		//newListProduct = FXCollections.observableArrayList();
+		
+		//tableProduct.setItems(newListProduct);
+		
 	}
 }
