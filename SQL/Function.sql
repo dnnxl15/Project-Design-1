@@ -1,3 +1,50 @@
+/*-- --------------------------------------------------------------------------------
+--                              VERIFY WHICH TYPE IS
+-- --------------------------------------------------------------------------------
+
+-- Function if is client
+-- Author: Esteban Coto Alfaro
+-- Description: This function return a boolean if the username and the password exist in the table client.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `isClient`(`pUsername` VARCHAR(100), `pPassword` VARCHAR(100)) RETURNS tinyint(1)
+    NO SQL
+BEGIN
+RETURN EXISTS(SELECT client.username FROM client WHERE client.username = pUsername AND client.password = pPassword);
+END$$
+DELIMITER ;
+
+-- Function if is general manager
+-- Author: Esteban Coto Alfaro
+-- Description: This function return a boolean if the username and the password exist in the table manager and is general manager.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `isGeneralManager`(`pUsername` VARCHAR(100), `pPassword` VARCHAR(100)) RETURNS tinyint(1)
+    NO SQL
+BEGIN
+RETURN EXISTS(SELECT manager.username FROM manager WHERE manager.username = pUsername AND manager.password = pPassword AND
+getJobTitleID("General Manager") = 1);
+END$$
+DELIMITER ;
+
+-- Function if is branch manager
+-- Author: Esteban Coto Alfaro
+-- Description: This function return a boolean if the username and the password exist in the table manager and is branch manager.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `isBranchManager`(`pUsername` VARCHAR(100), `pPassword` VARCHAR(100)) RETURNS tinyint(1)
+    NO SQL
+BEGIN
+RETURN EXISTS(SELECT manager.username FROM manager WHERE manager.username = pUsername AND manager.password = pPassword AND
+getJobTitleID("Branch Manager") = 2);
+END$$
+DELIMITER ;
+
+-- --------------------------------------------------------------------------------
+
 -- Function that return the JobTitle id
 -- Author: Esteban Coto Alfaro
 -- Description: This function return a int with the id of the jobTitle.
@@ -111,6 +158,20 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- Function that return the Combo price
+-- Author: Esteban Coto Alfaro
+-- Description: This function return a int with the price of a combo.
+-- Last modification: 05/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getComboPrice`(`pCombo` VARCHAR(100)) RETURNS INT(11)
+BEGIN
+  DECLARE vPrice INT(11) DEFAULT -1;
+    SELECT Combo.price INTO vPrice FROM Combo WHERE Combo.name = pCombo;
+    RETURN vPrice;
+END$$
+DELIMITER ;
+
 -- Function that return the Client id
 -- Author: Esteban Coto Alfaro
 -- Description: This function return a int with the id of the Client.
@@ -153,6 +214,20 @@ BEGIN
 END$$
 DELIMITER ;
 
+-- Function that return the Combo name
+-- Author: Esteban Coto Alfaro
+-- Description: This function return a VARCHAR with the name of the Combo.
+-- Last modification: 05/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getComboName`(`pComboID` INT(11)) RETURNS VARCHAR(100)
+BEGIN
+  DECLARE vCombo VARCHAR(100) DEFAULT "";
+    SELECT c.name INTO vCombo FROM Combo c WHERE c.comboID = pComboID;
+    RETURN vCombo;
+END$$
+DELIMITER ;
+
 -- Function that return the Restaurant legal number
 -- Author: Esteban Coto Alfaro
 -- Description: This function return a VARCHAR with the legal number of the Restaurant.
@@ -164,5 +239,63 @@ BEGIN
 	DECLARE vLegalNum VARCHAR(100) DEFAULT "";
   	SELECT r.legalNumber INTO vLegalNum FROM Restaurant r WHERE r.restID = pRestID;
   	RETURN vLegalNum;
+END$$
+DELIMITER ;
+
+-- Function that return the Combo gain by day
+-- Author: Esteban Coto Alfaro
+-- Description: This function return a int with the gain by day.
+-- Last modification: 14/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getComboGain`(`pDate` DATE) RETURNS INT(11)
+BEGIN
+  DECLARE vGain INT(11) DEFAULT -1;
+    SELECT SUM(cp.quantity*getComboPrice(getComboName(cp.comboID))) INTO vGain FROM ComboPurchase cp WHERE DATE(cp.purchaseTime) = pDate;
+    RETURN vGain;
+END$$
+DELIMITER ;
+
+-- Function that return the Product gain by day
+-- Author: Esteban Coto Alfaro
+-- Description: This function return a int with the gain by day.
+-- Last modification: 14/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getProductGain`(`pDate` DATE) RETURNS INT(11)
+BEGIN
+  DECLARE vGain INT(11) DEFAULT -1;
+    SELECT SUM(pp.quantity*getProductPrice(getProductName(pp.productID))) INTO vGain FROM ProductPurchase pp WHERE DATE(pp.purchaseTime) = pDate;
+    RETURN vGain;
+END$$
+DELIMITER ;
+
+-- Function that return the Combo gain by day
+-- Author: Esteban Coto Alfaro
+-- Description: This function return a int with the gain by day.
+-- Last modification: 14/11/18
+*/
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getComboGainByRest`(`pDate` DATE, `pRest` VARCHAR(100)) RETURNS INT(11)
+BEGIN
+  DECLARE vGain INT(11) DEFAULT -1;
+    SELECT SUM(cp.quantity*getComboPrice(getComboName(cp.comboID))) INTO vGain FROM ComboPurchase cp, ComboPurchaseByClient cpc WHERE DATE(cp.purchaseTime) = pDate 
+    AND cpc.restID = getRestID(pRest);
+    RETURN vGain;
+END$$
+DELIMITER ;
+
+-- Function that return the Product gain by day
+-- Author: Esteban Coto Alfaro
+-- Description: This function return a int with the gain by day.
+-- Last modification: 14/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `getProductGainByRest`(`pDate` DATE, `pRest` VARCHAR(100)) RETURNS INT(11)
+BEGIN
+  DECLARE vGain INT(11) DEFAULT -1;
+    SELECT SUM(pp.quantity*getProductPrice(getProductName(pp.productID))) INTO vGain FROM ProductPurchase pp, ProductPurchaseByClient ppc WHERE DATE(pp.purchaseTime) = pDate
+    AND ppc.restID = getRestID(pRest);
+    RETURN vGain;
 END$$
 DELIMITER ;

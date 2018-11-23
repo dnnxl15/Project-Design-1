@@ -1,4 +1,4 @@
--- --------------------------------------------------------------------------------
+/*-- --------------------------------------------------------------------------------
 --                                      INSERTS
 -- --------------------------------------------------------------------------------
 
@@ -504,25 +504,321 @@ BEGIN
 END$$
 DELIMITER ; 
 
+-- Procedure to General manager password and username
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure update into the table Manager.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateGeneralManager`(IN `pManagerID` INT(11), IN `pNewUsername` VARCHAR(100), IN `pNewPassword` VARCHAR(100))
+    NO SQL
+    COMMENT 'Procedure that update the General Manager'
+BEGIN 
+	UPDATE Manager m
+	SET m.username = pNewUsername,
+	m.password = pNewPassword 
+    WHERE m.managerID = pManagerID;
+END$$
+DELIMITER ; 
+
 -- --------------------------------------------------------------------------------
 -- 								GET INFORMATION
 -- --------------------------------------------------------------------------------
 
--- Procedure to get purchase by Restaurant
+-- Procedure to get Manager information
 -- Author: Esteban Coto Alfaro
--- Description: This procedure get all purchase by restaurant.
--- Last modification: 05/11/18
+-- Description: This procedure get manager information.
+-- Last modification: 22/11/18
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `getPurchase`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getManagerInfo`(IN `pUsername` VARCHAR(100), IN `pPassword` VARCHAR(100))
     NO SQL
 BEGIN
-SELECT DISTINCT getProductName(o.productID) AS productName,
-o.quantity, o.price, getClientName(pbc.personID) AS Username, getRestNum(pbc.restID) AS RestaurantNum, pbc.timeOfPurchase 
-FROM orders o, client c, purchasebyclient pbc
-WHERE o.orderID = pbc.orderID
-ORDER BY pbc.timeOfPurchase;
+SELECT * 
+FROM Manager
+WHERE Manager.username = pUsername AND Manager.password = pPassword;
 END$$
 DELIMITER ; 
 
+-- Procedure to get Jobs  Titles
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure get Job titles.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getJobTitle`()
+    NO SQL
+BEGIN
+SELECT JobTitle.name, Salary.minSalary, Salary.maxSalary 
+FROM JobTitle, Salary
+WHERE JobTitle.salaryID = Salary.salaryID;
+END$$
+DELIMITER ; 
+
+-- Procedure to get Restaurant
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure get Restaurants.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getRestaurant`()
+    NO SQL
+BEGIN
+SELECT restaurant.*
+FROM Restaurant;
+END$$
+DELIMITER ;
+
+-- Procedure to get Products
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure get products.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAvailableProduct`()
+    NO SQL
+BEGIN
+SELECT Product.*
+FROM product
+WHERE product.status = 1;
+END$$
+DELIMITER ;
+
+-- Procedure to get Combo
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure get Combo.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAvailableCombo`()
+    NO SQL
+BEGIN
+SELECT combo.*
+FROM Combo
+WHERE combo.status = 1;
+END$$
+DELIMITER ;
+
+-- Procedure to get All products
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure get all products.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllProduct`()
+    NO SQL
+BEGIN
+SELECT product.name
+FROM Product;
+END$$
+DELIMITER ;
+
+-- Procedure to get All combo
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure get combo.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllCombo`()
+    NO SQL
+BEGIN
+SELECT combo.name
+FROM Combo;
+END$$
+DELIMITER ;
+
+-- Procedure to get unavailable products
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure get unavailable products.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getUnavailableProduct`()
+    NO SQL
+BEGIN
+SELECT product.name
+FROM Product
+WHERE product.status = 0;
+END$$
+DELIMITER ;
+
+-- Procedure to get unavailable combo
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure get unavailable combo.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getUnavailableCombo`()
+    NO SQL
+BEGIN
+SELECT combo.name
+FROM combo
+WHERE combo.status = 0;
+END$$
+DELIMITER ;
+
+-- Procedure to Disable products
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure to disable product.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `disableProduct`(IN `pProduct` VARCHAR(100))
+    NO SQL
+    COMMENT 'Procedure that disable product'
+BEGIN 
+	UPDATE Product
+	SET product.status = 0 
+    WHERE product.name = pProduct;
+END$$
+DELIMITER ;
+
+-- Procedure to Disable Combo
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure to disable combo.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `disableCombo`(IN `pCombo` VARCHAR(100))
+    NO SQL
+    COMMENT 'Procedure that disable Combo'
+BEGIN 
+	UPDATE Combo
+	SET Combo.status = 0 
+    WHERE Combo.name = pCombo;
+END$$
+DELIMITER ;
+
+-- Procedure to Enable products
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure to Enable product.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `enableProduct`(IN `pProduct` VARCHAR(100))
+    NO SQL
+    COMMENT 'Procedure that Enable product'
+BEGIN 
+	UPDATE Product
+	SET product.status = 1 
+    WHERE product.name = pProduct;
+END$$
+DELIMITER ;
+
+-- Procedure to Enable Combo
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure to Enable Combo.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `enableCombo`(IN `pCombo` VARCHAR(100))
+    NO SQL
+    COMMENT 'Procedure that Enable Combo'
+BEGIN 
+	UPDATE Combo
+	SET Combo.status = 1 
+    WHERE Combo.name = pCombo;
+END$$
+DELIMITER ;
+
+
+-- Procedure to get purchase since DATETIME
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure to get all the purchase SINCE A DATETIME.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getProductPurchaseSince`(IN `pTime` DATE)
+    NO SQL
+    COMMENT 'Procedure that get the products purchase since a DATETIME'
+BEGIN 
+	SELECT DISTINCT getProductName(pp.productID) AS productName, pp.quantity,
+	pp.quantity*getProductPrice(getProductName(pp.productID)) AS price, getClientName(ppc.personID) AS Username,
+	getRestNum(ppc.restID) AS RestaurantNum, pp.purchaseTime
+	FROM ProductPurchase pp, productpurchasebyclient ppc
+	WHERE DATE(pp.purchaseTime) = pTime;
+END$$
+DELIMITER ;
+
+-- Procedure to get purchase since DATETIME
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure to get all the purchase SINCE A DATETIME.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getComboPurchaseSince`(IN `pTime` DATE)
+    NO SQL
+    COMMENT 'Procedure that get the Combo purchase since a DATETIME'
+BEGIN 
+	SELECT DISTINCT getComboName(cp.comboID) AS comboName, cp.quantity,
+	cp.quantity*getComboPrice(getComboName(cp.comboID)) AS price, getClientName(cpc.personID) AS Username,
+	getRestNum(cpc.restID) AS RestaurantNum, cp.purchaseTime
+	FROM ComboPurchase cp, combopurchasebyclient cpc
+	WHERE DATE(cp.purchaseTime) = pTime;
+END$$
+DELIMITER ;
+
+-- Procedure to get purchase since DATETIME and by restaurant
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure to get all the purchase SINCE A DATETIME and by restaurant.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getProductPurchaseByRest`(IN `pTime` DATE, IN `pRest` VARCHAR(100))
+    NO SQL
+    COMMENT 'Procedure that get the products purchase since a DATETIME by restaurant'
+BEGIN 
+	SELECT DISTINCT getProductName(pp.productID) AS productName, pp.quantity,
+	pp.quantity*getProductPrice(getProductName(pp.productID)) AS price, getClientName(ppc.personID) AS Username,
+	getRestNum(ppc.restID) AS RestaurantNum, pp.purchaseTime
+	FROM ProductPurchase pp, productpurchasebyclient ppc
+	WHERE DATE(pp.purchaseTime) = pTime AND pRest = getRestNum(ppc.restID) AND ppc.productPurchaseID = pp.productPurchaseID;
+END$$
+DELIMITER ;
+
+-- Procedure to get purchase since DATETIME And by restuarant
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure to get all the purchase SINCE A DATETIME and by restaurant.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getComboPurchaseByRest`(IN `pTime` DATE, IN `pRest` VARCHAR(100))
+    NO SQL
+    COMMENT 'Procedure that get the Combo purchase since a DATETIME and By restaurant'
+BEGIN 
+	SELECT DISTINCT getComboName(cp.comboID) AS comboName, cp.quantity,
+	cp.quantity*getComboPrice(getComboName(cp.comboID)) AS price, getClientName(cpc.personID) AS Username,
+	getRestNum(cpc.restID) AS RestaurantNum, cp.purchaseTime
+	FROM ComboPurchase cp, combopurchasebyclient cpc
+	WHERE DATE(cp.purchaseTime) = pTime AND pRest = getRestNum(cpc.restID) AND cpc.comboPurchaseID = cp.comboPurchaseID;
+END$$
+DELIMITER ;
+
+-- Procedure to get Gain since DATETIME
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure to get all the GAIN SINCE A DATETIME.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getGain`(IN `pTime` DATE)
+    NO SQL
+    COMMENT 'Procedure that get the Gain'
+BEGIN 
+	SELECT (getProductGain(pTime) + getComboGain(pTime)) AS Gain;
+END$$
+DELIMITER ;
+*/
+-- Procedure to get Gain since DATETIME And restaurant
+-- Author: Esteban Coto Alfaro
+-- Description: This procedure to get all the GAIN SINCE A DATETIME and restaurant.
+-- Last modification: 22/11/18
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getGainByRest`(IN `pTime` DATE, IN `pRest` VARCHAR(100))
+    NO SQL
+    COMMENT 'Procedure that get the Gain'
+BEGIN 
+	SELECT (getProductGainByRest(pTime, pRest) + getComboGainByRest(pTime, pRest)) AS Gain;
+END$$
+DELIMITER ;
 /*Select c.price/(SUM(getproductprice(p.name)*pbc.quantity)) FROM productbycombo pbc, combo c, product p WHERE pbc.comboID = c.comboID AND pbc.productID = p.productID;*/

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2018 a las 19:12:55
+-- Tiempo de generación: 23-11-2018 a las 07:04:38
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 7.1.10
 
@@ -26,7 +26,153 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertClient` (IN `pName` VARCHAR(100), IN `pLastname` VARCHAR(100), IN `pIdentification` VARCHAR(100), IN `pUsername` VARCHAR(100), IN `pEmail` VARCHAR(100), IN `pPassword` VARCHAR(100))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `disableCombo` (IN `pCombo` VARCHAR(100))  NO SQL
+    COMMENT 'Procedure that disable Combo'
+BEGIN 
+	UPDATE Combo
+	SET Combo.status = 0 
+    WHERE Combo.name = pCombo;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `disableProduct` (IN `pProduct` VARCHAR(100))  NO SQL
+    COMMENT 'Procedure that disable product'
+BEGIN 
+	UPDATE Product
+	SET product.status = 0 
+    WHERE product.name = pProduct;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `enableCombo` (IN `pCombo` VARCHAR(100))  NO SQL
+    COMMENT 'Procedure that Enable Combo'
+BEGIN 
+	UPDATE Combo
+	SET Combo.status = 1 
+    WHERE Combo.name = pCombo;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `enableProduct` (IN `pProduct` VARCHAR(100))  NO SQL
+    COMMENT 'Procedure that Enable product'
+BEGIN 
+	UPDATE Product
+	SET product.status = 1 
+    WHERE product.name = pProduct;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllCombo` ()  NO SQL
+BEGIN
+SELECT combo.name
+FROM Combo;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAllProduct` ()  NO SQL
+BEGIN
+SELECT product.name
+FROM Product;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAvailableCombo` ()  NO SQL
+BEGIN
+SELECT combo.*
+FROM Combo
+WHERE combo.status = 1;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getAvailableProduct` ()  NO SQL
+BEGIN
+SELECT Product.*
+FROM product
+WHERE product.status = 1;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getComboPurchaseByRest` (IN `pTime` DATE, IN `pRest` VARCHAR(100))  NO SQL
+    COMMENT 'Procedure that get the Combo purchase since a DATETIME and By restaurant'
+BEGIN 
+	SELECT DISTINCT getComboName(cp.comboID) AS comboName, cp.quantity,
+	cp.quantity*getComboPrice(getComboName(cp.comboID)) AS price, getClientName(cpc.personID) AS Username,
+	getRestNum(cpc.restID) AS RestaurantNum, cp.purchaseTime
+	FROM ComboPurchase cp, combopurchasebyclient cpc
+	WHERE DATE(cp.purchaseTime) = pTime AND pRest = getRestNum(cpc.restID)
+     AND cpc.comboPurchaseID = cp.comboPurchaseID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getComboPurchaseSince` (IN `pTime` DATE)  NO SQL
+    COMMENT 'Procedure that get the Combo purchase since a DATETIME'
+BEGIN 
+	SELECT DISTINCT getComboName(cp.comboID) AS comboName, cp.quantity,
+	cp.quantity*getComboPrice(getComboName(cp.comboID)) AS price, getClientName(cpc.personID) AS Username,
+	getRestNum(cpc.restID) AS RestaurantNum, cp.purchaseTime
+	FROM ComboPurchase cp, combopurchasebyclient cpc
+	WHERE DATE(cp.purchaseTime) = pTime;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getGain` (IN `pTime` DATE)  NO SQL
+    COMMENT 'Procedure that get the Gain'
+BEGIN 
+	SELECT (getProductGain(pTime) + getComboGain(pTime)) AS Gain;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getGainByRest` (IN `pTime` DATE, IN `pRest` VARCHAR(100))  NO SQL
+    COMMENT 'Procedure that get the Gain'
+BEGIN 
+	SELECT (getProductGainByRest(pTime, pRest) + getComboGainByRest(pTime, pRest)) AS Gain;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getJobTitle` ()  NO SQL
+BEGIN
+SELECT JobTitle.name, Salary.minSalary, Salary.maxSalary 
+FROM JobTitle, Salary
+WHERE JobTitle.salaryID = Salary.salaryID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getManagerInfo` (IN `pUsername` VARCHAR(100), IN `pPassword` VARCHAR(100))  NO SQL
+BEGIN
+SELECT * 
+FROM Manager
+WHERE Manager.username = pUsername AND Manager.password = pPassword;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getProductPurchaseByRest` (IN `pTime` DATE, IN `pRest` VARCHAR(100))  NO SQL
+    COMMENT 'Procedure that get the products purchase since a DATETIME by restaurant'
+BEGIN 
+	SELECT DISTINCT getProductName(pp.productID) AS productName, pp.quantity,
+	pp.quantity*getProductPrice(getProductName(pp.productID)) AS price, getClientName(ppc.personID) AS Username,
+	getRestNum(ppc.restID) AS RestaurantNum, pp.purchaseTime
+	FROM ProductPurchase pp, productpurchasebyclient ppc
+	WHERE DATE(pp.purchaseTime) = pTime AND pRest = getRestNum(ppc.restID)
+    AND ppc.productPurchaseID = pp.productPurchaseID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getProductPurchaseSince` (IN `pTime` DATE)  NO SQL
+    COMMENT 'Procedure that get the products purchase since a DATETIME'
+BEGIN 
+	SELECT DISTINCT getProductName(pp.productID) AS productName, pp.quantity,
+	pp.quantity*getProductPrice(getProductName(pp.productID)) AS price, getClientName(ppc.personID) AS Username,
+	getRestNum(ppc.restID) AS RestaurantNum, pp.purchaseTime 
+	FROM ProductPurchase pp, productpurchasebyclient ppc
+	WHERE DATE(pp.purchaseTime) = pTime;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getRestaurant` ()  NO SQL
+BEGIN
+SELECT restaurant.*
+FROM Restaurant;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getUnavailableCombo` ()  NO SQL
+BEGIN
+SELECT combo.name
+FROM combo
+WHERE combo.status = 0;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getUnavailableProduct` ()  NO SQL
+BEGIN
+SELECT product.name
+FROM Product
+WHERE product.status = 0;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertClient` (IN `pName` VARCHAR(100), IN `pLastname` VARCHAR(100), IN `pIdentification` INT(11), IN `pUsername` VARCHAR(100), IN `pEmail` VARCHAR(100), IN `pPassword` VARCHAR(100))  NO SQL
     COMMENT 'Procedure that insert into the table Client'
 BEGIN 
 	INSERT INTO Person(personID, name, lastname, identification)
@@ -42,20 +188,20 @@ BEGIN
 	VALUES(NULL, pName, pPrice, pDescription, 1, getPersonID(pIdentificator));
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertComboPurchase` (IN `pCombo` VARCHAR(100), IN `pQuantity` INT(11), IN `pTime` DATETIME, IN `pUsername` VARCHAR(100), IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertComboPurchase` (IN `pCombo` VARCHAR(100), IN `pQuantity` INT(11), IN `pTime` DATETIME, IN `pUsername` VARCHAR(100), IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN, IN `pRestNum` VARCHAR(100))  NO SQL
     COMMENT 'Procedure that insert into the table ComboPurchase'
 BEGIN 
 	INSERT INTO ComboPurchase(comboPurchaseID, quantity, purchaseTime, comboID)
 	VALUES(NULL, pQuantity, pTime, getComboID(pCombo));
-	CALL insertComboPurchaseByClient(pUsername);
+	CALL insertComboPurchaseByClient(pUsername, pRestNum);
 	CALL insertComboPurchaseInfo(pDeliveryType, pPayMethod);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertComboPurchaseByClient` (IN `pUsername` VARCHAR(100))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertComboPurchaseByClient` (IN `pUsername` VARCHAR(100), IN `pRestNum` VARCHAR(100))  NO SQL
     COMMENT 'Procedure that insert into the table ComboPurchaseByClient'
 BEGIN 
-	INSERT INTO ComboPurchaseByClient(ComboPurchaseByClientID, personID, ComboPurchaseID)
-	VALUES(NULL, getClientID(pUsername), (SELECT comboPurchaseID FROM ComboPurchase ORDER BY ComboPurchaseID DESC LIMIT 1));
+	INSERT INTO ComboPurchaseByClient(ComboPurchaseByClientID, personID, restID, ComboPurchaseID)
+	VALUES(NULL, getClientID(pUsername), getRestID(pRestNum), (SELECT comboPurchaseID FROM ComboPurchase ORDER BY ComboPurchaseID DESC LIMIT 1));
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertComboPurchaseInfo` (IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN)  NO SQL
@@ -65,7 +211,7 @@ BEGIN
 	VALUES(NULL, (SELECT ComboPurchaseID FROM ComboPurchase ORDER BY ComboPurchaseID DESC LIMIT 1), pDeliveryType, pPayMethod, NULL, NULL, NULL, NULL);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertEmployee` (IN `pName` VARCHAR(100), IN `pLastname` VARCHAR(100), IN `pIdentification` VARCHAR(100), IN `pEmail` VARCHAR(100), IN `pJobTitle` VARCHAR(100), IN `pSalary` FLOAT(11))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertEmployee` (IN `pName` VARCHAR(100), IN `pLastname` VARCHAR(100), IN `pIdentification` INT(11), IN `pEmail` VARCHAR(100), IN `pJobTitle` VARCHAR(100), IN `pSalary` FLOAT(11))  NO SQL
     COMMENT 'Procedure that insert into the table Employee'
 BEGIN 
 	INSERT INTO Person(personID, name, lastname, identification)
@@ -104,7 +250,7 @@ BEGIN
 	VALUES(NULL, pName, getSalaryRangeID(pMinSalary, pMaxSalary));
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertManager` (IN `pName` VARCHAR(100), IN `pLastname` VARCHAR(100), IN `pIdentification` VARCHAR(100), IN `pUsername` VARCHAR(100), IN `pPassword` VARCHAR(100), IN `pSalary` FLOAT(11), IN `pJobTitle` VARCHAR(100))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertManager` (IN `pName` VARCHAR(100), IN `pLastname` VARCHAR(100), IN `pIdentification` INT(11), IN `pUsername` VARCHAR(100), IN `pPassword` VARCHAR(100), IN `pSalary` FLOAT(11), IN `pJobTitle` VARCHAR(100))  NO SQL
     COMMENT 'Procedure that insert into the table Manager'
 BEGIN 
 	INSERT INTO Person(personID, name, lastname, identification)
@@ -127,20 +273,20 @@ BEGIN
 	VALUES(NULL, pQuantity, getProductID(pProduct), getComboID(pCombo));
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProductPurchase` (IN `pProduct` VARCHAR(100), IN `pQuantity` INT(11), IN `pTime` DATETIME, IN `pUsername` VARCHAR(100), IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProductPurchase` (IN `pProduct` VARCHAR(100), IN `pQuantity` INT(11), IN `pTime` DATETIME, IN `pUsername` VARCHAR(100), IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN, IN `pRestNum` VARCHAR(100))  NO SQL
     COMMENT 'Procedure that insert into the table ProductPurchase'
 BEGIN 
 	INSERT INTO ProductPurchase(productPurchaseID, quantity, purchaseTime, productID)
 	VALUES(NULL, pQuantity, pTime, getProductID(pProduct));
-	CALL insertProductPurchaseByClient(pUsername);
+	CALL insertProductPurchaseByClient(pUsername, pRestNum);
 	CALL insertProductPurchaseInfo(pDeliveryType, pPayMethod);
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProductPurchaseByClient` (IN `pUsername` VARCHAR(100))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProductPurchaseByClient` (IN `pUsername` VARCHAR(100), IN `pRestNum` VARCHAR(100))  NO SQL
     COMMENT 'Procedure that insert into the table ProductPurchaseByClient'
 BEGIN 
-	INSERT INTO ProductPurchaseByClient(productPurchaseByClientID, personID, productPurchaseID)
-	VALUES(NULL, getClientID(pUsername), (SELECT productPurchaseID FROM ProductPurchase ORDER BY productPurchaseID DESC LIMIT 1));
+	INSERT INTO ProductPurchaseByClient(productPurchaseByClientID, personID, restID, productPurchaseID)
+	VALUES(NULL, getClientID(pUsername), getRestID(pRestNum), (SELECT productPurchaseID FROM ProductPurchase ORDER BY productPurchaseID DESC LIMIT 1));
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertProductPurchaseInfo` (IN `pDeliveryType` BOOLEAN, IN `pPayMethod` BOOLEAN)  NO SQL
@@ -221,6 +367,15 @@ BEGIN
 	CALL updateComboEndOfPreparation(pTime);
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateGeneralManager` (IN `pManagerID` INT(11), IN `pNewUsername` VARCHAR(100), IN `pNewPassword` VARCHAR(100))  NO SQL
+    COMMENT 'Procedure that update the General Manager'
+BEGIN 
+	UPDATE Manager m
+	SET m.username = pNewUsername,
+	m.password = pNewPassword 
+    WHERE m.managerID = pManagerID;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `updateProductEndOfDelivery` (IN `pTime` DATETIME)  NO SQL
     COMMENT 'Procedure that update the endOfDelivery'
 BEGIN 
@@ -286,10 +441,35 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getClientName` (`pClientID` INT(11))
   	RETURN vClient;
 END$$
 
+CREATE DEFINER=`root`@`localhost` FUNCTION `getComboGain` (`pDate` DATE) RETURNS INT(11) BEGIN
+  DECLARE vGain INT(11) DEFAULT -1;
+    SELECT SUM(cp.quantity*getComboPrice(getComboName(cp.comboID))) INTO vGain FROM ComboPurchase cp WHERE DATE(cp.purchaseTime) = pDate;
+    RETURN vGain;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `getComboGainByRest` (`pDate` DATE, `pRest` VARCHAR(100)) RETURNS INT(11) BEGIN
+  DECLARE vGain INT(11) DEFAULT -1;
+    SELECT SUM(cp.quantity*getComboPrice(getComboName(cp.comboID))) INTO vGain FROM ComboPurchase cp, ComboPurchaseByClient cpc WHERE DATE(cp.purchaseTime) = pDate 
+    AND cpc.restID = getRestID(pRest);
+    RETURN vGain;
+END$$
+
 CREATE DEFINER=`root`@`localhost` FUNCTION `getComboID` (`pName` VARCHAR(100)) RETURNS INT(11) BEGIN
 	DECLARE vComboID INT(11) DEFAULT -1;
   	SELECT comboID INTO vComboID FROM Combo WHERE Combo.name = pName;
   	RETURN vComboID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `getComboName` (`pComboID` INT(11)) RETURNS VARCHAR(100) CHARSET latin1 BEGIN
+  DECLARE vCombo VARCHAR(100) DEFAULT "";
+    SELECT c.name INTO vCombo FROM Combo c WHERE c.comboID = pComboID;
+    RETURN vCombo;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `getComboPrice` (`pCombo` VARCHAR(100)) RETURNS INT(11) BEGIN
+  DECLARE vPrice INT(11) DEFAULT -1;
+    SELECT Combo.price INTO vPrice FROM Combo WHERE Combo.name = pCombo;
+    RETURN vPrice;
 END$$
 
 CREATE DEFINER=`root`@`localhost` FUNCTION `getJobTitleID` (`pJobTitle` VARCHAR(100)) RETURNS INT(11) BEGIN
@@ -303,6 +483,19 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getPersonID` (`pIdentificator` VARCH
   	SELECT p.personID INTO vPersonID FROM person p WHERE (SELECT m.personID FROM manager m WHERE m.username = pIdentificator) = p.personID OR
   	(SELECT e.personID FROM employee e WHERE e.email = pIdentificator) = p.personID;
   	RETURN vPersonID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `getProductGain` (`pDate` DATE) RETURNS INT(11) BEGIN
+  DECLARE vGain INT(11) DEFAULT -1;
+    SELECT SUM(pp.quantity*getProductPrice(getProductName(pp.productID))) INTO vGain FROM ProductPurchase pp WHERE DATE(pp.purchaseTime) = pDate;
+    RETURN vGain;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `getProductGainByRest` (`pDate` DATE, `pRest` VARCHAR(100)) RETURNS INT(11) BEGIN
+  DECLARE vGain INT(11) DEFAULT -1;
+    SELECT DISTINCT SUM(pp.quantity*getProductPrice(getProductName(pp.productID))) INTO vGain FROM ProductPurchase pp, ProductPurchaseByClient ppc WHERE DATE(pp.purchaseTime) = pDate
+    AND ppc.restID = getRestID(pRest);
+    RETURN vGain;
 END$$
 
 CREATE DEFINER=`root`@`localhost` FUNCTION `getProductID` (`pProduct` VARCHAR(100)) RETURNS INT(11) BEGIN
@@ -345,6 +538,23 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `getVehicleID` (`pRegNum` VARCHAR(100
 	DECLARE vVehicleID INT(11) DEFAULT -1;
   	SELECT vehicleID INTO vVehicleID FROM Vehicle WHERE Vehicle.registrationNumber = pRegNum;
   	RETURN vVehicleID;
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `isBranchManager` (`pUsername` VARCHAR(100), `pPassword` VARCHAR(100)) RETURNS TINYINT(1) NO SQL
+BEGIN
+RETURN EXISTS(SELECT manager.username FROM manager WHERE manager.username = pUsername AND manager.password = pPassword AND
+getJobTitleID("Branch Manager") = manager.jobTitleID);
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `isClient` (`pUsername` VARCHAR(100), `pPassword` VARCHAR(100)) RETURNS TINYINT(1) NO SQL
+BEGIN
+RETURN EXISTS(SELECT client.username FROM client WHERE client.username = pUsername AND client.password = pPassword);
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `isGeneralManager` (`pUsername` VARCHAR(100), `pPassword` VARCHAR(100)) RETURNS TINYINT(1) NO SQL
+BEGIN
+RETURN EXISTS(SELECT manager.username FROM manager WHERE manager.username = pUsername AND manager.password = pPassword AND
+getJobTitleID("General Manager") = manager.jobTitleID);
 END$$
 
 DELIMITER ;
@@ -422,6 +632,7 @@ INSERT INTO `combopurchase` (`comboPurchaseID`, `quantity`, `purchaseTime`, `com
 CREATE TABLE `combopurchasebyclient` (
   `comboPurchaseByClientID` int(11) NOT NULL,
   `personID` int(11) NOT NULL,
+  `restID` int(11) NOT NULL,
   `comboPurchaseID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -429,8 +640,8 @@ CREATE TABLE `combopurchasebyclient` (
 -- Volcado de datos para la tabla `combopurchasebyclient`
 --
 
-INSERT INTO `combopurchasebyclient` (`comboPurchaseByClientID`, `personID`, `comboPurchaseID`) VALUES
-(1, 1, 1);
+INSERT INTO `combopurchasebyclient` (`comboPurchaseByClientID`, `personID`, `restID`, `comboPurchaseID`) VALUES
+(1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -592,7 +803,7 @@ CREATE TABLE `person` (
   `personID` int(11) NOT NULL COMMENT 'ID for the table person',
   `name` varchar(100) NOT NULL COMMENT 'name of the person',
   `lastname` varchar(100) NOT NULL COMMENT 'lastname of the person',
-  `identification` varchar(100) NOT NULL COMMENT 'identification of the person'
+  `identification` int(11) NOT NULL COMMENT 'identification of the person'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -600,11 +811,11 @@ CREATE TABLE `person` (
 --
 
 INSERT INTO `person` (`personID`, `name`, `lastname`, `identification`) VALUES
-(1, 'Esteban', 'Coto', '12345678'),
-(2, 'Carlos', 'Rojas', '87654321'),
-(3, 'Danny', 'Xie', '987654321'),
-(4, 'Ana', 'Blanco', '987654'),
-(5, 'Juan', 'Perez', '875421');
+(1, 'Esteban', 'Coto', 12345678),
+(2, 'Carlos', 'Rojas', 87654321),
+(3, 'Danny', 'Xie', 987654321),
+(4, 'Ana', 'Blanco', 987654),
+(5, 'Juan', 'Perez', 875421);
 
 -- --------------------------------------------------------
 
@@ -682,6 +893,7 @@ INSERT INTO `productpurchase` (`productPurchaseID`, `quantity`, `purchaseTime`, 
 CREATE TABLE `productpurchasebyclient` (
   `productPurchaseByClientID` int(11) NOT NULL,
   `personID` int(11) NOT NULL,
+  `restID` int(11) NOT NULL,
   `productPurchaseID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -689,9 +901,9 @@ CREATE TABLE `productpurchasebyclient` (
 -- Volcado de datos para la tabla `productpurchasebyclient`
 --
 
-INSERT INTO `productpurchasebyclient` (`productPurchaseByClientID`, `personID`, `productPurchaseID`) VALUES
-(1, 1, 1),
-(3, 1, 3);
+INSERT INTO `productpurchasebyclient` (`productPurchaseByClientID`, `personID`, `restID`, `productPurchaseID`) VALUES
+(1, 1, 1, 1),
+(3, 1, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -1010,7 +1222,7 @@ ALTER TABLE `employeedocombo`
 -- AUTO_INCREMENT de la tabla `employeedoproduct`
 --
 ALTER TABLE `employeedoproduct`
-  MODIFY `employeeDoProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `employeeDoProductID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `jobtitle`
