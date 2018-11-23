@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Combo;
 import domain.Product;
 import java.util.ArrayList;
 
@@ -55,15 +56,20 @@ public class Restaurant
 	{
 		Branch.getInstance().createProduct(name, price,description,idPerson);
 	}
-	public void createCombo(String cname, double price, int cpersonid)
+	public void createCombo(String cname, double price,String description ,int cpersonid)
 	{
-		Branch.getInstance().createCombo(cname, price,cpersonid);
+		Branch.getInstance().createCombo(cname, price,description,cpersonid);
 	}
 
 	public ArrayList<Product> getProducts()
 	{
 		return Branch.getInstance().getProducts();
 	}
+        public ArrayList<Combo> getCombos()
+	{
+		return Branch.getInstance().getCombos();
+	}
+        
         
 	public ArrayList<RestaurantUI> getRestaurant()
 	{

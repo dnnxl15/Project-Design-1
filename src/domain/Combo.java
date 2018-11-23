@@ -11,12 +11,12 @@ import java.util.ArrayList;
  *
  * @author Personal
  */
-class Combo extends Commodity{
+public class Combo extends Commodity{
     private ArrayList listProduct;
     private Boolean enabled;
     
-    public Combo(String name, double price,int cpersonid) {
-        super(name, price,cpersonid);
+    public Combo(String name, double price,String description,int cpersonid) {
+        super(name, price,description,cpersonid);
         listProduct = new ArrayList();
         enabled = true;
     }

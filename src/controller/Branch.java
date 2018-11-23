@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Combo;
 import domain.Product;
 import java.util.ArrayList;
 
@@ -51,17 +52,22 @@ public class Branch
                 listParameters.add(idPerson);
 	    ManagerFacade.getInstance().createProduct(listParameters);
 	}
-        public void createCombo(String cname, double price, int cpersonid)
+        public void createCombo(String cname, double price, String description, int cpersonid)
 	{
 		ArrayList<Object> listParameters = new ArrayList<Object>();
 		listParameters.add(cname);
 		listParameters.add(price);
+                listParameters.add(description);
                 listParameters.add(cpersonid);
 	    ManagerFacade.getInstance().createCombo(listParameters);
 	}
         public ArrayList<Product> getProducts()
 	{
 		return ManagerFacade.getInstance().getProducts();
+	}
+        public ArrayList<Combo> getCombos()
+	{
+		return ManagerFacade.getInstance().getCombos();
 	}
         public void createRestaurant(String pAddress, String pLegalNumber)
 	{
@@ -98,4 +104,7 @@ public class Branch
 	    listParameters.add(cname);
 	    ManagerFacade.getInstance().disableProduct(listParameters);
 	}
+        // ----------------
+        
+        
 }

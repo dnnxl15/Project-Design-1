@@ -6,6 +6,7 @@
 package controller;
 
 import domain.Product;
+import domain.Combo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -56,6 +57,29 @@ public class ControlMenu extends Control{
                         }
                         
                     return listProductsTmp;
+                
+            }catch (SQLException e) {
+			e.printStackTrace();
+		}
+            return null;
+        }
+        
+        public ArrayList<Combo> getCombos(){
+            try{
+                ResultSet resultSet = connectionPool.request(IProcedure.GET_COMBOS_PROCEDURE, null);
+                ArrayList<Combo> listCombosTmp = new ArrayList<Combo>();
+                
+                    while (resultSet.next()) {
+                        
+                        String pName =  resultSet.getString("name");
+                        float pPrice = resultSet.getFloat("price");
+                        String pDescription = resultSet.getString("description");  
+                        int pPersonId = resultSet.getInt("personID"); 
+                        Combo combo = new Combo(pName,pPrice,pDescription,pPersonId);
+                        listCombosTmp.add(combo);
+                        }
+                        
+                    return listCombosTmp;
                 
             }catch (SQLException e) {
 			e.printStackTrace();
