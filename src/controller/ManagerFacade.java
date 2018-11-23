@@ -7,6 +7,8 @@ import library.RestaurantUI;
 import library.interfaces.IProcedure;
 import static library.interfaces.IProcedure.INSERT_RESTAURANT_PROCEDURE;
 import connection.*;
+import domain.Product;
+
 
 public class ManagerFacade extends Facade
 {
@@ -45,6 +47,20 @@ public class ManagerFacade extends Facade
 	public void createRestarant(ArrayList<Object> pListObject)
 	{
 		ControlRestaurant.getInstance().createRestaurant(pListObject);
+	}
+        
+        public ArrayList<Product> getProducts()
+	{
+		return ControlMenu.getInstance().getProducts();
+	}
+	
+	public void createCombo(ArrayList<Object> cListObject)
+	{
+		ControlMenu.getInstance().createCombo(cListObject);
+	}
+        public void createProduct(ArrayList<Object> pListObject)
+	{
+		ControlMenu.getInstance().createProduct(pListObject);
 	}
 
     @Override

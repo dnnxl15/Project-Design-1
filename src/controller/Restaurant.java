@@ -50,9 +50,20 @@ public class Restaurant
 	{
 		Branch.getInstance().createRestaurant(pAddress, pLegalNumber);
 	}
+        public void createProduct(String name, float price,String description, int idPerson)
+	{
+		Branch.getInstance().createProduct(name, price,description,idPerson);
+	}
+	public void createCombo(String cname, double price, int cpersonid)
+	{
+		Branch.getInstance().createCombo(cname, price,cpersonid);
+	}
+
 
 	public ArrayList<RestaurantUI> getRestaurant()
 	{
 		return BranchManagerFacade.getInstance().getRestaurant();
 	}
+        
+        
 }
