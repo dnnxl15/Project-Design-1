@@ -18,6 +18,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class ComboViewController extends Controller implements Initializable
 {
@@ -73,5 +74,37 @@ public class ComboViewController extends Controller implements Initializable
 	public void closeWindow()
 	{
 		closeWindow(signUp_button);
+	}
+	
+	
+	public void updateCombo()
+	{
+		String name = name_textfield_t.getText().toString();
+    	int price;
+    	String description = description_textarea1.getText().toString();
+    	boolean value = checkbox_product.isSelected();
+    	try
+		{
+    		price =  Integer.parseInt(price_textfield11.getText().toString());
+		}
+		catch(Exception e)
+		{
+			showAlert(AlertType.ERROR ,"Price" , "Must be a number");
+			return;
+		}
+    	if(name.equals(EMPTY) || description.equals(EMPTY))
+    	{
+			showAlert(AlertType.ERROR ,"All fields" , "All fields must be complete");
+			return;
+    	}
+    	else
+    	{
+   			//Restaurant.getInstance().createCombo(name, price, description, "dnnxl");//////////////////////////////////////////////////////
+   			showAlert(AlertType.CONFIRMATION ,"Combo update" , "Combo is updated in the system");
+   			name_textfield_t.setText(EMPTY);
+   			description_textarea1.setText(EMPTY);
+   			price_textfield11.setText(EMPTY);
+   			checkbox_product.selectedProperty().set(false);
+    	}
 	}
 }

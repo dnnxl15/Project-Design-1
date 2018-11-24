@@ -90,10 +90,7 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	@FXML private Button see_submanager_button;
 	@FXML private Button add_submanager_buttton;
 	@FXML private Button add_employee_button;
-	@FXML private Button update_employee_button;
-	@FXML private Button update_submanager_button;
-	@FXML private Button inactive_employee_button;
-	@FXML private Button inactive_submanager_button;
+
 	
 	public void showHome()
 	{
