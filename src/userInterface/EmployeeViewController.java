@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import controller.Restaurant;
+import domain.Commodity;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -31,7 +32,6 @@ public class EmployeeViewController extends Controller implements Initializable,
 	@FXML private TableView<EmployeeUI> employee_table;
 	@FXML private TableColumn<EmployeeUI, String> columnName;
 	@FXML private TableColumn<EmployeeUI, String> columnLastaname;
-	@FXML private TableColumn<EmployeeUI, String> columnEmail;
 	@FXML private TableColumn<EmployeeUI, Number> columnSalary;
 	@FXML private TableColumn<EmployeeUI, String> columnRol;
 	@FXML private TableColumn<EmployeeUI, CheckBox> columnDisable;
@@ -41,17 +41,18 @@ public class EmployeeViewController extends Controller implements Initializable,
 	@FXML private TextField lastname_textfield;
 	@FXML private TextField slary_textfield;
 	@FXML private ComboBox<String> role_combobox;
+	private EmployeeUI selected;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) 
 	{
 		columnName.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getName()));
 		columnLastaname.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getLastname()));
-		columnEmail.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getEmail()));
 		columnSalary.setCellValueFactory(cellData->new SimpleDoubleProperty(cellData.getValue().getSalary()));
 		columnRol.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getRol()));
 		columnDisable.setCellValueFactory(new PropertyValueFactory<EmployeeUI, CheckBox>("check"));
-
+		employee_table.getSelectionModel().selectedItemProperty().addListener(
+	            (observable, oldValue, newValue) -> showInfoEmployeeUI((EmployeeUI) newValue));
 	
 		ObservableList<EmployeeUI> newListEmployee = null;
 		//newListRestaurant = FXCollections.observableArrayList(Restaurant.getInstance().getRestaurant());//ControlSystem.getInstance().loadProduct());
@@ -68,6 +69,30 @@ public class EmployeeViewController extends Controller implements Initializable,
 		{
 			closeWindow(cancel_button);
 		}
+	}
+	
+	/**
+	 * Method show the info of the product
+	 * Author: Danny Xie Li
+	 * Description: The next method show the info of the product.
+	 * Last modification: 08/10/18
+	 */
+	public void showInfoEmployeeUI(EmployeeUI pEmployeeUI)
+	{
+		if(pEmployeeUI == null)
+		{
+			name_textfield.setText(EMPTY);
+			lastname_textfield.setText(EMPTY);
+			slary_textfield.setText(EMPTY);
+		}
+		else
+		{
+			name_textfield.setText(pEmployeeUI.getName().toString());
+			lastname_textfield.setText(String.valueOf(pEmployeeUI.getLastname()));
+			slary_textfield.setText(String.valueOf(pEmployeeUI.getSalary()));
+			selected = pEmployeeUI;
+		}
+		
 	}
 	
 	public void updateEmployee()
