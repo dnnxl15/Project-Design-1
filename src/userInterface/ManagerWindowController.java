@@ -90,6 +90,24 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	@FXML private Button add_submanager_buttton;
 	@FXML private Button add_employee_button;
 
+	private boolean submanager;
+	private boolean manager;
+	
+	private static ManagerWindowController managerWindowController;
+	
+	private static ManagerWindowController getInstance()
+	{
+		if(managerWindowController == null)
+		{
+			managerWindowController = new ManagerWindowController();
+		}
+		return managerWindowController;
+	}
+	
+	private ManagerWindowController()
+	{
+		
+	}
 	
 	public void showHome()
 	{

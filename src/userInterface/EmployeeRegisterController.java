@@ -64,9 +64,18 @@ public class EmployeeRegisterController extends Controller implements Initializa
     	}
     	else
     	{
-    		////////
+    		name_textfield.setText(EMPTY);
+    		lastName_textfield.setText(EMPTY);
+    		email_textfield.setText(EMPTY);
+    		identification_textfield.setText(EMPTY);
+    		salary_textfield.setText(EMPTY);
 			showAlert(AlertType.CONFIRMATION ,"User register" , "User is registered in the system");
     	}	
+    	
+    }
+    
+    public void closeWindow()
+    {
     	closeWindow(signUp_button);
     }
 }
