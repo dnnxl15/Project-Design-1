@@ -107,6 +107,10 @@ public class ManagerFacade extends Facade
 	{
 		return ControlUser.getInstance().getEmployee();
 	}
+        public void updateEmployee(ArrayList<Object> cListObject)
+	{
+		ControlUser.getInstance().updateEmployee(cListObject);
+	}
 
     @Override
     public void loadData() {
