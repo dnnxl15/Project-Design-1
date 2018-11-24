@@ -27,11 +27,16 @@ public class EmployeeRegisterController extends Controller implements Initializa
     @FXML private TextField email_textfield;
     @FXML private TextField identification_textfield;
     @FXML private TextField salary_textfield;
-    @FXML private ComboBox role_combo;
+    @FXML private ComboBox<String> role_combo;
+    @FXML private ComboBox<String> legal_number;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    	role_combo.getItems().clear();
+    	role_combo.getItems().addAll();//Arralist
+    	
+    	legal_number.getItems().clear();
+    	legal_number.getItems().addAll();//Arralist
     }    
     
     public void signUp() throws IOException

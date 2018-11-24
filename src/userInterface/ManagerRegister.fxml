@@ -59,14 +59,10 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXComboBox fx:id="role_combo" layoutX="63.0" layoutY="485.0" prefHeight="26.0" prefWidth="135.0" promptText="Role" />
+            <JFXComboBox fx:id="role_combo" layoutX="63.0" layoutY="485.0" prefHeight="26.0" prefWidth="110.0" promptText="Role" />
             <JFXTextField fx:id="salary_textfield" layoutX="62.0" layoutY="418.0" prefHeight="26.0" prefWidth="251.0" promptText="Salary" />
             <JFXPasswordField fx:id="password_textfield" layoutX="63.0" layoutY="358.0" prefHeight="26.0" prefWidth="251.0" promptText="Password" />
-            <JFXButton fx:id="signUp_button1" layoutX="225.0" layoutY="485.0" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #0f9d58;" text="Add new role" textFill="WHITE">
-               <font>
-                  <Font size="11.0" />
-               </font>
-            </JFXButton>
+            <JFXComboBox fx:id="legal_number" layoutX="205.0" layoutY="485.0" prefHeight="26.0" prefWidth="110.0" promptText="Legal number" />
          </children>
       </AnchorPane>
    </children>

@@ -61,7 +61,7 @@
             </JFXButton>
             <JFXComboBox fx:id="role_combo" layoutX="62.0" layoutY="419.0" prefHeight="26.0" prefWidth="251.0" promptText="Role" />
             <JFXTextField fx:id="salary_textfield" layoutX="62.0" layoutY="353.0" prefHeight="26.0" prefWidth="251.0" promptText="Salary" />
-            <JFXComboBox fx:id="role_combo1" layoutX="62.0" layoutY="479.0" prefHeight="26.0" prefWidth="251.0" promptText="Legal number" />
+            <JFXComboBox fx:id="legal_number" layoutX="62.0" layoutY="479.0" prefHeight="26.0" prefWidth="251.0" promptText="Legal number" />
          </children>
       </AnchorPane>
    </children>

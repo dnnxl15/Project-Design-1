@@ -20,7 +20,8 @@ public class ManagerRegisterController extends Controller implements Initializab
 	@FXML private TextField identification_textfield;
 	@FXML private TextField password_textfield;
 	@FXML private TextField salary_textfield;
-	@FXML private ComboBox<?> role_combo;
+	@FXML private ComboBox<String> role_combo;
+	@FXML private ComboBox<String> legal_number;
     @FXML private Button signUp_button;
     @FXML private Button cancel_button;
 	
@@ -30,6 +31,9 @@ public class ManagerRegisterController extends Controller implements Initializab
     	String password = password_textfield.getText().toString();
     	String name = name_textfield.getText().toString();
     	String lastname = lastName_textfield.getText().toString();
+    	String role = role_combo.getSelectionModel().getSelectedItem().toString();
+    	String legal = legal_number.getSelectionModel().getSelectedItem().toString();
+
     	//String role = role_combo.getText().toString();
     	int  identification;
     	int salary;
@@ -58,7 +62,11 @@ public class ManagerRegisterController extends Controller implements Initializab
 	
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    	role_combo.getItems().clear();
+    	role_combo.getItems().addAll();//Arralist
+    	
+    	legal_number.getItems().clear();
+    	legal_number.getItems().addAll();//Arralist
     }    
 	    
 	public void closeWindow()
