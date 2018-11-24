@@ -20,20 +20,20 @@ public class ClientManagerView extends Controller implements IConstantWindow, In
 
 {
 	@FXML private TableView<RestaurantUI> client_table;
-	@FXML private TableColumn<ClientUI, String> name_column;
-	@FXML private TableColumn<ClientUI, String> lastname_column;
-	@FXML private TableColumn<ClientUI, String> email_column;
-	@FXML private TableColumn<ClientUI, String> username_column;
+	//@FXML private TableColumn<ClientUI, String> name_column;
+	//@FXML private TableColumn<ClientUI, String> lastname_column;
+	//@FXML private TableColumn<ClientUI, String> email_column;
+	//@FXML private TableColumn<ClientUI, String> username_column;
 	@FXML private Button cancel_button;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		name_column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getAddress()));
-		lastname_column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getLegalNumber()));
-		email_column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getLegalNumber()));
-		username_column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getLegalNumber()));
+		//name_column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getAddress()));
+		//lastname_column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getLegalNumber()));
+		//email_column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getLegalNumber()));
+		//username_column.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getLegalNumber()));
 
-		ObservableList<ClientUI> newListRestaurant = null;
+		//ObservableList<ClientUI> newListRestaurant = null;
 		//newListRestaurant = FXCollections.observableArrayList(Restaurant.getInstance().getRestaurant());//ControlSystem.getInstance().loadProduct());
 		//mount_restaurant_label.setText("("+newListRestaurant.size()+")");
 		//restaurant_table.setItems(newListProduct);
