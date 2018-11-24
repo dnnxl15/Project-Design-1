@@ -172,7 +172,7 @@
                               <Insets left="15.0" top="8.0" />
                            </HBox.margin>
                         </ImageView>
-                        <JFXButton fx:id="employee_button2" onAction="#showEmployee" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #49A34D;" text="Client" textFill="WHITE">
+                        <JFXButton fx:id="employee_button2" onAction="#showClient" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #49A34D;" text="Client" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -234,8 +234,12 @@
          <children>
             <Line fx:id="combo_line" endX="465.7999267578125" endY="1.52587890625E-5" layoutX="149.0" layoutY="97.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" visible="false" />
             <Line fx:id="product_line" endX="465.7999267578125" endY="1.52587890625E-5" layoutX="157.0" layoutY="356.0" startX="-100.0" stroke="WHITE" strokeWidth="3.0" visible="false" />
-            <Line fx:id="employee_line" endX="593.4000244140625" endY="1.52587890625E-5" layoutX="47.0" layoutY="86.0" startX="-7.399993896484375" startY="1.52587890625E-5" stroke="WHITE" strokeWidth="3.0" />
-            <Line fx:id="subamanager_line" endX="593.4000244140625" endY="1.52587890625E-5" layoutX="45.0" layoutY="330.0" startX="-7.399993896484375" startY="1.52587890625E-5" stroke="WHITE" strokeWidth="3.0" />
+            <Line fx:id="employee_line" endX="593.4000244140625" endY="1.52587890625E-5" layoutX="47.0" layoutY="86.0" startX="-7.399993896484375" startY="1.52587890625E-5" stroke="WHITE" strokeWidth="3.0" visible="false" />
+            <Line fx:id="subamanager_line" endX="593.4000244140625" endY="1.52587890625E-5" layoutX="45.0" layoutY="330.0" startX="-7.399993896484375" startY="1.52587890625E-5" stroke="WHITE" strokeWidth="3.0" visible="false" />
+            <Line fx:id="line_vertical_client" endX="100.0" endY="-99.87867736816406" layoutX="240.0" layoutY="199.0" startX="100.0" startY="280.5999755859375" stroke="WHITE" visible="false" />
+            <Line fx:id="line_horizontal_report" endX="479.99993896484375" endY="1.52587890625E-5" layoutX="126.0" layoutY="85.0" startX="-100.0" stroke="WHITE" />
+            <Line fx:id="line_vertical_report_1" endX="479.99993896484375" endY="1.52587890625E-5" layoutX="-37.0" layoutY="105.0" startX="479.99993896484375" startY="402.5999755859375" stroke="WHITE" />
+            <Line fx:id="line_vertical_report_2" endX="479.99993896484375" endY="1.52587890625E-5" layoutX="-257.0" layoutY="106.0" startX="479.99993896484375" startY="402.5999755859375" stroke="WHITE" />
          </children>
       </AnchorPane>
       <Label fx:id="main_label" layoutX="234.0" layoutY="37.0" text="Menu" textFill="WHITE">
@@ -243,7 +247,7 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <JFXButton fx:id="see_combo_button" layoutX="332.0" layoutY="277.0" onAction="#openViewCombos" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #1a6dd7;" text="See" textFill="WHITE">
+      <JFXButton fx:id="see_combo_button" layoutX="332.0" layoutY="277.0" onAction="#openViewCombos" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #1a6dd7;" text="See" textFill="WHITE" visible="false">
          <font>
             <Font size="16.0" />
          </font>
@@ -258,37 +262,37 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <JFXButton fx:id="update_combo_button" layoutX="497.0" layoutY="276.0" onAction="#addCombo" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #1a6dd7;" text="Add" textFill="WHITE">
+      <JFXButton fx:id="update_combo_button" layoutX="497.0" layoutY="276.0" onAction="#addCombo" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #1a6dd7;" text="Add" textFill="WHITE" visible="false">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="update_product_button" layoutX="503.0" layoutY="532.0" onAction="#addProduct" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #1a6dd7;" text="Add" textFill="WHITE">
+      <JFXButton fx:id="update_product_button" layoutX="503.0" layoutY="532.0" onAction="#addProduct" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #1a6dd7;" text="Add" textFill="WHITE" visible="false">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="see_product_button" layoutX="333.0" layoutY="532.0" onAction="#openViewProduct" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #1a6dd7;" text="See" textFill="WHITE">
+      <JFXButton fx:id="see_product_button" layoutX="333.0" layoutY="532.0" onAction="#openViewProduct" prefHeight="38.0" prefWidth="87.0" style="-fx-background-color: #1a6dd7;" text="See" textFill="WHITE" visible="false">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <ImageView fx:id="search_image" fitHeight="50.0" fitWidth="47.0" layoutX="266.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="search_image" fitHeight="50.0" fitWidth="47.0" layoutX="266.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../image/magnifying-glass.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="search_image_product" fitHeight="50.0" fitWidth="47.0" layoutX="269.0" layoutY="527.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="search_image_product" fitHeight="50.0" fitWidth="47.0" layoutX="269.0" layoutY="527.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../image/magnifying-glass.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="update_product_image" fitHeight="50.0" fitWidth="47.0" layoutX="437.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="update_product_image" fitHeight="50.0" fitWidth="47.0" layoutX="437.0" layoutY="528.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../image/plus%20(1).png" />
          </image>
       </ImageView>
-      <ImageView fx:id="update_image" fitHeight="50.0" fitWidth="47.0" layoutX="434.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="update_image" fitHeight="50.0" fitWidth="47.0" layoutX="434.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../image/plus%20(1).png" />
          </image>
@@ -361,30 +365,131 @@
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="see_employee_button" layoutX="285.0" layoutY="274.0" onAction="#openViewEmployee" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #5d95f0;" text="See" textFill="WHITE">
+      <JFXButton fx:id="see_employee_button" layoutX="285.0" layoutY="274.0" onAction="#openViewEmployee" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #5d95f0;" text="See" textFill="WHITE" visible="false">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="add_employee_button" layoutX="456.0" layoutY="272.0" onAction="#openRegisterEmployee" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #5d95f0;" text="Add" textFill="WHITE">
+      <JFXButton fx:id="add_employee_button" layoutX="456.0" layoutY="272.0" onAction="#openRegisterEmployee" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #5d95f0;" text="Add" textFill="WHITE" visible="false">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="add_submanager_buttton" layoutX="376.0" layoutY="515.0" onAction="#openRegisterManager" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #5d95f0;" text="Add" textFill="WHITE">
+      <JFXButton fx:id="add_submanager_buttton" layoutX="376.0" layoutY="515.0" onAction="#openRegisterManager" prefHeight="27.0" prefWidth="79.0" style="-fx-background-color: #5d95f0;" text="Add" textFill="WHITE" visible="false">
          <font>
             <Font size="16.0" />
          </font>
       </JFXButton>
-      <Label fx:id="employee_label" layoutX="254.0" layoutY="170.0" text="Employees" textFill="WHITE">
+      <Label fx:id="employee_label" layoutX="254.0" layoutY="170.0" text="Employees" textFill="WHITE" visible="false">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="submanager_label" layoutX="254.0" layoutY="412.0" text="Submanagers" textFill="WHITE">
+      <Label fx:id="submanager_label" layoutX="254.0" layoutY="412.0" text="Submanagers" textFill="WHITE" visible="false">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
+      <ImageView fx:id="see_employee_image" fitHeight="50.0" fitWidth="47.0" layoutX="231.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../image/magnifying-glass.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="add_employee_image" fitHeight="50.0" fitWidth="47.0" layoutX="401.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../image/plus%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="add_submanager_image" fitHeight="50.0" fitWidth="47.0" layoutX="313.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../image/plus%20(1).png" />
+         </image>
+      </ImageView>
+      <Label fx:id="label_main_client" layoutX="240.0" layoutY="153.0" text="Client" textFill="WHITE" visible="false">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Line fx:id="line_horizontal_client" endX="512.5999755859375" endY="-1.52587890625E-5" layoutX="331.0" layoutY="214.0" startX="-100.0" stroke="WHITE" visible="false" />
+      <JFXButton fx:id="client_see_button" layoutX="327.0" layoutY="543.0" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #5d95f0;" text="See client" textFill="WHITE" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="see_order_button" layoutX="662.0" layoutY="539.0" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #5d95f0;" text="See order" textFill="WHITE" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="label_control_client" layoutX="289.0" layoutY="253.0" text="Control clients" textFill="WHITE" visible="false">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="label_control_order" layoutX="633.0" layoutY="253.0" text="Control orders" textFill="WHITE" visible="false">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="image_client_client" fitHeight="130.0" fitWidth="145.0" layoutX="309.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../image/customer%20(4).png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="image_order_client" fitHeight="130.0" fitWidth="145.0" layoutX="647.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../image/padnote.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="report_consult_sales_label" layoutX="243.0" layoutY="156.0" text="Consult sales" textFill="WHITE">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="date_button_report" layoutX="491.0" layoutY="558.0" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #1a6dd7;" text="Date" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="branch_button_report" layoutX="711.0" layoutY="557.0" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #1a6dd7;" text="Branch" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="product_button_report" layoutX="281.0" layoutY="558.0" prefHeight="46.0" prefWidth="98.0" style="-fx-background-color: #1a6dd7;" text="Product" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="product_label_report" layoutX="275.0" layoutY="267.0" text="Product" textFill="WHITE">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Label fx:id="date_label_report" layoutX="504.0" layoutY="267.0" text="Date" textFill="WHITE">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Label fx:id="branch_label_report" layoutX="715.0" layoutY="267.0" text="Branch" textFill="WHITE">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="product_image_report" fitHeight="121.0" fitWidth="118.0" layoutX="264.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/tray.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="date_image_report" fitHeight="130.0" fitWidth="130.0" layoutX="481.0" layoutY="349.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/calendar-with-a-clock-time-tools%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="branch_image_report" fitHeight="130.0" fitWidth="130.0" layoutX="698.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/company.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

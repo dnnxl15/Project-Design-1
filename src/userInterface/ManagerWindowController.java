@@ -80,8 +80,6 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	@FXML private ImageView update_image;
 	@FXML private ImageView update_product_image;
 
-	
-	
 	@FXML private Line employee_line;
 	@FXML private Line subamanager_line;
 	@FXML private Label employee_label;
@@ -89,29 +87,45 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	@FXML private Button see_employee_button;
 	@FXML private Button add_submanager_buttton;
 	@FXML private Button add_employee_button;
+	@FXML private ImageView see_employee_image;
+	@FXML private ImageView add_employee_image;
+	@FXML private ImageView add_submanager_image;
+	
+	@FXML private Label label_main_client;
+	@FXML private Label label_control_client;
+	@FXML private Line line_horizontal_client;
+	@FXML private ImageView image_client_client;
+	@FXML private Button client_see_button;
+	@FXML private Line line_vertical_client;
+	@FXML private Label label_control_order;
+	@FXML private ImageView image_order_client;
+	@FXML private Button  see_order_button;
+	
+	@FXML private Label report_consult_sales_label;
+	@FXML private Line line_horizontal_report;
+	@FXML private Line line_vertical_report_2;
+	@FXML private Line line_vertical_report_1;
+	@FXML private Label product_label_report;
+	@FXML private ImageView product_image_report;
+	@FXML private Button product_button_report;
+	@FXML private Label date_label_report;
+	@FXML private ImageView date_image_report;
+	@FXML private Button date_button_report;
+	@FXML private Label branch_label_report;
+	@FXML private ImageView branch_image_report;
+	@FXML private Button branch_button_report;
+
 
 	private boolean submanager;
 	private boolean manager;
 	
-	private static ManagerWindowController managerWindowController;
-	
-	private static ManagerWindowController getInstance()
-	{
-		if(managerWindowController == null)
-		{
-			managerWindowController = new ManagerWindowController();
-		}
-		return managerWindowController;
-	}
-	
-	private ManagerWindowController()
-	{
-		
-	}
-	
 	public void showHome()
 	{
-		showComponentRestaurant(false);
+		showComponentRestaurant(false);	
+		showComponentEmployee(false);
+		showComponentUser(false);
+		showComponentReport(false);
+		showComponentClient(false);
 		showComponentMenu(false);
 		showComponentHome(true);
 	}
@@ -128,7 +142,8 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		showComponentRestaurant(false);	
 		showComponentEmployee(false);
 		showComponentUser(false);
-		//showComponentReport(false);
+		showComponentReport(false);
+		showComponentClient(false);
 		showComponentMenu(true);
 	}
 	
@@ -157,31 +172,40 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		showComponentRestaurant(false);	
 		showComponentEmployee(false);
 		showComponentUser(false);
-		//showComponentReport(true);
+		showComponentClient(false);
+		showComponentReport(true);
 
 	}
 	
 	public void showComponentReport(boolean pVisible)
 	{
-		search_report_textfield.setVisible(pVisible);
-		report_general_label.setVisible(pVisible);
-		mount_register_label.setVisible(pVisible);
-		generate_graphics_label.setVisible(pVisible);
-		bar_button.setVisible(pVisible);
-	    line_button.setVisible(pVisible);
-		pie_button.setVisible(pVisible);
-		search_button.setVisible(pVisible);
+		report_consult_sales_label.setVisible(pVisible);
+		line_horizontal_report.setVisible(pVisible);
+		line_vertical_report_2.setVisible(pVisible);
+		line_vertical_report_1.setVisible(pVisible);
+		product_label_report.setVisible(pVisible);
+		product_image_report.setVisible(pVisible);
+		product_button_report.setVisible(pVisible);
+		date_label_report.setVisible(pVisible);
+		date_image_report.setVisible(pVisible);
+		date_button_report.setVisible(pVisible);
+		branch_label_report.setVisible(pVisible);
+		branch_image_report.setVisible(pVisible);
+		branch_button_report.setVisible(pVisible);
 		main_label.setText(REPORT_TEXT);
 		main_label.setVisible(true);
+		
+		
 	}
 	
 	public void showUser()
 	{
 		showComponentHome(false);
 		showComponentMenu(false);
-	  //showComponentReport(false);
+	    showComponentReport(false);
 		showComponentRestaurant(false);	
 		showComponentEmployee(false);
+		showComponentClient(false);
 		showComponentUser(true);
 
 	}
@@ -197,9 +221,10 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	{
 		showComponentHome(false);
 		showComponentMenu(false);
-		//showComponentReport(false);
+		showComponentReport(false);
 		showComponentUser(false);
 		showComponentRestaurant(false);	
+		showComponentClient(false);
 		showComponentEmployee(true);
 	}
 	
@@ -212,11 +237,9 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		see_employee_button.setVisible(pVisible);
 		add_submanager_buttton.setVisible(pVisible);
 		add_employee_button.setVisible(pVisible);
-
-		//update_employee_button.setVisible(pVisible);
-		//update_submanager_button.setVisible(pVisible);
-		///inactive_employee_button.setVisible(pVisible);
-		//inactive_submanager_button.setVisible(pVisible);
+		see_employee_image.setVisible(pVisible);
+	    add_employee_image.setVisible(pVisible);
+		add_submanager_image.setVisible(pVisible);
 		main_label.setText("Employee");
 		main_label.setVisible(true);
 	}
@@ -225,9 +248,10 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	{
 		showComponentHome(false);
 		showComponentMenu(false);
-		//showComponentReport(false);
+		showComponentReport(false);
 		showComponentUser(false);
 		showComponentEmployee(false);
+		showComponentClient(false);
 		showComponentRestaurant(true);
 	}
 	
@@ -246,6 +270,32 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		report_general_label1.setVisible(pVisible);
 		panel_restaurant.setVisible(pVisible);
 		add_restaurant_button.setVisible(pVisible);
+	}
+	
+	public void showComponentClient(boolean pVisible)
+	{
+		label_main_client.setVisible(pVisible);
+		label_control_client.setVisible(pVisible);
+		line_horizontal_client.setVisible(pVisible);
+		image_client_client.setVisible(pVisible);
+		client_see_button.setVisible(pVisible);
+		line_vertical_client.setVisible(pVisible);
+		label_control_order.setVisible(pVisible);
+		image_order_client.setVisible(pVisible);
+		see_order_button.setVisible(pVisible);
+		main_label.setText("Client");
+		main_label.setVisible(pVisible);
+	}
+	
+	public void showClient()
+	{
+		showComponentHome(false);
+		showComponentMenu(false);
+		showComponentReport(false);
+		showComponentUser(false);
+		showComponentEmployee(false);
+		showComponentRestaurant(false);
+		showComponentClient(true);
 	}
 	
 	public void openViewCombos()
@@ -385,14 +435,13 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		//newListProduct = FXCollections.observableArrayList();
 		restaurant_table.setItems(newListRestaurant);
 
-
 		//tableProduct.setItems(newListProduct);
 		showComponentMenu(false);
-		//showComponentReport(false);
+		showComponentReport(false);
 		showComponentUser(false);
 		showComponentRestaurant(false);	
 		showComponentEmployee(false);
+		showComponentClient(false);
 		showComponentHome(true);
-
 	}
 }
