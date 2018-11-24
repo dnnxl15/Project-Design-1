@@ -10,6 +10,21 @@ public class ReportUI
 	private UserType user;
 	private ReportType type;
 	private ArrayList<Gain> listGain;
+	private static ReportUI reportUI;
+	
+	private ReportUI()
+	{
+		
+	}
+	
+	public static ReportUI getInstance()
+	{
+		if(reportUI == null)
+		{
+			reportUI = new ReportUI();
+		}
+		return reportUI;
+	}
 
 	public UserType getUser() {
 		return user;

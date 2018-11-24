@@ -30,7 +30,9 @@ import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
+import library.ReportUI;
 import library.RestaurantUI;
+import library.enumerations.ReportType;
 import library.interfaces.IConstantWindow;
 
 public class ManagerWindowController extends Controller implements IConstantWindow, Initializable
@@ -298,8 +300,33 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		showComponentClient(true);
 	}
 	
-	public void openSaleWindow()
+	public void openSaleProductWindow()
 	{
+		ReportUI.getInstance().setType(ReportType.Product_Type_Branch);
+		ReportUI.getInstance().setType(ReportType.Product_Type_Manager);
+
+		try {
+			openWindow(REPORT_SALES_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void openSaleDateWindow()
+	{
+		ReportUI.getInstance().setType(ReportType.Date_Type_Branch);
+		ReportUI.getInstance().setType(ReportType.Date_Type_Manager);
+		try {
+			openWindow(REPORT_SALES_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void openSaleBranchWindow()
+	{
+		ReportUI.getInstance().setType(ReportType.Branch_Type_Branch);
+		ReportUI.getInstance().setType(ReportType.Branch_Type_General);
 		try {
 			openWindow(REPORT_SALES_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
 		} catch (IOException e) {
