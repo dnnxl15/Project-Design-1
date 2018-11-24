@@ -34,7 +34,6 @@ public class EmployeeViewController extends Controller implements Initializable,
 	@FXML private TableColumn<EmployeeUI, String> columnLastaname;
 	@FXML private TableColumn<EmployeeUI, Number> columnSalary;
 	@FXML private TableColumn<EmployeeUI, String> columnRol;
-	@FXML private TableColumn<EmployeeUI, CheckBox> columnDisable;
 	@FXML private Button cancel_button;
 	@FXML private Label result_label;
 	@FXML private TextField name_textfield;
@@ -50,7 +49,6 @@ public class EmployeeViewController extends Controller implements Initializable,
 		columnLastaname.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getLastname()));
 		columnSalary.setCellValueFactory(cellData->new SimpleDoubleProperty(cellData.getValue().getSalary()));
 		columnRol.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getRol()));
-		columnDisable.setCellValueFactory(new PropertyValueFactory<EmployeeUI, CheckBox>("check"));
 		employee_table.getSelectionModel().selectedItemProperty().addListener(
 	            (observable, oldValue, newValue) -> showInfoEmployeeUI((EmployeeUI) newValue));
 	
@@ -58,8 +56,8 @@ public class EmployeeViewController extends Controller implements Initializable,
 		//newListRestaurant = FXCollections.observableArrayList(Restaurant.getInstance().getRestaurant());//ControlSystem.getInstance().loadProduct());
 		//mount_restaurant_label.setText("("+newListRestaurant.size()+")");
 
-		employee_table.setItems(newListEmployee);
-		result_label.setText("("+newListEmployee.size()+")");
+		//employee_table.setItems(newListEmployee);
+		//result_label.setText("("+newListEmployee.size()+")");
 	}
 	
 	public void closeWindow()
