@@ -20,6 +20,15 @@ public class Combo extends Commodity{
         listProduct = new ArrayList();
         enabled = true;
     }
+    public Combo(String name, double price,String description,int cpersonid,int status) {
+        super(name, price,description,cpersonid);
+        listProduct = new ArrayList();
+        if(status == 1){
+        enabled = true;
+        }else{
+        enabled = false;
+        }
+    }
 
     public ArrayList getListProduct() {
         return listProduct;

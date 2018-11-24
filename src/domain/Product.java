@@ -16,7 +16,14 @@ public class Product extends Commodity{
         super(name, price, descripcion,idperson);
         enabled = true;
     }
-
+    public Product(String name, float price, String descripcion,int idperson,int status) {
+        super(name, price, descripcion,idperson);
+        if(status == 1){
+        enabled = true;
+        }else{
+        enabled = false;
+        }
+    }
     public Boolean getEnabled() {
         return enabled;
     }

@@ -13,7 +13,7 @@ public class Commodity {
     private String name;
     private double price;
     private int idPerson;
-
+   
     public int getIdPerson() {
         return idPerson;
     }
@@ -28,7 +28,13 @@ public class Commodity {
         this.idPerson = idPerson;
     }
     private String description;
-    
+    public Commodity(String name, double price,String description,int idperson, int status) {
+        this.name = name;
+        this.price = price;
+        this.idPerson = idperson;
+        this.setDescription(description);
+ 
+    }
     public Commodity(String name, double price,String description,int idperson) {
         this.name = name;
         this.price = price;

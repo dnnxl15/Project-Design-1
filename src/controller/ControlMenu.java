@@ -41,6 +41,54 @@ public class ControlMenu extends Control{
 		}
 		return controlMenu;
 	}
+        
+        public ArrayList<Product> getAllProducts(){
+            try{
+                ResultSet resultSet = connectionPool.request(IProcedure.GET_ALL_PRODUCTS_PROCEDURE, null);
+                ArrayList<Product> listProductsTmp = new ArrayList<Product>();
+                
+                    while (resultSet.next()) {
+                        
+                        String pName =  resultSet.getString("name");
+                        float pPrice = resultSet.getFloat("price");
+                        String pDescription = resultSet.getString("description");
+                        int pPersonId = resultSet.getInt("personID");
+                        int pstatus = resultSet.getInt("status");
+                        Product products = new Product(pName,pPrice, pDescription,pPersonId,pstatus);
+                        listProductsTmp.add(products);
+                        }
+                        
+                    return listProductsTmp;
+                
+            }catch (SQLException e) {
+			e.printStackTrace();
+		}
+            return null;
+        }
+        public ArrayList<Combo> getAllCombos(){
+            try{
+                ResultSet resultSet = connectionPool.request(IProcedure.GET_ALL_COMBOS_PROCEDURE, null);
+                ArrayList<Combo> listCombosTmp = new ArrayList<Combo>();
+                
+                    while (resultSet.next()) {
+                        
+                        String pName =  resultSet.getString("name");
+                        float pPrice = resultSet.getFloat("price");
+                        String pDescription = resultSet.getString("description");  
+                        int pPersonId = resultSet.getInt("personID"); 
+                        int pstatus = resultSet.getInt("status");
+                        Combo combo = new Combo(pName,pPrice,pDescription,pPersonId,pstatus);
+                        listCombosTmp.add(combo);
+                        }
+                        
+                    return listCombosTmp;
+                
+            }catch (SQLException e) {
+			e.printStackTrace();
+		}
+            return null;
+        }
+        
         public ArrayList<Product> getProducts(){
             try{
                 ResultSet resultSet = connectionPool.request(IProcedure.GET_PRODUCTS_PROCEDURE, null);

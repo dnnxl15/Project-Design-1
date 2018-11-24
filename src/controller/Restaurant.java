@@ -60,7 +60,16 @@ public class Restaurant
 	{
 		Branch.getInstance().createCombo(cname, price,description,cpersonid);
 	}
-
+        
+	public ArrayList<Product> getAllProducts()
+	{
+		return Branch.getInstance().getAllProducts();
+	}
+        public ArrayList<Combo> getAllCombos()
+	{
+		return Branch.getInstance().getAllCombos();
+	}
+        
 	public ArrayList<Product> getProducts()
 	{
 		return Branch.getInstance().getProducts();

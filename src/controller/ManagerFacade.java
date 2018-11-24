@@ -49,6 +49,14 @@ public class ManagerFacade extends Facade
 	{
 		ControlRestaurant.getInstance().createRestaurant(pListObject);
 	}
+        public ArrayList<Product> getAllProducts()
+	{
+		return ControlMenu.getInstance().getAllProducts();
+	}
+        public ArrayList<Combo> getAllCombos()
+	{
+		return ControlMenu.getInstance().getAllCombos();
+	}
         
         public ArrayList<Product> getProducts()
 	{

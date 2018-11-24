@@ -16,9 +16,11 @@ public interface IProcedure
     public final String GET_RESTAURAN_PROCEDURE = "{call getRestaurant()}";
     public final String GET_JOB_TITLE_PROCEDURE = "{call getJobTitle()}";
     
-    public final String GET_PRODUCTS_PROCEDURE = "{call getAllProduct()}";
+    public final String GET_PRODUCTS_PROCEDURE = "{call getAvailableProduct()}";
     public final String GET_COMBOS_PROCEDURE = "{call getAvailableCombo()}";
     
+    public final String GET_ALL_PRODUCTS_PROCEDURE = "{call getAllProduct()}";
+    public final String GET_ALL_COMBOS_PROCEDURE = "{call getAllCombo()}";
     
     
     public final String DISABLE_PRODUCTS_PROCEDURE = "{call disableProduct(?)}";

@@ -61,6 +61,14 @@ public class Branch
                 listParameters.add(cpersonid);
 	    ManagerFacade.getInstance().createCombo(listParameters);
 	}
+        public ArrayList<Product> getAllProducts()
+	{
+		return ManagerFacade.getInstance().getAllProducts();
+	}
+        public ArrayList<Combo> getAllCombos()
+	{
+		return ManagerFacade.getInstance().getAllCombos();
+	}
         public ArrayList<Product> getProducts()
 	{
 		return ManagerFacade.getInstance().getProducts();
