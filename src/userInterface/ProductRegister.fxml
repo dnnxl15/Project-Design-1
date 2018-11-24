@@ -21,13 +21,13 @@
                </font>
             </Label>
             <JFXTextField fx:id="name_textfield" labelFloat="true" layoutX="64.0" layoutY="127.0" prefHeight="26.0" prefWidth="251.0" promptText="Name" />
-            <JFXTextField fx:id="price_textfield" labelFloat="true" layoutX="64.0" layoutY="195.0" prefHeight="26.0" prefWidth="251.0" promptText="Lastname" />
-            <JFXButton fx:id="signUp_button" layoutX="46.0" layoutY="510.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Register" textFill="WHITE">
+            <JFXTextField fx:id="price_textfield" labelFloat="true" layoutX="64.0" layoutY="195.0" prefHeight="26.0" prefWidth="251.0" promptText="Price" />
+            <JFXButton fx:id="signUp_button" layoutX="46.0" layoutY="510.0" onAction="#registerProduct" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Register" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="cancel_button" layoutX="221.0" layoutY="510.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
+            <JFXButton fx:id="cancel_button" layoutX="221.0" layoutY="510.0" onAction="#closeWindow" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

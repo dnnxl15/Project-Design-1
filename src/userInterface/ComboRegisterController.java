@@ -35,6 +35,7 @@ public class ComboRegisterController extends Controller implements Initializable
 	@FXML private TextField name_textfield_t;
 	@FXML private TextField price_textfield11;
 	@FXML private TextArea description_textarea1;
+	@FXML private Button cancel_button;
 
 	
 	public void registerCombo()
@@ -60,9 +61,10 @@ public class ComboRegisterController extends Controller implements Initializable
     	{
    			Restaurant.getInstance().createCombo(name, price, description, "dnnxl");//////////////////////////////////////////////////////
    			showAlert(AlertType.CONFIRMATION ,"Product register" , "Product is registered in the system");
-	       	//openWindow(SIGN_IN_CLIENT_WINDOW_UI, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+   			name_textfield.setText(EMPTY);
+   			description_textarea.setText(EMPTY);
+   			price_textfield.setText(EMPTY);
     	}	
-    	//closeWindow(add_button);
 	}
 
 
@@ -99,5 +101,10 @@ public class ComboRegisterController extends Controller implements Initializable
 			description_textarea1.setText(String.valueOf(pProduct.getDescription()));
 		}
 		
+	}
+	
+	public void closeWindow()
+	{
+		closeWindow(cancel_button);
 	}
 }

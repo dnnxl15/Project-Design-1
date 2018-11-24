@@ -35,10 +35,12 @@ public class ProductRegisterController extends Controller
     	}
     	else
     	{
+   			Restaurant.getInstance().createProduct(name, price, description, "dnnxl"); //////////////////////
    			showAlert(AlertType.CONFIRMATION ,"Product register" , "Product is registered in the system");
-	       	//openWindow(SIGN_IN_CLIENT_WINDOW_UI, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+   			name_textfield.setText(EMPTY);
+   			description_textarea.setText(EMPTY);
+   			price_textfield.setText(EMPTY);
     	}	
-    	closeWindow(signUp_button);
 	}
 
 	public void closeWindow()

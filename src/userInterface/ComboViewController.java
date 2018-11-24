@@ -13,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -29,6 +30,7 @@ public class ComboViewController extends Controller implements Initializable
 	@FXML private TextField price_textfield11;
 	@FXML private JFXTextArea description_textarea1;
 	@FXML private CheckBox checkbox_product;
+	@FXML private Button signUp_button;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1)
@@ -66,5 +68,10 @@ public class ComboViewController extends Controller implements Initializable
 			checkbox_product.selectedProperty().set(true);
 		}
 		
+	}
+	
+	public void closeWindow()
+	{
+		closeWindow(signUp_button);
 	}
 }

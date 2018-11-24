@@ -51,7 +51,7 @@
             <JFXTextField fx:id="name_textfield_t" layoutX="40.0" layoutY="377.0" prefHeight="26.0" prefWidth="202.0" promptText="Name" />
             <JFXTextField fx:id="price_textfield11" layoutX="40.0" layoutY="462.0" prefHeight="26.0" prefWidth="202.0" promptText="Price" />
             <JFXTextArea fx:id="description_textarea1" layoutX="289.0" layoutY="377.0" prefHeight="108.0" prefWidth="285.0" promptText="Description" />
-            <JFXButton fx:id="signUp_button11" layoutX="466.0" layoutY="525.0" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #0f9d58;" text="Cancel" textFill="WHITE">
+            <JFXButton fx:id="cancel_button" layoutX="466.0" layoutY="525.0" onAction="#closeWindow" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
