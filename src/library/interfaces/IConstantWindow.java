@@ -19,5 +19,7 @@ public interface IConstantWindow
 
 	public final String EMPLOYEE_VIEW_WINDOW = "EmployeeView.fxml";
 	public final String EMPLOYEE_SALARY_VIEW_WINDOW = "RangeSalaryView.fxml";
+	
+	public final String REPORT_SALES_VIEW_WINDOW = "ReportSales.fxml";
 
 }

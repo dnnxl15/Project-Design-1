@@ -10,8 +10,12 @@ package library.enumerations;
  * @author egapb
  */
 public enum ReportType {
-    Date_Type,
-    Product_Type,
-    Branch_Type,
-    General_Type;
+    Date_Type_Branch,
+    Date_Type_Manager,
+    
+    Product_Type_Branch,
+    Product_Type_Manager,
+    
+    Branch_Type_Branch,
+    Branch_Type_General;
 }

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ComboViewController">
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ReportSalesController">
    <children>
       <DoubleValidator layoutX="459.0" layoutY="197.0" />
       <AnchorPane layoutX="38.0" layoutY="48.0" prefHeight="590.0" prefWidth="799.0" style="-fx-background-color: #ffffff;">
@@ -20,13 +20,13 @@
                   <Font size="27.0" />
                </font>
             </Label>
-            <TableView fx:id="combo_table" layoutX="33.0" layoutY="115.0" prefHeight="382.0" prefWidth="502.0">
+            <TableView fx:id="saleTable" layoutX="33.0" layoutY="115.0" prefHeight="382.0" prefWidth="502.0">
                <columns>
-                  <TableColumn fx:id="columnName" prefWidth="231.99998474121094" text="Product" />
-                  <TableColumn fx:id="columnPrice" minWidth="0.0" prefWidth="269.60003662109375" text="Sale" />
+                  <TableColumn fx:id="columnProduct" prefWidth="231.99998474121094" text="Product" />
+                  <TableColumn fx:id="columnSale" minWidth="0.0" prefWidth="269.60003662109375" text="Sale" />
                </columns>
             </TableView>
-            <JFXButton fx:id="signUp_button" layoutX="320.0" layoutY="527.0" onAction="#closeWindow" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
+            <JFXButton fx:id="cancel_button" layoutX="320.0" layoutY="527.0" onAction="#closeWindow" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

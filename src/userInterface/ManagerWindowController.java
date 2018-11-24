@@ -298,6 +298,15 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		showComponentClient(true);
 	}
 	
+	public void openSaleWindow()
+	{
+		try {
+			openWindow(REPORT_SALES_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void openViewCombos()
 	{
 		try {
