@@ -142,5 +142,16 @@ public class Branch
 		return ManagerFacade.getInstance().getEmployee();
 	}
         
+        public void updateEmployee(int pEmployeeID,String newName, String newLastName , float newSalary,String newRol)
+	{
+		ArrayList<Object> listParameters = new ArrayList<Object>();
+		listParameters.add(pEmployeeID);
+		listParameters.add(newName);
+                listParameters.add(newLastName);
+                listParameters.add(newSalary);
+                listParameters.add(newRol);
+	    ManagerFacade.getInstance().createRestarant(listParameters);
+	}
+        
         
 }
