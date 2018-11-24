@@ -20,7 +20,7 @@
                   <Font size="27.0" />
                </font>
             </Label>
-            <TableView fx:id="product_table" layoutX="65.0" layoutY="111.0" prefHeight="242.0" prefWidth="683.0">
+            <TableView fx:id="employee_table" layoutX="65.0" layoutY="111.0" prefHeight="242.0" prefWidth="683.0">
                <columns>
                   <TableColumn fx:id="columnRole" prefWidth="239.1999969482422" text="Role" />
                   <TableColumn fx:id="columnMaximun" minWidth="0.0" prefWidth="226.4000244140625" text="Maximum" />
