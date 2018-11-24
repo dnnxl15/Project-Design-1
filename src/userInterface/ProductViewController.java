@@ -8,6 +8,7 @@ import com.jfoenix.controls.JFXTextArea;
 
 import controller.Restaurant;
 import domain.Commodity;
+import domain.Product;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -19,6 +20,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class ProductViewController extends Controller implements Initializable
 {
@@ -32,6 +34,8 @@ public class ProductViewController extends Controller implements Initializable
 	@FXML private JFXTextArea description_textarea1;
 	@FXML private CheckBox checkbox_product;
 	@FXML private Button cancel_button;
+	@FXML private Product product;
+
 	
 
 	@Override
@@ -42,8 +46,8 @@ public class ProductViewController extends Controller implements Initializable
 		columnName.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getName()));
 		
 		product_table.getSelectionModel().selectedItemProperty().addListener(
-	            (observable, oldValue, newValue) -> showInfoProduct((Commodity) newValue));
-		ObservableList<Commodity> newListProduct = FXCollections.observableArrayList(Restaurant.getInstance().getProducts());
+	            (observable, oldValue, newValue) -> showInfoProduct((Product) newValue));
+		ObservableList<Commodity> newListProduct = FXCollections.observableArrayList(Restaurant.getInstance().getAllProducts());
 		product_table.setItems(newListProduct);
 	}
 	
@@ -53,7 +57,7 @@ public class ProductViewController extends Controller implements Initializable
 	 * Description: The next method show the info of the product.
 	 * Last modification: 08/10/18
 	 */
-	public void showInfoProduct(Commodity pProduct)
+	public void showInfoProduct(Product pProduct)
 	{
 		if(pProduct == null)
 		{
@@ -67,8 +71,8 @@ public class ProductViewController extends Controller implements Initializable
 			name_textfield_t.setText(pProduct.getName().toString());
 			price_textfield11.setText(String.valueOf(pProduct.getPrice()));
 			description_textarea1.setText(String.valueOf(pProduct.getDescription()));
-			checkbox_product.selectedProperty().set(true);
-
+			checkbox_product.selectedProperty().set(pProduct.getEnabled());
+			product = pProduct;
 		}
 		
 	}
@@ -76,5 +80,37 @@ public class ProductViewController extends Controller implements Initializable
 	public void closeWindow()
 	{
 		closeWindow(cancel_button);
+	}
+	
+	public void updateProduct()
+	{
+		String name = name_textfield_t.getText().toString();
+    	int price;
+    	String description = description_textarea1.getText().toString();
+    	boolean value = checkbox_product.isSelected();
+    	try
+		{
+    		price =  Integer.parseInt(price_textfield11.getText().toString());
+		}
+		catch(Exception e)
+		{
+			showAlert(AlertType.ERROR ,"Price" , "Must be a number");
+			return;
+		}
+    	if(name.equals(EMPTY) || description.equals(EMPTY))
+    	{
+			showAlert(AlertType.ERROR ,"All fields" , "All fields must be complete");
+			return;
+    	}
+    	else
+    	{
+   			Restaurant.getInstance().updateProduct(product.getIdPerson(), name, price, description, value);//////////////////////////////////////////////////////
+   			showAlert(AlertType.CONFIRMATION ,"Combo update" , "Combo is updated in the system");
+   			name_textfield_t.setText(EMPTY);
+   			description_textarea1.setText(EMPTY);
+   			price_textfield11.setText(EMPTY);
+   			checkbox_product.selectedProperty().set(false);
+   			initialize(null,null);
+    	}
 	}
 }
