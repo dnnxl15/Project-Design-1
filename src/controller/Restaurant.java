@@ -60,7 +60,14 @@ public class Restaurant
 	{
 		Branch.getInstance().createCombo(cname, price,description,cpersonid);
 	}
-        
+        public void updateCombo(int comboID, String newName, float newPrice , String newDescription)
+	{
+		Branch.getInstance().updateCombo(comboID,newName,newPrice,newDescription);
+	}
+        public void updateProduct(int productID, String newName, float newPrice , String newDescription)
+	{
+		Branch.getInstance().updateCombo(productID,newName,newPrice,newDescription);
+	}
 	public ArrayList<Product> getAllProducts()
 	{
 		return Branch.getInstance().getAllProducts();

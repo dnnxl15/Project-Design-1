@@ -75,7 +75,14 @@ public class ManagerFacade extends Facade
 	{
 		ControlMenu.getInstance().createProduct(pListObject);
 	}
-        
+       public void updateCombo(ArrayList<Object> cListObject)
+	{
+		ControlMenu.getInstance().updateCombo(cListObject);
+	}
+        public void updateProduct(ArrayList<Object> pListObject)
+	{
+		ControlMenu.getInstance().updateProduct(pListObject);
+	}
         //------------------------------------------
         
         

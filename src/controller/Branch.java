@@ -61,6 +61,27 @@ public class Branch
                 listParameters.add(cpersonid);
 	    ManagerFacade.getInstance().createCombo(listParameters);
 	}
+        public void updateProduct(int productID, String newName, float newPrice , String newDescription)
+	{
+		ArrayList<Object> listParameters = new ArrayList<Object>();
+		listParameters.add(productID);
+		listParameters.add(newName);
+                listParameters.add(newPrice);
+                listParameters.add(newDescription);
+	    ManagerFacade.getInstance().updateProduct(listParameters);
+	}
+        public void updateCombo(int comboID, String newName, float newPrice , String newDescription)
+	{
+		ArrayList<Object> listParameters = new ArrayList<Object>();
+		listParameters.add(comboID);
+		listParameters.add(newName);
+                listParameters.add(newPrice);
+                listParameters.add(newDescription);
+	    ManagerFacade.getInstance().updateCombo(listParameters);
+	}
+        
+        
+        
         public ArrayList<Product> getAllProducts()
 	{
 		return ManagerFacade.getInstance().getAllProducts();

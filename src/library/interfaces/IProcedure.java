@@ -28,4 +28,7 @@ public interface IProcedure
     
     public final String ENABLE_PRODUCTS_PROCEDURE = "{call enableProduct(?)}";
     public final String ENABLE_COMBO_PROCEDURE = "{call enableCombo(?)}";
+    
+    public final String UPDATE_PRODUCTS_PROCEDURE = "{call updateProduct(?,?,?,?)}";
+    public final String UPDATE_COMBO_PROCEDURE = "{call updateCombo(?,?,?,?}";
 }

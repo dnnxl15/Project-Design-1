@@ -19,6 +19,8 @@ import static library.interfaces.IProcedure.ENABLE_PRODUCTS_PROCEDURE;
 import static library.interfaces.IProcedure.INSERT_COMBO_PROCEDURE;
 import static library.interfaces.IProcedure.INSERT_MANAGER_PROCEDURE;
 import static library.interfaces.IProcedure.INSERT_PRODUCT_PROCEDURE;
+import static library.interfaces.IProcedure.UPDATE_COMBO_PROCEDURE;
+import static library.interfaces.IProcedure.UPDATE_PRODUCTS_PROCEDURE;
 
 /**
  *
@@ -183,6 +185,26 @@ public class ControlMenu extends Control{
 	{
 		try {
 			connectionPool.request(ENABLE_COMBO_PROCEDURE, cName);
+                        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+        
+        public void updateCombo(ArrayList<Object> cListObject)
+	{
+		try {
+			connectionPool.request(UPDATE_COMBO_PROCEDURE, cListObject);
+                        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+         public void updateProduct(ArrayList<Object> pListObject)
+	{
+		try {
+                
+			connectionPool.request(UPDATE_PRODUCTS_PROCEDURE, pListObject);
                         
 		} catch (SQLException e) {
 			e.printStackTrace();
