@@ -87,7 +87,6 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	@FXML private Label employee_label;
 	@FXML private Label submanager_label;
 	@FXML private Button see_employee_button;
-	@FXML private Button see_submanager_button;
 	@FXML private Button add_submanager_buttton;
 	@FXML private Button add_employee_button;
 
@@ -193,7 +192,6 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		employee_label.setVisible(pVisible);
 		submanager_label.setVisible(pVisible);
 		see_employee_button.setVisible(pVisible);
-		see_submanager_button.setVisible(pVisible);
 		add_submanager_buttton.setVisible(pVisible);
 		add_employee_button.setVisible(pVisible);
 
@@ -255,6 +253,16 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	{
 		try {
 			openWindow(EMPLOYEE_REGISTER_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public void openViewEmployee()
+	{
+		try {
+			openWindow(EMPLOYEE_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
