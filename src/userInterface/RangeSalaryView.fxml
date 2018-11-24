@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.validation.DoubleValidator?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ProductRegisterController">
+   <children>
+      <DoubleValidator layoutX="459.0" layoutY="197.0" />
+      <AnchorPane layoutX="33.0" layoutY="48.0" prefHeight="590.0" prefWidth="820.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="371.0" layoutY="37.0" text="Salary" textFill="#1a6dd7">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <TableView fx:id="product_table" layoutX="65.0" layoutY="111.0" prefHeight="242.0" prefWidth="683.0">
+               <columns>
+                  <TableColumn fx:id="columnRole" prefWidth="239.1999969482422" text="Role" />
+                  <TableColumn fx:id="columnMaximun" minWidth="0.0" prefWidth="226.4000244140625" text="Maximum" />
+                  <TableColumn fx:id="columnMinimum" minWidth="0.0" prefWidth="216.800048828125" text="Minimum" />
+               </columns>
+            </TableView>
+            <JFXButton fx:id="signUp_button" layoutX="365.0" layoutY="527.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Update" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="cancel_button" layoutX="538.0" layoutY="527.0" onAction="#closeWindow" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="result_label" layoutX="538.0" layoutY="42.0" text="()">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="minimum_textfield" layoutX="507.0" layoutY="457.0" prefHeight="26.0" prefWidth="202.0" promptText="Minimun" />
+            <JFXTextField fx:id="maximum_textfield" layoutX="141.0" layoutY="457.0" prefHeight="26.0" prefWidth="202.0" promptText="Maximum" />
+            <JFXComboBox fx:id="role_combobox" layoutX="141.0" layoutY="389.0" prefHeight="26.0" prefWidth="202.0" promptText="Rol" />
+            <JFXTextField fx:id="newRole_textfield" layoutX="507.0" layoutY="396.0" prefHeight="26.0" prefWidth="202.0" promptText="Role" />
+            <JFXButton fx:id="signUp_button1" layoutX="197.0" layoutY="527.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Add" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

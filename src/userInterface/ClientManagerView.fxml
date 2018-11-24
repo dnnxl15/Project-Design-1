@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.validation.DoubleValidator?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ClientManagerView">
+   <children>
+      <DoubleValidator layoutX="459.0" layoutY="197.0" />
+      <AnchorPane layoutX="38.0" layoutY="48.0" prefHeight="590.0" prefWidth="799.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="360.0" layoutY="30.0" text="Clients" textFill="#1a6dd7">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <TableView fx:id="client_table" layoutX="33.0" layoutY="95.0" prefHeight="418.0" prefWidth="726.0">
+               <columns>
+                  <TableColumn fx:id="name_column" prefWidth="162.39999389648438" text="Name" />
+                  <TableColumn fx:id="lastname_column" minWidth="0.0" prefWidth="172.80006408691406" text="Lastname" />
+                  <TableColumn fx:id="username_column" minWidth="0.0" prefWidth="195.199951171875" text="Username" />
+                  <TableColumn fx:id="email_column" minWidth="0.0" prefWidth="199.20001220703125" text="Email" />
+               </columns>
+            </TableView>
+            <JFXButton fx:id="cancel_button" layoutX="317.0" layoutY="536.0" onAction="#closeWindow" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
