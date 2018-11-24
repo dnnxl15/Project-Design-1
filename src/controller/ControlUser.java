@@ -6,6 +6,7 @@ import library.JobTitleUI;
 import connection.ConnectionPool;
 import domain.User;
 import java.sql.ResultSet;
+import library.EmployeeUI;
 import library.RestaurantUI;
 import library.interfaces.IProcedure;
 
@@ -107,6 +108,29 @@ public class ControlUser extends Control implements IProcedure
                         }
                         
                     return listJobsTmp;
+                
+            }catch (SQLException e) {
+			e.printStackTrace();
+		}
+            return null;
+        }
+        public ArrayList<EmployeeUI> getEmployee(){
+            try{
+                ResultSet resultSet = connectionPool.request(IProcedure.GET_EMPLOYEE_PROCEDURE, null);
+                ArrayList<EmployeeUI> listEmployeeTmp = new ArrayList<EmployeeUI>();
+                
+                    while (resultSet.next()) {
+                        int idEmployee = resultSet.getInt("employeeID");
+                        String eName =  resultSet.getString("name");
+                        String eLastName = resultSet.getString("lastname");
+                        String eEmail= resultSet.getString("email");
+                        float eSalary = resultSet.getFloat("salary");
+                        String eRol = resultSet.getString("rol");
+                        EmployeeUI employee = new EmployeeUI(idEmployee,eName, eLastName,eEmail,eSalary,eRol);
+                        listEmployeeTmp.add(employee);
+                        }
+                        
+                    return listEmployeeTmp;
                 
             }catch (SQLException e) {
 			e.printStackTrace();

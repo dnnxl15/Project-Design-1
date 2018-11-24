@@ -9,6 +9,7 @@ import static library.interfaces.IProcedure.INSERT_RESTAURANT_PROCEDURE;
 import connection.*;
 import domain.Combo;
 import domain.Product;
+import library.EmployeeUI;
 
 
 public class ManagerFacade extends Facade
@@ -101,6 +102,10 @@ public class ManagerFacade extends Facade
         public void enableCombo(ArrayList<Object> pListObject)
 	{
 		ControlMenu.getInstance().enableCombo(pListObject);
+	}
+        public ArrayList<EmployeeUI> getEmployee()
+	{
+		return ControlUser.getInstance().getEmployee();
 	}
 
     @Override

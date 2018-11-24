@@ -3,6 +3,7 @@ package controller;
 import domain.Combo;
 import domain.Product;
 import java.util.ArrayList;
+import library.EmployeeUI;
 
 public class Branch 
 {
@@ -61,22 +62,24 @@ public class Branch
                 listParameters.add(cpersonid);
 	    ManagerFacade.getInstance().createCombo(listParameters);
 	}
-        public void updateProduct(int productID, String newName, float newPrice , String newDescription)
+        public void updateProduct(int productID, String newName, float newPrice , String newDescription,Boolean status)
 	{
 		ArrayList<Object> listParameters = new ArrayList<Object>();
 		listParameters.add(productID);
 		listParameters.add(newName);
                 listParameters.add(newPrice);
                 listParameters.add(newDescription);
+                listParameters.add(status);
 	    ManagerFacade.getInstance().updateProduct(listParameters);
 	}
-        public void updateCombo(int comboID, String newName, float newPrice , String newDescription)
+        public void updateCombo(int comboID, String newName, float newPrice , String newDescription,Boolean status)
 	{
 		ArrayList<Object> listParameters = new ArrayList<Object>();
 		listParameters.add(comboID);
 		listParameters.add(newName);
                 listParameters.add(newPrice);
                 listParameters.add(newDescription);
+                listParameters.add(status);
 	    ManagerFacade.getInstance().updateCombo(listParameters);
 	}
         
@@ -134,6 +137,10 @@ public class Branch
 	    ManagerFacade.getInstance().disableProduct(listParameters);
 	}
         // ----------------
+        public ArrayList<EmployeeUI> getEmployee()
+	{
+		return ManagerFacade.getInstance().getEmployee();
+	}
         
         
 }

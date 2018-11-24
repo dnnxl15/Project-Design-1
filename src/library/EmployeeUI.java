@@ -9,7 +9,20 @@ public class EmployeeUI
 	private String email;
 	private double salary;
 	private String rol;
-	private CheckBox check;
+	private int idEmployee;
+
+    public EmployeeUI(int idEmployee,String name, String lastname, String email, double salary, String rol) {
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.salary = salary;
+        this.rol = rol;
+        this.idEmployee = idEmployee;
+    }
+        
+        
+        
+        
 	public String getName() {
 		return name;
 	}
@@ -34,12 +47,15 @@ public class EmployeeUI
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
-	public CheckBox getCheck() {
-		return check;
-	}
-	public void setCheck(CheckBox check) {
-		this.check = check;
-	}
+
+        public int getIdEmployee() {
+            return idEmployee;
+        }
+
+        public void setIdEmployee(int idEmployee) {
+            this.idEmployee = idEmployee;
+        }
+
 	public double getSalary() {
 		return salary;
 	}

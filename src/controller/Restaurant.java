@@ -3,6 +3,7 @@ package controller;
 import domain.Combo;
 import domain.Product;
 import java.util.ArrayList;
+import library.EmployeeUI;
 
 import library.RestaurantUI;
 
@@ -60,13 +61,13 @@ public class Restaurant
 	{
 		Branch.getInstance().createCombo(cname, price,description,cpersonid);
 	}
-        public void updateCombo(int comboID, String newName, float newPrice , String newDescription)
+        public void updateCombo(int comboID, String newName, float newPrice , String newDescription, Boolean status)
 	{
-		Branch.getInstance().updateCombo(comboID,newName,newPrice,newDescription);
+		Branch.getInstance().updateCombo(comboID,newName,newPrice,newDescription,status);
 	}
-        public void updateProduct(int productID, String newName, float newPrice , String newDescription)
+        public void updateProduct(int productID, String newName, float newPrice , String newDescription,Boolean status)
 	{
-		Branch.getInstance().updateCombo(productID,newName,newPrice,newDescription);
+		Branch.getInstance().updateCombo(productID,newName,newPrice,newDescription,status);
 	}
 	public ArrayList<Product> getAllProducts()
 	{
@@ -85,7 +86,10 @@ public class Restaurant
 	{
 		return Branch.getInstance().getCombos();
 	}
-        
+        public ArrayList<EmployeeUI> getEmployee()
+	{
+		return Branch.getInstance().getEmployee();
+	}
         
 	public ArrayList<RestaurantUI> getRestaurant()
 	{
