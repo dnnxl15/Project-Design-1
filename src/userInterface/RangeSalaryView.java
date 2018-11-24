@@ -47,6 +47,9 @@ public class RangeSalaryView extends Controller implements Initializable
 	            (observable, oldValue, newValue) -> showInfoJobTitleUI((JobTitleUI) newValue));
 		ObservableList<JobTitleUI> newListProduct = null; //= FXCollections.observableArrayList(Restaurant.getInstance().getAllProducts());
 		employee_table.setItems(newListProduct);
+		
+		role_combobox.getItems().clear();
+		role_combobox.getItems().addAll();//Arralist
 	}
 	
 	/**
