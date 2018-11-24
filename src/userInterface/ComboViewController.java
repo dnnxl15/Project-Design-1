@@ -32,6 +32,7 @@ public class ComboViewController extends Controller implements Initializable
 	@FXML private JFXTextArea description_textarea1;
 	@FXML private CheckBox checkbox_product;
 	@FXML private Button signUp_button;
+	private Commodity product;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1)
@@ -42,7 +43,7 @@ public class ComboViewController extends Controller implements Initializable
 		
 		combo_table.getSelectionModel().selectedItemProperty().addListener(
 	            (observable, oldValue, newValue) -> showInfoProduct((Commodity) newValue));
-		ObservableList<Commodity> newListProduct = FXCollections.observableArrayList(Restaurant.getInstance().getCombos());
+		ObservableList<Commodity> newListProduct = FXCollections.observableArrayList(Restaurant.getInstance().getAllCombos());
 		combo_table.setItems(newListProduct);
 	}
 	
@@ -67,6 +68,7 @@ public class ComboViewController extends Controller implements Initializable
 			price_textfield11.setText(String.valueOf(pProduct.getPrice()));
 			description_textarea1.setText(String.valueOf(pProduct.getDescription()));
 			checkbox_product.selectedProperty().set(true);
+			product = pProduct;
 		}
 		
 	}
@@ -99,12 +101,13 @@ public class ComboViewController extends Controller implements Initializable
     	}
     	else
     	{
-   			//Restaurant.getInstance().createCombo(name, price, description, "dnnxl");//////////////////////////////////////////////////////
+   			Restaurant.getInstance().updateCombo(product.getIdPerson(), name, price, description, value);//////////////////////////////////////////////////////
    			showAlert(AlertType.CONFIRMATION ,"Combo update" , "Combo is updated in the system");
    			name_textfield_t.setText(EMPTY);
    			description_textarea1.setText(EMPTY);
    			price_textfield11.setText(EMPTY);
    			checkbox_product.selectedProperty().set(false);
+   			initialize(null, null);
     	}
 	}
 }

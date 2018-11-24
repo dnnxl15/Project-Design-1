@@ -104,6 +104,7 @@ public class ProductViewController extends Controller implements Initializable
     	}
     	else
     	{
+    		System.out.println(product.getIdPerson());
    			Restaurant.getInstance().updateProduct(product.getIdPerson(), name, price, description, value);//////////////////////////////////////////////////////
    			showAlert(AlertType.CONFIRMATION ,"Combo update" , "Combo is updated in the system");
    			name_textfield_t.setText(EMPTY);

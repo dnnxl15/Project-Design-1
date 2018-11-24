@@ -196,10 +196,6 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		see_submanager_button.setVisible(pVisible);
 		add_submanager_buttton.setVisible(pVisible);
 		add_employee_button.setVisible(pVisible);
-		update_employee_button.setVisible(pVisible);
-		update_submanager_button.setVisible(pVisible);
-		inactive_employee_button.setVisible(pVisible);
-		inactive_submanager_button.setVisible(pVisible);
 		main_label.setText("Employee");
 		main_label.setVisible(true);
 	}
@@ -360,6 +356,12 @@ public class ManagerWindowController extends Controller implements IConstantWind
 
 
 		//tableProduct.setItems(newListProduct);
-		
+		showComponentMenu(false);
+		//showComponentReport(false);
+		showComponentUser(false);
+		showComponentRestaurant(false);	
+		showComponentEmployee(false);
+		showComponentHome(true);
+
 	}
 }
