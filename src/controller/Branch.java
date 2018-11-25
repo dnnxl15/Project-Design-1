@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Client;
 import domain.Combo;
 import domain.Product;
 import java.util.ArrayList;
@@ -93,6 +94,10 @@ public class Branch
         public ArrayList<Combo> getAllCombos()
 	{
 		return ManagerFacade.getInstance().getAllCombos();
+	}
+        public ArrayList<Client> getClient()
+	{
+		return ManagerFacade.getInstance().getClient();
 	}
         public ArrayList<Product> getProducts()
 	{

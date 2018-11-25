@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import library.JobTitleUI;
 import connection.ConnectionPool;
+import domain.Client;
 import domain.User;
 import java.sql.ResultSet;
 import library.EmployeeUI;
@@ -130,6 +131,29 @@ public class ControlUser extends Control implements IProcedure
                         }
                         
                     return listEmployeeTmp;
+                
+            }catch (SQLException e) {
+			e.printStackTrace();
+		}
+            return null;
+        }
+        public ArrayList<Client> getClient(){
+            try{
+                ResultSet resultSet = connectionPool.request(IProcedure.GET_CLIENT_PROCEDURE, null);
+                ArrayList<Client> listClientTmp = new ArrayList<Client>();
+                
+                    while (resultSet.next()) {
+ 
+                        String eName =  resultSet.getString("name");
+                        String eLastName = resultSet.getString("lastname");
+                        String eEmail= resultSet.getString("email");
+                        int idClient = resultSet.getInt("personID");
+                        String eUsername = resultSet.getString("username");
+                        Client client = new Client(eUsername, "NO", eEmail, eName, eLastName, idClient);
+                        listClientTmp.add(client);
+                        }
+                        
+                    return listClientTmp;
                 
             }catch (SQLException e) {
 			e.printStackTrace();

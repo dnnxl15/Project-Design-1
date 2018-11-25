@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Client;
 import domain.Combo;
 import domain.Product;
 import java.util.ArrayList;
@@ -98,7 +99,10 @@ public class Restaurant
 	{
 		return Branch.getInstance().getJobTitle();
 	}
-        
+        public ArrayList<Client> getClient()
+	{
+		return Branch.getInstance().getClient();
+	}
 	public ArrayList<RestaurantUI> getRestaurant()
 	{
 		return BranchManagerFacade.getInstance().getRestaurant();
