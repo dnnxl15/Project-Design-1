@@ -4,6 +4,7 @@ import domain.Combo;
 import domain.Product;
 import java.util.ArrayList;
 import library.EmployeeUI;
+import library.JobTitleUI;
 
 public class Branch 
 {
@@ -100,6 +101,10 @@ public class Branch
         public ArrayList<Combo> getCombos()
 	{
 		return ManagerFacade.getInstance().getCombos();
+	}
+        public ArrayList<JobTitleUI> getJobTitle()
+	{
+		return ManagerFacade.getInstance().getJobTitle();
 	}
         public void createRestaurant(String pAddress, String pLegalNumber)
 	{

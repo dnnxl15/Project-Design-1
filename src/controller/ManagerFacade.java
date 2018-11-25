@@ -10,6 +10,7 @@ import connection.*;
 import domain.Combo;
 import domain.Product;
 import library.EmployeeUI;
+import library.JobTitleUI;
 
 
 public class ManagerFacade extends Facade
@@ -67,7 +68,10 @@ public class ManagerFacade extends Facade
 	{
 		return ControlMenu.getInstance().getCombos();
 	}
-	
+	public ArrayList<JobTitleUI> getJobTitle()
+	{
+		return ControlUser.getInstance().getJobTitle();
+	}
 	public void createCombo(ArrayList<Object> cListObject)
 	{
 		ControlMenu.getInstance().createCombo(cListObject);

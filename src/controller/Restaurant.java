@@ -4,6 +4,7 @@ import domain.Combo;
 import domain.Product;
 import java.util.ArrayList;
 import library.EmployeeUI;
+import library.JobTitleUI;
 
 import library.RestaurantUI;
 
@@ -89,6 +90,10 @@ public class Restaurant
         public ArrayList<EmployeeUI> getEmployee()
 	{
 		return Branch.getInstance().getEmployee();
+	}
+        public ArrayList<JobTitleUI> getJobTitle()
+	{
+		return Branch.getInstance().getJobTitle();
 	}
         
 	public ArrayList<RestaurantUI> getRestaurant()

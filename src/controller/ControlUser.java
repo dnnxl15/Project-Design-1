@@ -105,8 +105,7 @@ public class ControlUser extends Control implements IProcedure
                         int jMaxSalary = resultSet.getInt("maxSalary");
                         JobTitleUI jobtitle = new JobTitleUI(jName,jMinSalary, jMaxSalary);
                         listJobsTmp.add(jobtitle);
-                        }
-                        
+                        }                       
                     return listJobsTmp;
                 
             }catch (SQLException e) {
