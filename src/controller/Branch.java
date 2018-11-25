@@ -168,7 +168,7 @@ public class Branch
                 listParameters.add(newLastName);
                 listParameters.add(newSalary);
                 listParameters.add(newRol);
-	    ManagerFacade.getInstance().createRestarant(listParameters);
+	    ManagerFacade.getInstance().updateEmployee(listParameters);
 	}
         
         

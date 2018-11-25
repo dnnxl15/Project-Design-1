@@ -34,7 +34,7 @@ public interface IProcedure
     
     
     public final String GET_EMPLOYEE_PROCEDURE = "{call getEmployeeInfo()}";
-    public final String UPDATE_EMPLOYEE_PROCEDURE = "{call updateEmployeeInfo(?,?,?,?,?)}";
+    public final String UPDATE_EMPLOYEE_PROCEDURE = "{call updateEmployee(?,?,?,?,?)}";
     
     
 }

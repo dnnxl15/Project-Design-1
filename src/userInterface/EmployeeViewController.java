@@ -2,6 +2,7 @@ package userInterface;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import controller.Restaurant;
@@ -24,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert.AlertType;
 import library.EmployeeUI;
+import library.JobTitleUI;
 import library.RestaurantUI;
 import library.interfaces.IConstantWindow;
 
@@ -51,13 +53,12 @@ public class EmployeeViewController extends Controller implements Initializable,
 		columnRol.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getRol()));
 		employee_table.getSelectionModel().selectedItemProperty().addListener(
 	            (observable, oldValue, newValue) -> showInfoEmployeeUI((EmployeeUI) newValue));
-	
 		ObservableList<EmployeeUI> newListEmployee;
-		newListEmployee = FXCollections.observableArrayList(Restaurant.getInstance().getEmployee());//ControlSystem.getInstance().loadProduct());
+		newListEmployee = FXCollections.observableArrayList(Restaurant.getInstance().getEmployee());
 		result_label.setText("("+newListEmployee.size()+")");
-
 		employee_table.setItems(newListEmployee);
-		//result_label.setText("("+newListEmployee.size()+")");
+		role_combobox.getItems().clear();
+		role_combobox.getItems().addAll(getRole(Restaurant.getInstance().getJobTitle()));
 	}
 	
 	public void closeWindow()
@@ -88,11 +89,35 @@ public class EmployeeViewController extends Controller implements Initializable,
 			name_textfield.setText(pEmployeeUI.getName().toString());
 			lastname_textfield.setText(String.valueOf(pEmployeeUI.getLastname()));
 			slary_textfield.setText(String.valueOf(pEmployeeUI.getSalary()));
+			role_combobox.getSelectionModel().select(pEmployeeUI.getRol());
 			selected = pEmployeeUI;
 		}
-		
 	}
 	
+    public ArrayList<String> getRole(ArrayList<JobTitleUI> pJob)
+    {
+    	int index = 0;
+    	ArrayList<String> listRol = new ArrayList<String>();
+    	while(index < pJob.size())
+    	{
+    		listRol.add(pJob.get(index).getName());
+    		index++;
+    	}
+    	return listRol;
+    }
+    
+    public ArrayList<String> getLegalNumber(ArrayList<RestaurantUI> pRestaurant)
+    {
+    	int index = 0;
+    	ArrayList<String> listRest = new ArrayList<String>();
+    	while(index < pRestaurant.size())
+    	{
+    		listRest.add(pRestaurant.get(index).getLegalNumber());
+    		index++;
+    	}
+    	return listRest;
+    }
+    
 	public void updateEmployee()
 	{
 		String lastname = lastname_textfield.getText().toString();
@@ -108,20 +133,23 @@ public class EmployeeViewController extends Controller implements Initializable,
 			showAlert(AlertType.ERROR ,"Salary" , "Must be a number");
 			return;
 		}
-    	if(name.equals(EMPTY) || lastname.equals(EMPTY))
+    	if(name.equals(EMPTY) || lastname.equals(EMPTY) || value.equals(EMPTY))
     	{
 			showAlert(AlertType.ERROR ,"All fields" , "All fields must be complete");
 			return;
     	}
     	else
     	{
-   			//Restaurant.getInstance().updateCombo(product.getIdPerson(), name, price, description, value);//////////////////////////////////////////////////////
-   			showAlert(AlertType.CONFIRMATION ,"Combo update" , "Combo is updated in the system");
+    		System.out.println(selected.getIdEmployee());
+   			Restaurant.getInstance().updateEmployee(selected.getIdEmployee(), name, lastname, salary, value);
+   			showAlert(AlertType.CONFIRMATION ,"Employee update" , "Employee is updated in the system");
    			lastname_textfield.setText(EMPTY);
    			name_textfield.setText(EMPTY);
    			slary_textfield.setText(EMPTY);
    			initialize(null, null);
     	}
+		System.out.println(selected.getIdEmployee());
+
 	}
 	
 	public void openSalaryWindow()
