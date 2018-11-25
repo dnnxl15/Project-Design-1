@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.JFXTreeView;
 
@@ -29,7 +32,9 @@ import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import library.GlobalUser;
 import library.ReportUI;
 import library.RestaurantUI;
@@ -117,6 +122,9 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	@FXML private Label branch_label_report;
 	@FXML private ImageView branch_image_report;
 	@FXML private Button branch_button_report;
+	
+	
+	@FXML private AnchorPane panel_main;
 
 
 	private boolean submanager;
@@ -131,7 +139,10 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		showComponentClient(false);
 		showComponentMenu(false);
 		showComponentHome(true);
+		
 	}
+	
+	
 	
 	public void showComponentHome(boolean pVisible)
 	{

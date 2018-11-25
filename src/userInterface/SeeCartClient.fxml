@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.validation.DoubleValidator?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.OrderClientViewController">
+   <children>
+      <DoubleValidator layoutX="459.0" layoutY="197.0" />
+      <AnchorPane layoutX="38.0" layoutY="48.0" prefHeight="590.0" prefWidth="799.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="375.0" layoutY="31.0" text="Cart" textFill="#1a6dd7">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="signUp_button1" layoutX="228.0" layoutY="528.0" onAction="#updateProduct" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #0f9d58;" text="Pay" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <TableView fx:id="product_table" layoutX="33.0" layoutY="113.0" prefHeight="378.0" prefWidth="446.0">
+               <columns>
+                  <TableColumn fx:id="columnName" prefWidth="134.39999389648438" text="Name" />
+                  <TableColumn fx:id="columnPrice" minWidth="0.0" prefWidth="138.3999786376953" text="Price" />
+                  <TableColumn fx:id="colunmDescription" minWidth="0.0" prefWidth="179.99996337890627" text="Description" />
+               </columns>
+            </TableView>
+            <Label layoutX="541.0" layoutY="157.0" text="Name" textFill="#1a6dd7">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="541.0" layoutY="238.0" text="Price" textFill="#1a6dd7">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="cancel_button" layoutX="487.0" layoutY="528.0" onAction="#closeWindow" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="signUp_button112" layoutX="604.0" layoutY="419.0" onAction="#openGraphBar" prefHeight="31.0" prefWidth="82.0" style="-fx-background-color: #d32a0f;" text="Delete" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="541.0" layoutY="329.0" text="Amount" textFill="#1a6dd7">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="631.0" layoutY="159.0" prefHeight="18.0" prefWidth="134.0" text="Name">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="631.0" layoutY="239.0" prefHeight="18.0" prefWidth="134.0" text="Price">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="631.0" layoutY="330.0" prefHeight="18.0" prefWidth="134.0" text="Amount">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="signUp_button11" layoutX="14.0" layoutY="15.0" onAction="#updateProduct" prefHeight="26.0" prefWidth="54.0" style="-fx-background-color: #0f9d58;" text="Back" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

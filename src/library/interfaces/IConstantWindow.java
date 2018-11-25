@@ -26,6 +26,7 @@ public interface IConstantWindow
 	
 	public final String CLIENT_MANAGER_VIEW_WINDOW = "ClientManagerView.fxml";
 
+	public final String PAY_CLIENT_VIEW_WINDOW = "PayClient.fxml";
 
 
 }
