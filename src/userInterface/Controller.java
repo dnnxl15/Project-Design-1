@@ -3,6 +3,7 @@ package userInterface;
 import java.io.IOException;
 import java.util.Optional;
 
+import controller.Restaurant;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,6 +18,7 @@ import library.IConstant;
 
 public class Controller implements IConstant
 {
+	private Restaurant restaurant;
 	
 	/**
 	 * Method open view 
@@ -70,5 +72,13 @@ public class Controller implements IConstant
 			return false;
 		}
 		return false;
+	}
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
 	}
 }

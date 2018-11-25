@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
@@ -14,7 +15,7 @@
 
 <AnchorPane id="AnchorPane" opacity="0.91" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #1b69d4; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ClientWindowController">
    <children>
-      <AnchorPane layoutX="-1.0" opacity="0.47" prefHeight="694.0" prefWidth="879.0" style="-fx-background-color: #373737;" />
+      <AnchorPane layoutX="-1.0" opacity="0.0" prefHeight="694.0" prefWidth="879.0" style="-fx-background-color: #373737;" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#239e62" height="57.0" layoutX="315.0" layoutY="139.0" smooth="false" stroke="#239e62" strokeType="INSIDE" width="255.0" />
       <Circle fill="#239e62" layoutX="445.0" layoutY="112.0" radius="97.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <ImageView fitHeight="171.0" fitWidth="122.0" layoutX="384.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
@@ -61,7 +62,7 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="enter_button111111" prefHeight="39.0" prefWidth="78.0" style="-fx-background-color: #0f9d58;" text="User" textFill="WHITE">
+            <JFXButton fx:id="enter_button111111" onAction="#showUser" prefHeight="39.0" prefWidth="78.0" style="-fx-background-color: #0f9d58;" text="User" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -106,44 +107,30 @@
             <Font name="System Bold" size="34.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="panel_user" layoutX="72.0" layoutY="307.0" prefHeight="368.0" prefWidth="754.0" style="-fx-background-color: #373737;">
+      <AnchorPane fx:id="panel_user" layoutX="61.0" layoutY="294.0" prefHeight="382.0" prefWidth="754.0" style="-fx-background-color: #ffffff;">
          <children>
-            <ImageView fitHeight="43.0" fitWidth="61.0" layoutX="47.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/man-user%20(2).png" />
-               </image>
-            </ImageView>
-            <Label layoutX="122.0" layoutY="32.0" prefHeight="31.0" prefWidth="90.0" text="Username" textFill="WHITE">
+            <Label layoutX="350.0" layoutY="14.0" text="User" textFill="#1a6dd7">
                <font>
-                  <Font size="18.0" />
+                  <Font size="27.0" />
                </font>
             </Label>
-            <Label layoutX="122.0" layoutY="118.0" prefHeight="31.0" prefWidth="66.0" text="Name" textFill="WHITE">
+            <JFXButton fx:id="signUp_button1" layoutX="158.0" layoutY="328.0" onAction="#updateCombo" prefHeight="39.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Update" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
-            </Label>
-            <Label layoutX="122.0" layoutY="198.0" prefHeight="31.0" prefWidth="84.0" text="Lastname" textFill="WHITE">
+            </JFXButton>
+            <JFXTextField fx:id="name_textfield" editable="false" labelFloat="true" layoutX="103.0" layoutY="77.0" prefHeight="26.0" prefWidth="200.0" promptText="Name" />
+            <JFXTextField fx:id="identification_textfield" labelFloat="true" layoutX="103.0" layoutY="208.0" prefHeight="26.0" prefWidth="200.0" promptText="Identification" />
+            <JFXTextField fx:id="lastname_textfield" editable="false" labelFloat="true" layoutX="103.0" layoutY="142.0" prefHeight="26.0" prefWidth="200.0" promptText="Lastname" />
+            <JFXTextField fx:id="email_textfield" editable="false" labelFloat="true" layoutX="103.0" layoutY="278.0" prefHeight="26.0" prefWidth="200.0" promptText="Email" />
+            <JFXPasswordField fx:id="old_password_textfield" labelFloat="true" layoutX="449.0" layoutY="129.0" prefHeight="26.0" prefWidth="200.0" promptText="Old password" />
+            <JFXPasswordField fx:id="new_password_textfield" labelFloat="true" layoutX="449.0" layoutY="221.0" prefHeight="26.0" prefWidth="200.0" promptText="New password" />
+            <JFXButton fx:id="signUp_button11" layoutX="504.0" layoutY="328.0" onAction="#updateCombo" prefHeight="39.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Update" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font size="15.0" />
                </font>
-            </Label>
-            <Label layoutX="228.0" layoutY="198.0" prefHeight="31.0" prefWidth="43.0" text="Email" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="344.0" layoutY="149.0" prefHeight="31.0" prefWidth="90.0" text="Password" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="271.0" layoutY="75.0" prefHeight="31.0" prefWidth="122.0" text="Identification" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <JFXTextField layoutX="412.0" layoutY="201.0" />
+            </JFXButton>
+            <Line endX="-63.5999755859375" endY="270.800048828125" layoutX="440.0" layoutY="84.0" opacity="0.35" startX="-63.5999755859375" startY="-6.399993896484375" />
          </children>
       </AnchorPane>
    </children>

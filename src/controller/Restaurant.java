@@ -126,5 +126,13 @@ public class Restaurant
         public void updateEmployee(int pEmployeeID,String newName, String newLastName , float newSalary,String newRol){
             Branch.getInstance().updateEmployee(pEmployeeID,newName,newLastName,newSalary,newRol);
         }
+
+		public Branch getBranch() {
+			return branch;
+		}
+
+		public void setBranch(Branch branch) {
+			this.branch = branch;
+		}
         
 }

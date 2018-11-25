@@ -2,6 +2,7 @@ package controller;
 
 import domain.Client;
 import domain.Combo;
+import domain.Manager;
 import domain.Product;
 import java.util.ArrayList;
 import library.EmployeeUI;
@@ -175,6 +176,15 @@ public class Branch
                 listParameters.add(newRol);
 	    ManagerFacade.getInstance().updateEmployee(listParameters);
 	}
+
+		public Facade getFacade() {
+			return facade;
+		}
+
+		public void setFacade(Facade facade) {
+			this.facade = facade;
+		}
+
         
         
 }

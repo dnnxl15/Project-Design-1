@@ -30,6 +30,7 @@ import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
+import library.GlobalUser;
 import library.ReportUI;
 import library.RestaurantUI;
 import library.enumerations.ReportType;
@@ -261,17 +262,23 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	{
 		restaurant_label.setVisible(pVisible);
 		restaurant_table.setVisible(pVisible);
-		address_textfield.setVisible(pVisible);
-		legal_number_textfield.setVisible(pVisible);
         mount_restaurant_label.setVisible(pVisible);
 		restaurant_label.setVisible(pVisible);
 		search_restaurant_textfield.setVisible(pVisible);
 		search_restaurant_button.setVisible(pVisible);
-		main_label.setText("Restaurant");
+		main_label.setText(RESTAURANT_TEXT);
 		main_label.setVisible(pVisible);
-		report_general_label1.setVisible(pVisible);
-		panel_restaurant.setVisible(pVisible);
-		add_restaurant_button.setVisible(pVisible);
+		if(GlobalUser.getInstance().isSubManager())
+		{	
+		}
+		else
+		{
+			address_textfield.setVisible(pVisible);
+			legal_number_textfield.setVisible(pVisible);
+			report_general_label1.setVisible(pVisible);
+			panel_restaurant.setVisible(pVisible);
+			add_restaurant_button.setVisible(pVisible);
+		}
 	}
 	
 	public void showComponentClient(boolean pVisible)
@@ -468,6 +475,7 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1)
 	{
+		GlobalUser.getInstance().setSubManager(false);
 		
 		columnAddress.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getAddress()));
 		columnLegalName.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getLegalNumber()));

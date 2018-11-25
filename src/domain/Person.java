@@ -7,7 +7,7 @@ public class Person {
 
     public Person(String name, String lastName, int id) {
         this.name = name;
-        this.lastName = lastName;
+        this.setLastName(lastName);
         this.id = id;
     }
 
@@ -26,6 +26,12 @@ public class Person {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 }

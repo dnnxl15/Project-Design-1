@@ -31,6 +31,11 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
+            <Label fx:id="label_result" layoutX="498.0" layoutY="32.0" text="()">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

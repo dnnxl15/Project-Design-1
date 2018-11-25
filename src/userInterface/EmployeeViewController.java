@@ -36,12 +36,14 @@ public class EmployeeViewController extends Controller implements Initializable,
 	@FXML private TableColumn<EmployeeUI, String> columnLastaname;
 	@FXML private TableColumn<EmployeeUI, Number> columnSalary;
 	@FXML private TableColumn<EmployeeUI, String> columnRol;
+	@FXML private TableColumn<EmployeeUI, String> columnRestaurant;
 	@FXML private Button cancel_button;
 	@FXML private Label result_label;
 	@FXML private TextField name_textfield;
 	@FXML private TextField lastname_textfield;
 	@FXML private TextField slary_textfield;
 	@FXML private ComboBox<String> role_combobox;
+	@FXML private ComboBox<String> restaurant_combobox;
 	private EmployeeUI selected;
 	
 	@Override
@@ -51,6 +53,7 @@ public class EmployeeViewController extends Controller implements Initializable,
 		columnLastaname.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getLastname()));
 		columnSalary.setCellValueFactory(cellData->new SimpleDoubleProperty(cellData.getValue().getSalary()));
 		columnRol.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getRol()));
+		//columnRestaurant.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().get));
 		employee_table.getSelectionModel().selectedItemProperty().addListener(
 	            (observable, oldValue, newValue) -> showInfoEmployeeUI((EmployeeUI) newValue));
 		ObservableList<EmployeeUI> newListEmployee;
@@ -124,6 +127,7 @@ public class EmployeeViewController extends Controller implements Initializable,
     	int salary;
     	String name = name_textfield.getText().toString();
     	String value = role_combobox.getSelectionModel().getSelectedItem();
+    	String restaurant = restaurant_combobox.getSelectionModel().getSelectedItem();;
     	try
 		{
     		salary =  Integer.parseInt(slary_textfield.getText().toString());
@@ -141,7 +145,7 @@ public class EmployeeViewController extends Controller implements Initializable,
     	else
     	{
     		System.out.println(selected.getIdEmployee());
-   			Restaurant.getInstance().updateEmployee(selected.getIdEmployee(), name, lastname, salary, value);
+   		//	Restaurant.getInstance().updateEmployee(selected.getIdEmployee(), name, lastname, salary, value);////////////
    			showAlert(AlertType.CONFIRMATION ,"Employee update" , "Employee is updated in the system");
    			lastname_textfield.setText(EMPTY);
    			name_textfield.setText(EMPTY);
