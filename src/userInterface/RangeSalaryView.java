@@ -1,6 +1,7 @@
 package userInterface;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import controller.Restaurant;
@@ -45,11 +46,21 @@ public class RangeSalaryView extends Controller implements Initializable
 		
 		employee_table.getSelectionModel().selectedItemProperty().addListener(
 	            (observable, oldValue, newValue) -> showInfoJobTitleUI((JobTitleUI) newValue));
-		ObservableList<JobTitleUI> newListProduct = null; //= FXCollections.observableArrayList(Restaurant.getInstance().getAllProducts());
+		ObservableList<JobTitleUI> newListProduct = FXCollections.observableArrayList(Restaurant.getInstance().getJobTitle());
 		employee_table.setItems(newListProduct);
-		
+		result_label.setText("("+newListProduct.size()+")");
 		role_combobox.getItems().clear();
-		role_combobox.getItems().addAll();//Arralist
+		role_combobox.getItems().addAll(getAllRole(newListProduct));
+	}
+	
+	public ArrayList<String> getAllRole(ObservableList<JobTitleUI> pRole)
+	{
+		ArrayList<String> listString = new ArrayList<String>();
+		for(JobTitleUI jobTitle : pRole) 
+		{
+			listString.add(jobTitle.getName());
+		}
+		return listString;
 	}
 	
 	/**
