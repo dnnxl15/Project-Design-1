@@ -43,10 +43,10 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="name_textfield" layoutX="112.0" layoutY="373.0" prefHeight="26.0" prefWidth="202.0" promptText="Name" />
-            <JFXTextField fx:id="slary_textfield" layoutX="437.0" layoutY="373.0" prefHeight="26.0" prefWidth="202.0" promptText="Salary" />
-            <JFXComboBox fx:id="role_combobox" layoutX="437.0" layoutY="434.0" prefHeight="26.0" prefWidth="202.0" promptText="Rol" />
-            <JFXTextField fx:id="lastname_textfield" layoutX="112.0" layoutY="434.0" prefHeight="26.0" prefWidth="202.0" promptText="Lastname" />
+            <JFXTextField fx:id="name_textfield" labelFloat="true" layoutX="112.0" layoutY="373.0" prefHeight="26.0" prefWidth="202.0" promptText="Name" />
+            <JFXTextField fx:id="slary_textfield" labelFloat="true" layoutX="437.0" layoutY="373.0" prefHeight="26.0" prefWidth="202.0" promptText="Salary" />
+            <JFXComboBox fx:id="role_combobox" labelFloat="true" layoutX="437.0" layoutY="434.0" prefHeight="26.0" prefWidth="202.0" promptText="Rol" />
+            <JFXTextField fx:id="lastname_textfield" labelFloat="true" layoutX="112.0" layoutY="434.0" prefHeight="26.0" prefWidth="202.0" promptText="Lastname" />
             <JFXButton fx:id="signUp_button1" layoutX="687.0" layoutY="399.0" onAction="#openSalaryWindow" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="See rol" textFill="WHITE">
                <font>
                   <Font size="15.0" />
