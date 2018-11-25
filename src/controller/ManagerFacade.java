@@ -80,6 +80,10 @@ public class ManagerFacade extends Facade
 	{
 		ControlMenu.getInstance().createProduct(pListObject);
 	}
+        public void createEmployee(ArrayList<Object> pListObject)
+	{
+		ControlUser.getInstance().createEmployee(pListObject);
+	}
        public void updateCombo(ArrayList<Object> cListObject)
 	{
 		ControlMenu.getInstance().updateCombo(cListObject);

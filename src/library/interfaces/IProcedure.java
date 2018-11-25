@@ -7,7 +7,7 @@ public interface IProcedure
     public final String IS_BRANCH_MANAGER_FUNCTION = "{? = call isBranchManager(?,?)}";
     public final String IS_MAIN_MANAGER_FUNCTION = "{? = call isGeneralManager(?,?)}";
     
-    public final String INSERT_EMPLOYEE_PROCEDURE  = "{call insertEmployee(?,?,?,?,?,?)}";
+    public final String INSERT_EMPLOYEE_PROCEDURE  = "{call insertEmployee(?,?,?,?,?,?,?)}";
     public final String INSERT_RESTAURANT_PROCEDURE  = "{call insertRestaurant(?,?)}";
     public final String INSERT_MANAGER_PROCEDURE  = "{call insertManager(?,?,?,?,?,?,?)}";
     public final String INSERT_COMBO_PROCEDURE  = "{call insertCombo(?,?,?,?)}";
@@ -35,4 +35,6 @@ public interface IProcedure
     
     public final String GET_EMPLOYEE_PROCEDURE = "{call getEmployeeInfo()}";
     public final String UPDATE_EMPLOYEE_PROCEDURE = "{call updateEmployeeInfo(?,?,?,?,?)}";
+    
+    
 }

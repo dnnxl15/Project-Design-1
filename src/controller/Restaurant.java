@@ -49,7 +49,10 @@ public class Restaurant
 		boolean value = Branch.getInstance().verifyMainManager(pUsername, pPassword);
 		return value;
 	}
-	
+	 public void createEmployee(String eName, String eLastName,int eIdentification,String email,String eJobTitle,float eSalary ,String eRestNum )
+	{
+             Branch.getInstance().createEmployee(eName, eLastName, eIdentification, email, eJobTitle, eSalary, eRestNum); 
+        }
 	public void createRestaurant(String pAddress, String pLegalNumber)
 	{
 		Branch.getInstance().createRestaurant(pAddress, pLegalNumber);

@@ -113,6 +113,19 @@ public class Branch
 		listParameters.add(pLegalNumber);
 	    ManagerFacade.getInstance().createRestarant(listParameters);
 	}
+        public void createEmployee(String eName, String eLastName,int eIdentification,String email,String eJobTitle,float eSalary ,String eRestNum )
+	{
+		ArrayList<Object> listParameters = new ArrayList<Object>();
+		listParameters.add(eName);
+		listParameters.add(eLastName);
+                listParameters.add(eIdentification);
+		listParameters.add(email);
+                listParameters.add(eJobTitle);
+		listParameters.add(eSalary);
+                listParameters.add(eRestNum);
+    
+                ManagerFacade.getInstance().createEmployee(listParameters);
+	}
         
         //-------------
         
