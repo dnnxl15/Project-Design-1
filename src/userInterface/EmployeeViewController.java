@@ -52,11 +52,11 @@ public class EmployeeViewController extends Controller implements Initializable,
 		employee_table.getSelectionModel().selectedItemProperty().addListener(
 	            (observable, oldValue, newValue) -> showInfoEmployeeUI((EmployeeUI) newValue));
 	
-		ObservableList<EmployeeUI> newListEmployee = null;
-		//newListRestaurant = FXCollections.observableArrayList(Restaurant.getInstance().getRestaurant());//ControlSystem.getInstance().loadProduct());
-		//mount_restaurant_label.setText("("+newListRestaurant.size()+")");
+		ObservableList<EmployeeUI> newListEmployee;
+		newListEmployee = FXCollections.observableArrayList(Restaurant.getInstance().getEmployee());//ControlSystem.getInstance().loadProduct());
+		result_label.setText("("+newListEmployee.size()+")");
 
-		//employee_table.setItems(newListEmployee);
+		employee_table.setItems(newListEmployee);
 		//result_label.setText("("+newListEmployee.size()+")");
 	}
 	
