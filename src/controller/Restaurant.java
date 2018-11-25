@@ -68,7 +68,7 @@ public class Restaurant
 	}
         public void updateProduct(int productID, String newName, float newPrice , String newDescription,Boolean status)
 	{
-		Branch.getInstance().updateCombo(productID,newName,newPrice,newDescription,status);
+		Branch.getInstance().updateProduct(productID,newName,newPrice,newDescription,status);
 	}
 	public ArrayList<Product> getAllProducts()
 	{
