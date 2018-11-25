@@ -20,7 +20,7 @@
    <children>
       <AnchorPane layoutX="208.0" layoutY="14.0" opacity="0.7" prefHeight="92.0" prefWidth="662.0" style="-fx-background-color: #000000;" />
       <DoubleValidator layoutX="459.0" layoutY="197.0" />
-      <AnchorPane layoutY="-1.0" prefHeight="693.0" prefWidth="198.0" style="-fx-background-color: #239e62;">
+      <AnchorPane layoutY="-1.0" prefHeight="699.0" prefWidth="198.0" style="-fx-background-color: #239e62;">
          <children>
             <VBox layoutX="18.0" layoutY="239.0" prefHeight="442.0" prefWidth="162.0">
                <children>
