@@ -11,7 +11,7 @@ public class GlobalCart
 
 	private GlobalCart()
 	{
-		listCommodity = new ArrayList<Commodity>();
+		setListCommodity(new ArrayList<Commodity>());
 	}
 	
 	public static GlobalCart getInstance()
@@ -21,6 +21,14 @@ public class GlobalCart
 			globalCart = new GlobalCart();
 		}
 		return globalCart;
+	}
+
+	public ArrayList<Commodity> getListCommodity() {
+		return listCommodity;
+	}
+
+	public void setListCommodity(ArrayList<Commodity> listCommodity) {
+		this.listCommodity = listCommodity;
 	}
 	
 	public void addProduct(Commodity pComodity)
@@ -45,4 +53,5 @@ public class GlobalCart
     	}
     	listCommodity = listCommodityNew;
 	}
+
 }

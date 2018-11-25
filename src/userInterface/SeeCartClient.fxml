@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.OrderClientViewController">
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.SeeCartClient">
    <children>
       <DoubleValidator layoutX="459.0" layoutY="197.0" />
       <AnchorPane layoutX="38.0" layoutY="48.0" prefHeight="590.0" prefWidth="799.0" style="-fx-background-color: #ffffff;">
@@ -18,7 +18,7 @@
                   <Font size="27.0" />
                </font>
             </Label>
-            <JFXButton fx:id="signUp_button1" layoutX="228.0" layoutY="528.0" onAction="#updateProduct" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #0f9d58;" text="Pay" textFill="WHITE">
+            <JFXButton fx:id="signUp_button1" layoutX="228.0" layoutY="528.0" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #0f9d58;" text="Pay" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -45,7 +45,7 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="signUp_button112" layoutX="604.0" layoutY="419.0" onAction="#openGraphBar" prefHeight="31.0" prefWidth="82.0" style="-fx-background-color: #d32a0f;" text="Delete" textFill="WHITE">
+            <JFXButton fx:id="signUp_button112" layoutX="604.0" layoutY="419.0" onAction="#closeWindow" prefHeight="31.0" prefWidth="82.0" style="-fx-background-color: #d32a0f;" text="Delete" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -55,22 +55,22 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <Label layoutX="631.0" layoutY="159.0" prefHeight="18.0" prefWidth="134.0" text="Name">
+            <Label fx:id="name_label" layoutX="631.0" layoutY="159.0" prefHeight="18.0" prefWidth="134.0" text="Name">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="631.0" layoutY="239.0" prefHeight="18.0" prefWidth="134.0" text="Price">
+            <Label fx:id="price_label" layoutX="631.0" layoutY="239.0" prefHeight="18.0" prefWidth="134.0" text="Price">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="631.0" layoutY="330.0" prefHeight="18.0" prefWidth="134.0" text="Amount">
+            <Label fx:id="amount_label" layoutX="631.0" layoutY="330.0" prefHeight="18.0" prefWidth="134.0" text="Amount">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <JFXButton fx:id="signUp_button11" layoutX="14.0" layoutY="15.0" onAction="#updateProduct" prefHeight="26.0" prefWidth="54.0" style="-fx-background-color: #0f9d58;" text="Back" textFill="WHITE">
+            <JFXButton fx:id="signUp_button11" layoutX="14.0" layoutY="15.0" prefHeight="26.0" prefWidth="54.0" style="-fx-background-color: #0f9d58;" text="Back" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
