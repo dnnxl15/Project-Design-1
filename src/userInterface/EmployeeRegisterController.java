@@ -3,12 +3,17 @@ package userInterface;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import controller.Restaurant;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import library.JobTitleUI;
+import library.RestaurantUI;
 import javafx.scene.control.Alert.AlertType;
 
 /**
@@ -33,18 +38,43 @@ public class EmployeeRegisterController extends Controller implements Initializa
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     	role_combo.getItems().clear();
-    	role_combo.getItems().addAll();//Arralist
-    	
+    	role_combo.getItems().addAll(getRole(Restaurant.getInstance().getJobTitle()));
+
     	legal_number.getItems().clear();
-    	legal_number.getItems().addAll();//Arralist
+    	legal_number.getItems().addAll(getLegalNumber(Restaurant.getInstance().getRestaurant()));
     }    
+    
+    public ArrayList<String> getRole(ArrayList<JobTitleUI> pJob)
+    {
+    	int index = 0;
+    	ArrayList<String> listRol = new ArrayList<String>();
+    	while(index < pJob.size())
+    	{
+    		listRol.add(pJob.get(index).getName());
+    		index++;
+    	}
+    	return listRol;
+    }
+    
+    public ArrayList<String> getLegalNumber(ArrayList<RestaurantUI> pRestaurant)
+    {
+    	int index = 0;
+    	ArrayList<String> listRest = new ArrayList<String>();
+    	while(index < pRestaurant.size())
+    	{
+    		listRest.add(pRestaurant.get(index).getLegalNumber());
+    		index++;
+    	}
+    	return listRest;
+    }
     
     public void signUp() throws IOException
     {
     	String name = name_textfield.getText().toString();
     	String lastname = lastName_textfield.getText().toString();
     	String email = email_textfield.getText().toString();
-    	//String role = role_combo.getText().toString();
+    	String role = role_combo.getSelectionModel().getSelectedItem().toString();
+    	String restaurant = legal_number.getSelectionModel().getSelectedItem().toString();
     	int  identification;
     	int salary;
     	try
@@ -57,13 +87,14 @@ public class EmployeeRegisterController extends Controller implements Initializa
 			showAlert(AlertType.ERROR ,"Identification" , "Must be a number");
 			return;
 		}
-    	if(email.equals(EMPTY) || name.equals(EMPTY) || lastname.equals(EMPTY))
+    	if(email.equals(EMPTY) || name.equals(EMPTY) || lastname.equals(EMPTY) || restaurant.equals(EMPTY) || role.equals(EMPTY))
     	{
 			showAlert(AlertType.ERROR ,"All fields" , "All fields must be complete");
 			return;
     	}
     	else
     	{
+    		Restaurant.getInstance().createEmployee(name, lastname, identification, email, role, salary, restaurant);
     		name_textfield.setText(EMPTY);
     		lastName_textfield.setText(EMPTY);
     		email_textfield.setText(EMPTY);

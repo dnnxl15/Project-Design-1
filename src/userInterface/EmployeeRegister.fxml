@@ -47,9 +47,9 @@
             </Label>
             <JFXTextField fx:id="name_textfield" labelFloat="true" layoutX="62.0" layoutY="97.0" prefHeight="26.0" prefWidth="251.0" promptText="Name" />
             <JFXTextField fx:id="lastName_textfield" labelFloat="true" layoutX="62.0" layoutY="156.0" prefHeight="26.0" prefWidth="251.0" promptText="Lastname" />
-            <JFXTextField fx:id="email_textfield" layoutX="62.0" layoutY="220.0" prefHeight="26.0" prefWidth="251.0" promptText="E-Mail" />
-            <JFXTextField fx:id="identification_textfield" layoutX="62.0" layoutY="288.0" prefHeight="26.0" prefWidth="251.0" promptText="Identification" />
-            <JFXButton fx:id="signUp_button" layoutX="49.0" layoutY="549.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Sign up" textFill="WHITE">
+            <JFXTextField fx:id="email_textfield" labelFloat="true" layoutX="62.0" layoutY="220.0" prefHeight="26.0" prefWidth="251.0" promptText="E-Mail" />
+            <JFXTextField fx:id="identification_textfield" labelFloat="true" layoutX="62.0" layoutY="288.0" prefHeight="26.0" prefWidth="251.0" promptText="Identification" />
+            <JFXButton fx:id="signUp_button" layoutX="49.0" layoutY="549.0" onAction="#signUp" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Sign up" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -59,9 +59,9 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXComboBox fx:id="role_combo" layoutX="62.0" layoutY="419.0" prefHeight="26.0" prefWidth="251.0" promptText="Role" />
-            <JFXTextField fx:id="salary_textfield" layoutX="62.0" layoutY="353.0" prefHeight="26.0" prefWidth="251.0" promptText="Salary" />
-            <JFXComboBox fx:id="legal_number" layoutX="62.0" layoutY="479.0" prefHeight="26.0" prefWidth="251.0" promptText="Legal number" />
+            <JFXComboBox fx:id="role_combo" labelFloat="true" layoutX="62.0" layoutY="419.0" prefHeight="26.0" prefWidth="251.0" promptText="Role" />
+            <JFXTextField fx:id="salary_textfield" labelFloat="true" layoutX="62.0" layoutY="353.0" prefHeight="26.0" prefWidth="251.0" promptText="Salary" />
+            <JFXComboBox fx:id="legal_number" labelFloat="true" layoutX="62.0" layoutY="479.0" prefHeight="26.0" prefWidth="251.0" promptText="Legal number" />
          </children>
       </AnchorPane>
    </children>
