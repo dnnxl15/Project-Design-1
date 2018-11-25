@@ -1,8 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.validation.DoubleValidator?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.PayClientController">
+   <children>
+      <DoubleValidator layoutX="459.0" layoutY="197.0" />
+      <AnchorPane layoutX="38.0" layoutY="48.0" prefHeight="590.0" prefWidth="799.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="382.0" layoutY="25.0" text="Bill" textFill="#1a6dd7">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <TableView fx:id="product_table" layoutX="428.0" layoutY="103.0" prefHeight="334.0" prefWidth="328.0">
+               <columns>
+                  <TableColumn fx:id="columnName" prefWidth="120.79989624023438" text="Name" />
+                  <TableColumn fx:id="columnPrice" minWidth="0.0" prefWidth="85.60003662109375" text="Price" />
+                  <TableColumn fx:id="colunmDescription" minWidth="0.0" prefWidth="120.0" text="Amount" />
+               </columns>
+            </TableView>
+            <Label layoutX="525.0" layoutY="448.0" text="Total" textFill="#1a6dd7">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="cancel_button" layoutX="320.0" layoutY="530.0" onAction="#closeWindow" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="630.0" layoutY="449.0" prefHeight="18.0" prefWidth="134.0" text="Name">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="94.0" layoutY="110.0" text="Payment method" textFill="#1a6dd7">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <JFXComboBox layoutX="93.0" layoutY="145.0" prefHeight="26.0" prefWidth="229.0" />
+            <JFXTextField layoutX="93.0" layoutY="230.0" prefHeight="26.0" prefWidth="230.0" />
+            <Label layoutX="93.0" layoutY="192.0" text="Credit card number" textFill="#1a6dd7">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="91.0" layoutY="278.0" text="Deliver form" textFill="#1a6dd7">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="93.0" layoutY="375.0" text="Direction" textFill="#1a6dd7">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <JFXTextField layoutX="93.0" layoutY="413.0" prefHeight="26.0" prefWidth="230.0" />
+            <JFXRadioButton fx:id="pickUp_radioButton" layoutX="101.0" layoutY="329.0" onAction="#markPickUp" text="Pick up" />
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>
-
