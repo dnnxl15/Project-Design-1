@@ -32,7 +32,7 @@ public interface IProcedure
     public final String UPDATE_PRODUCTS_PROCEDURE = "{call updateProduct(?,?,?,?,?)}";
     public final String UPDATE_COMBO_PROCEDURE = "{call updateCombo(?,?,?,?,?)}";
     
-    
+     public final String GET_CLIENT_PROCEDURE = "{call getClient()}";
     public final String GET_EMPLOYEE_PROCEDURE = "{call getEmployeeInfo()}";
     public final String UPDATE_EMPLOYEE_PROCEDURE = "{call updateEmployeeInfo(?,?,?,?,?)}";
     

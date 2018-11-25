@@ -7,6 +7,7 @@ import library.RestaurantUI;
 import library.interfaces.IProcedure;
 import static library.interfaces.IProcedure.INSERT_RESTAURANT_PROCEDURE;
 import connection.*;
+import domain.Client;
 import domain.Combo;
 import domain.Product;
 import library.EmployeeUI;
@@ -63,6 +64,10 @@ public class ManagerFacade extends Facade
         public ArrayList<Product> getProducts()
 	{
 		return ControlMenu.getInstance().getProducts();
+	}
+        public ArrayList<Client> getClient()
+	{
+		return ControlUser.getInstance().getClient();
 	}
         public ArrayList<Combo> getCombos()
 	{
