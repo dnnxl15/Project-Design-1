@@ -455,6 +455,14 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		//restaurant_table;
 	}
 	
+	public void openClientWindowView()
+	{
+		try {
+			openWindow(CLIENT_MANAGER_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 
 	@Override

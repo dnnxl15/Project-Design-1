@@ -23,6 +23,9 @@ public interface IConstantWindow
 	public final String REPORT_SALES_VIEW_WINDOW = "ReportSales.fxml";
 	
 	public final String GRAPH_VIEW_WINDOW = "GraphView.fxml";
+	
+	public final String CLIENT_MANAGER_VIEW_WINDOW = "ClientManagerView.fxml";
+
 
 
 }
