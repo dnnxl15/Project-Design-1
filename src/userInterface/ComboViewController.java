@@ -6,7 +6,9 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXTextArea;
 
 import controller.Restaurant;
+import domain.Combo;
 import domain.Commodity;
+import domain.Product;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -42,7 +44,7 @@ public class ComboViewController extends Controller implements Initializable
 		columnName.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getName()));
 		
 		combo_table.getSelectionModel().selectedItemProperty().addListener(
-	            (observable, oldValue, newValue) -> showInfoProduct((Commodity) newValue));
+	            (observable, oldValue, newValue) -> showInfoProduct((Combo) newValue));
 		ObservableList<Commodity> newListProduct = FXCollections.observableArrayList(Restaurant.getInstance().getAllCombos());
 		combo_table.setItems(newListProduct);
 	}
@@ -53,7 +55,7 @@ public class ComboViewController extends Controller implements Initializable
 	 * Description: The next method show the info of the product.
 	 * Last modification: 08/10/18
 	 */
-	public void showInfoProduct(Commodity pProduct)
+	public void showInfoProduct(Combo pProduct)
 	{
 		if(pProduct == null)
 		{
@@ -67,7 +69,7 @@ public class ComboViewController extends Controller implements Initializable
 			name_textfield_t.setText(pProduct.getName().toString());
 			price_textfield11.setText(String.valueOf(pProduct.getPrice()));
 			description_textarea1.setText(String.valueOf(pProduct.getDescription()));
-			checkbox_product.selectedProperty().set(true);
+			checkbox_product.selectedProperty().set(pProduct.getEnabled());
 			product = pProduct;
 		}
 		
@@ -102,6 +104,7 @@ public class ComboViewController extends Controller implements Initializable
     	else
     	{
    			Restaurant.getInstance().updateCombo(product.getIdPerson(), name, price, description, value);//////////////////////////////////////////////////////
+   			System.out.println(value);
    			showAlert(AlertType.CONFIRMATION ,"Combo update" , "Combo is updated in the system");
    			name_textfield_t.setText(EMPTY);
    			description_textarea1.setText(EMPTY);

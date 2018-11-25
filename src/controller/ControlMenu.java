@@ -54,7 +54,7 @@ public class ControlMenu extends Control{
                         String pName =  resultSet.getString("name");
                         float pPrice = resultSet.getFloat("price");
                         String pDescription = resultSet.getString("description");
-                        int pcomboID = resultSet.getInt("comboID");
+                        int pcomboID = resultSet.getInt("productID");
                         int pstatus = resultSet.getInt("status");
                         Product products = new Product(pName,pPrice, pDescription,pcomboID,pstatus);
                         listProductsTmp.add(products);
@@ -77,7 +77,7 @@ public class ControlMenu extends Control{
                         String pName =  resultSet.getString("name");
                         float pPrice = resultSet.getFloat("price");
                         String pDescription = resultSet.getString("description");  
-                        int pProductID = resultSet.getInt("productID"); 
+                        int pProductID = resultSet.getInt("comboID"); 
                         int pstatus = resultSet.getInt("status");
                         Combo combo = new Combo(pName,pPrice,pDescription,pProductID,pstatus);
                         listCombosTmp.add(combo);
@@ -101,7 +101,7 @@ public class ControlMenu extends Control{
                         String pName =  resultSet.getString("name");
                         float pPrice = resultSet.getFloat("price");
                         String pDescription = resultSet.getString("description");
-                        int pPersonId = resultSet.getInt("personID");
+                        int pPersonId = resultSet.getInt("productID");
                         Product products = new Product(pName,pPrice, pDescription,pPersonId);
                         listProductsTmp.add(products);
                         }
