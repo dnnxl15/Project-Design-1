@@ -37,4 +37,6 @@ public interface IConstantWindow
 	public final String PAY_CLIENT_VIEW_WINDOW = "PayClient.fxml";
 
 	public final String ORDER_CLIENT_VIEW_WINDOW = "OrderClientView.fxml";
+	
+	public final String CART_VIEW_WINDOW = "SeeCartClient.fxml";
 }

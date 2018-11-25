@@ -51,6 +51,18 @@ public class Controller implements IConstant
 	}
 	
 	/**
+	 * Method minimize view
+	 * Author: Danny Xie Li
+	 * Description: The next method close view product window to watch the products.
+	 * Last modification: 08/10/18
+	 */
+	public void minimizeWindow(Button pEvidence)
+	{
+        Stage thisStage = (Stage) pEvidence.getScene().getWindow();
+        thisStage.setIconified(true);
+	}
+	
+	/**
 	 * Method show alert
 	 * Author: Danny Xie Li
 	 * Description: The next method show alert.
