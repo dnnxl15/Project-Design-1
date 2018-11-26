@@ -27,7 +27,6 @@
                   <TableColumn fx:id="columnSalary" minWidth="0.0" prefWidth="149.60003662109375" text="Salary" />
                   <TableColumn fx:id="columnRol" minWidth="0.0" prefWidth="160.80001831054688" text="Rol" />
                   <TableColumn fx:id="columnRestaurant" minWidth="0.0" prefWidth="116.79998779296875" text="Restaurant" />
-                  <TableColumn fx:id="columnRol2" minWidth="0.0" prefWidth="72.7999267578125" text="Rol" />
                </columns>
             </TableView>
             <JFXButton fx:id="signUp_button" layoutX="213.0" layoutY="527.0" onAction="#updateEmployee" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Update" textFill="WHITE">
@@ -54,7 +53,7 @@
                   <Font size="15.0" />
                </font>
             </JFXButton>
-            <JFXComboBox fx:id="restaurant_combobox" labelFloat="true" layoutX="437.0" layoutY="384.0" prefHeight="26.0" prefWidth="202.0" promptText="Rol" />
+            <JFXComboBox fx:id="restaurant_combobox" labelFloat="true" layoutX="437.0" layoutY="384.0" prefHeight="26.0" prefWidth="202.0" promptText="Restaurant" />
          </children>
       </AnchorPane>
    </children>

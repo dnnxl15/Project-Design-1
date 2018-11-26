@@ -29,5 +29,10 @@ public interface IConstant
     public final String EMAIL_PARAMETER = "@pEmail";
     public final String PASSWORD_PARAMETER = "@pPassword";
 
+    public final String CREDIT_TEXT = "Credit";
+    public final String TRANSFER_TEXT = "Transfer";
+    public final String CHECK_TEXT = "Check";
+    public final String CASH_TEXT = "Cash";
+
     
 }

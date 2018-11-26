@@ -65,7 +65,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <JFXTextField layoutX="93.0" layoutY="413.0" prefHeight="26.0" prefWidth="230.0" />
+            <JFXTextField fx:id="direction_textfield" layoutX="93.0" layoutY="413.0" prefHeight="26.0" prefWidth="230.0" />
             <JFXRadioButton fx:id="pickUp_radioButton" layoutX="101.0" layoutY="329.0" onAction="#markPickUp" text="Pick up" />
          </children>
       </AnchorPane>

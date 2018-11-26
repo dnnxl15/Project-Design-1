@@ -107,7 +107,7 @@
             <Font name="System Bold" size="34.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="panel_user" layoutX="61.0" layoutY="294.0" prefHeight="382.0" prefWidth="754.0" style="-fx-background-color: #ffffff;" visible="false">
+      <AnchorPane fx:id="panel_user" layoutX="61.0" layoutY="294.0" prefHeight="382.0" prefWidth="754.0" style="-fx-background-color: #ffffff;">
          <children>
             <Label layoutX="350.0" layoutY="14.0" text="User" textFill="#1a6dd7">
                <font>
@@ -133,7 +133,7 @@
             <Line endX="-63.5999755859375" endY="270.800048828125" layoutX="440.0" layoutY="84.0" opacity="0.35" startX="-63.5999755859375" startY="-6.399993896484375" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="panel_user1" layoutX="71.0" layoutY="296.0" prefHeight="382.0" prefWidth="754.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane fx:id="panel_user1" layoutX="71.0" layoutY="296.0" prefHeight="382.0" prefWidth="754.0" style="-fx-background-color: #ffffff;" visible="false">
          <children>
             <Label layoutX="342.0" layoutY="14.0" text="Order" textFill="#1a6dd7">
                <font>

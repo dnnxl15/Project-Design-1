@@ -77,15 +77,9 @@ public class GraphViewController extends Controller implements IConstantWindow, 
 	        series1.getData().add(new XYChart.Data("January", 100));
 	        series1.getData().add(new XYChart.Data("February", 200));
 	        series1.getData().add(new XYChart.Data("March", 50));
+	         
 	          
-	        XYChart.Series<String,Number> series2 = new XYChart.Series();
-	        series2.setName("XYChart.Series 2");
-	           
-	        series2.getData().add(new XYChart.Data("January", 150));
-	        series2.getData().add(new XYChart.Data("February", 100));
-	        series2.getData().add(new XYChart.Data("March", 60));
-	          
-	        bar_chart.getData().addAll(series1, series2);
+	        bar_chart.getData().addAll(series1);
 	        
 	        bar_chart.setVisible(true);
 	    	line_chart.setVisible(false);
@@ -94,10 +88,10 @@ public class GraphViewController extends Controller implements IConstantWindow, 
 		else
 		{
 	        category_axis_line.setLabel("Product");
-	        category_axis_line.setCategories(FXCollections.<String> observableArrayList(Arrays.asList(
-	                "January", 
-	                "February",
-	                "March")));
+	       // category_axis_line.setCategories(FXCollections.<String> observableArrayList(Arrays.asList(
+	       //         "January", 
+	      //          "February",
+	       //         "March")));
 	        number_axis_line.setLabel("Sales");
 	           
 	        line_chart.setTitle("StackedBarChart");

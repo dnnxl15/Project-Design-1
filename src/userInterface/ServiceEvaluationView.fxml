@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.validation.DoubleValidator?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.PayClientController">
+   <children>
+      <DoubleValidator layoutX="459.0" layoutY="197.0" />
+      <AnchorPane layoutX="38.0" layoutY="48.0" prefHeight="590.0" prefWidth="799.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="291.0" layoutY="36.0" text="Service evaluation" textFill="#1a6dd7">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="cancel_button" layoutX="320.0" layoutY="530.0" onAction="#closeWindow" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="339.0" layoutY="156.0" text="Payment method" textFill="#1a6dd7">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
