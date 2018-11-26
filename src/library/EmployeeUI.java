@@ -10,14 +10,16 @@ public class EmployeeUI
 	private double salary;
 	private String rol;
 	private int idEmployee;
+        private int restaurant;
 
-    public EmployeeUI(int idEmployee,String name, String lastname, String email, double salary, String rol) {
+    public EmployeeUI(int idEmployee,String name, String lastname, String email, double salary, String rol,int idRestaurant) {
         this.name = name;
         this.lastname = lastname;
         this.email = email;
         this.salary = salary;
         this.rol = rol;
         this.idEmployee = idEmployee;
+        this.restaurant = idRestaurant;
     }
         
         
