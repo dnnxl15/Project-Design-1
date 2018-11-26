@@ -138,7 +138,7 @@ public class Restaurant
         public void updateEmployee(int pEmployeeID,String newName, String newLastName , float newSalary,String newRol,String newidRestaurant){
                 Branch.getInstance().updateEmployee(pEmployeeID,newName,newLastName,newSalary,newRol,newidRestaurant);
         }
-        public void updateClient(int pClientID,String pNewName, String pNewLastname , int pNewIdentification,String pNewUsername ,int pNewPassword	)
+        public void updateClient(int pClientID,String pNewName, String pNewLastname , int pNewIdentification,String pNewUsername ,String pNewPassword	)
         {
                Branch.getInstance().updateClient( pClientID, pNewName,  pNewLastname ,  pNewIdentification, pNewUsername , pNewPassword);
         

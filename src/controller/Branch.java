@@ -200,7 +200,7 @@ public class Branch
                 listParameters.add(newidRestaurant);
 	    ManagerFacade.getInstance().updateEmployee(listParameters);
 	}
-        public void updateClient(int pClientID,String pNewName, String pNewLastname , int pNewIdentification,String pNewUsername ,int pNewPassword	)
+        public void updateClient(int pClientID,String pNewName, String pNewLastname , int pNewIdentification,String pNewUsername ,String pNewPassword	)
 	{
 		ArrayList<Object> listParameters = new ArrayList<Object>();
 		listParameters.add(pClientID);
