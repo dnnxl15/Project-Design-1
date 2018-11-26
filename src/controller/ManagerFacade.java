@@ -133,6 +133,11 @@ public class ManagerFacade extends Facade
 	{
 		ControlUser.getInstance().updateEmployee(cListObject);
 	}
+        public void updateClient(ArrayList<Object> cListObject)
+	{
+		ControlUser.getInstance().updateClient(cListObject);
+	}
+
 
     @Override
     public void loadData() {

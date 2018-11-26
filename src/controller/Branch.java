@@ -196,6 +196,17 @@ public class Branch
                 listParameters.add(newidRestaurant);
 	    ManagerFacade.getInstance().updateEmployee(listParameters);
 	}
+        public void updateClient(int pClientID,String pNewName, String pNewLastname , int pNewIdentification,String pNewUsername ,int pNewPassword	)
+	{
+		ArrayList<Object> listParameters = new ArrayList<Object>();
+		listParameters.add(pClientID);
+		listParameters.add(pNewName);
+                listParameters.add(pNewLastname);
+                listParameters.add(pNewIdentification);
+                listParameters.add(pNewUsername);
+                listParameters.add(pNewPassword);
+	    ManagerFacade.getInstance().updateClient(listParameters);
+	}
 
 		public Facade getFacade() {
 			return facade;

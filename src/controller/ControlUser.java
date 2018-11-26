@@ -188,4 +188,13 @@ public class ControlUser extends Control implements IProcedure
 			e.printStackTrace();
 		}	
 	}
+        public void updateClient(ArrayList<Object> pListObject)
+	{
+		try {
+			connectionPool.request(UPDATE_CLIENT_PROCEDURE, pListObject);
+                        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
 }
