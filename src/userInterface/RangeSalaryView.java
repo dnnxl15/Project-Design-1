@@ -36,6 +36,8 @@ public class RangeSalaryView extends Controller implements Initializable
 	@FXML private ComboBox<String> role_combobox;
 	@FXML private TextField maximum_textfield;
 	@FXML private Label result_label;
+	private JobTitleUI jobTitleUI;
+	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1)
@@ -81,7 +83,7 @@ public class RangeSalaryView extends Controller implements Initializable
 			role_combobox.getSelectionModel().select(pJobTitleUI.getName());
 			minimum_textfield.setText(String.valueOf(pJobTitleUI.getMinSalary()));
 			maximum_textfield.setText(String.valueOf(pJobTitleUI.getMaxSalary()));
-			//product = pProduct;
+			jobTitleUI = pJobTitleUI;
 		}
 		
 	}
@@ -113,7 +115,7 @@ public class RangeSalaryView extends Controller implements Initializable
     	}
     	else
     	{
-   			//Restaurant.getInstance()max.(product.getIdPerson(), name, price, description, value);//////////////////////////////////////////////////////
+   			Restaurant.getInstance().createJobTitle(value, min, max);
    			showAlert(AlertType.CONFIRMATION ,"Role created" , "Role created in the system");
    			minimum_textfield.setText(EMPTY);
    			maximum_textfield.setText(EMPTY);
@@ -143,7 +145,7 @@ public class RangeSalaryView extends Controller implements Initializable
     	}
     	else
     	{
-   			//Restaurant.getInstance().updateProduct(product.getIdPerson(), name, price, description, value);//////////////////////////////////////////////////////
+   			Restaurant.getInstance().updateJobTitle(jobTitleUI.getIdJobTitle(), value, min, max);
    			showAlert(AlertType.CONFIRMATION ,"Combo update" , "Combo is updated in the system");
    			minimum_textfield.setText(EMPTY);
    			maximum_textfield.setText(EMPTY);

@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
+import controller.Restaurant;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -32,12 +33,10 @@ public class GraphViewController extends Controller implements IConstantWindow, 
 	@FXML private CategoryAxis category_axis_line;
 	@FXML private NumberAxis number_axis_line;
 	private ChartType chartType;
-	private ReportUI reportUI;
 
 	
 	public void initData(ReportUI pReportUI, ChartType pChartType) 
 	{
-		  reportUI = pReportUI;
 		  chartType = pChartType;
 	}
 
@@ -46,75 +45,74 @@ public class GraphViewController extends Controller implements IConstantWindow, 
 		chartType = GlobalChart.getInstance().getChartType();
 		if(chartType== ChartType.Pie_Chart_Type)
 		{
-			ObservableList<PieChart.Data> pieChartData =
-	                FXCollections.observableArrayList(
-	                new PieChart.Data("Grapefruit", 13),
-	                new PieChart.Data("Oranges", 25),
-	                new PieChart.Data("Plums", 10),
-	                new PieChart.Data("Pears", 22),
-	                new PieChart.Data("Apples", 30),
-	                new PieChart.Data("Apples", 30));
-	        pie_chart.setData(pieChartData);
-	        pie_chart.setTitle("Imported Fruits");
-	        
+
+			if(ReportType.Branch_Type_Branch == ReportUI.getInstance().getType() || ReportType.Branch_Type_General == ReportUI.getInstance().getType() )
+			{
+				
+			}
+			else if(ReportType.Date_Type_Branch == ReportUI.getInstance().getType() || ReportType.Date_Type_Manager == ReportUI.getInstance().getType())
+			{
+			}
+			else if(ReportType.Product_Type_Branch == ReportUI.getInstance().getType() || ReportType.Product_Type_Manager == ReportUI.getInstance().getType())
+			{
+				pie_chart.setData(Restaurant.getInstance().getPieChartDataProductByGeneral());
+				pie_chart.setTitle("Product vs Sale");
+				
+				bar_chart.setVisible(false);
+				line_chart.setVisible(false);
+				pie_chart.setVisible(true);
+			}
+			else
+			{
+			}	
+
 	        bar_chart.setVisible(false);
 	    	line_chart.setVisible(false);
 	    	pie_chart.setVisible(true);
 		}
 		else if(chartType== ChartType.Bar_Chart_Type)
 		{
-	        category_axis.setLabel("Product");
-	        category_axis.setCategories(FXCollections.<String> observableArrayList(Arrays.asList(
-	                "January", 
-	                "February",
-	                "March")));
-	        number_axis.setLabel("Sales");
-	        bar_chart.setTitle("StackedBarChart");
-	          
-	        XYChart.Series<String,Number> series1 = new XYChart.Series();
-	        series1.setName("XYChart.Series 1");
-	           
-	        series1.getData().add(new XYChart.Data("January", 100));
-	        series1.getData().add(new XYChart.Data("February", 200));
-	        series1.getData().add(new XYChart.Data("March", 50));
-	         
-	          
-	        bar_chart.getData().addAll(series1);
-	        
-	        bar_chart.setVisible(true);
-	    	line_chart.setVisible(false);
-	    	pie_chart.setVisible(false);
+			
+			if(ReportType.Branch_Type_Branch == ReportUI.getInstance().getType() || ReportType.Branch_Type_General == ReportUI.getInstance().getType() )
+			{
+				
+			}
+			else if(ReportType.Date_Type_Branch == ReportUI.getInstance().getType() || ReportType.Date_Type_Manager == ReportUI.getInstance().getType())
+			{
+			}
+			else if(ReportType.Product_Type_Branch == ReportUI.getInstance().getType() || ReportType.Product_Type_Manager == ReportUI.getInstance().getType())
+			{
+		        category_axis.setLabel("Product");
+		        number_axis.setLabel("Sales");
+		        bar_chart.setTitle("Product vs Sales");
+		        bar_chart.getData().addAll(Restaurant.getInstance().getProductBarByGeneral());
+
+				pie_chart.setTitle("Product vs Sale");
+				
+				bar_chart.setVisible(true);
+				line_chart.setVisible(false);
+				pie_chart.setVisible(false);
+			}
+			else
+			{
+			}	
+
+	        //bar_chart.setVisible(false);
+	    	//line_chart.setVisible(false);
+	    	//pie_chart.setVisible(true);
 		}
 		else
 		{
-	        category_axis_line.setLabel("Product");
-	       // category_axis_line.setCategories(FXCollections.<String> observableArrayList(Arrays.asList(
-	       //         "January", 
-	      //          "February",
-	       //         "March")));
-	        number_axis_line.setLabel("Sales");
-	           
-	        line_chart.setTitle("StackedBarChart");
-	          
-	        XYChart.Series<String,Number> series1 = new XYChart.Series();
-	        series1.setName("XYChart.Series 1");
-	           
-	        series1.getData().add(new XYChart.Data("January", 100));
-	        series1.getData().add(new XYChart.Data("February", 200));
-	        series1.getData().add(new XYChart.Data("March", 50));
-	          
-	        XYChart.Series<String,Number> series2 = new XYChart.Series();
-	        series2.setName("XYChart.Series 2");
-	           
-	        series2.getData().add(new XYChart.Data("January", 150));
-	        series2.getData().add(new XYChart.Data("February", 100));
-	        series2.getData().add(new XYChart.Data("March", 60));
-	          
-	        line_chart.getData().addAll(series1, series2);
-	        
-	        bar_chart.setVisible(false);
-	    	line_chart.setVisible(true);
-	    	pie_chart.setVisible(false);
+			category_axis.setLabel("Product");
+	        number_axis.setLabel("Sales");
+	        line_chart.setTitle("Product vs Sales");
+	        line_chart.getData().addAll(Restaurant.getInstance().getProductBarByGeneral());
+
+			pie_chart.setTitle("Product vs Sale");
+			
+			bar_chart.setVisible(false);
+			line_chart.setVisible(true);
+			pie_chart.setVisible(false);
 		}
 	}
 	

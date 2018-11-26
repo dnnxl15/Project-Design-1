@@ -27,7 +27,7 @@
                   <TableColumn fx:id="columnMinimum" minWidth="0.0" prefWidth="216.800048828125" text="Minimum" />
                </columns>
             </TableView>
-            <JFXButton fx:id="signUp_button" layoutX="365.0" layoutY="527.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Update" textFill="WHITE">
+            <JFXButton fx:id="signUp_button" layoutX="365.0" layoutY="527.0" onAction="#updateRole" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Update" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -46,7 +46,7 @@
             <JFXTextField fx:id="maximum_textfield" layoutX="141.0" layoutY="457.0" prefHeight="26.0" prefWidth="202.0" promptText="Maximum" />
             <JFXComboBox fx:id="role_combobox" layoutX="141.0" layoutY="389.0" prefHeight="26.0" prefWidth="202.0" promptText="Rol" />
             <JFXTextField fx:id="newRole_textfield" layoutX="507.0" layoutY="396.0" prefHeight="26.0" prefWidth="202.0" promptText="Role" />
-            <JFXButton fx:id="signUp_button1" layoutX="197.0" layoutY="527.0" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Add" textFill="WHITE">
+            <JFXButton fx:id="signUp_button1" layoutX="197.0" layoutY="527.0" onAction="#addRole" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Add" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>

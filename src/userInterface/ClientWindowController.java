@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
+import library.ClientGlobal;
 
 public class ClientWindowController extends Controller implements Initializable
 {
@@ -80,7 +81,7 @@ public class ClientWindowController extends Controller implements Initializable
     	}
     	else
     	{
-   			//Restaurant.getInstance().updateEmployee(selected.getIdEmployee(), name, lastname, salary, value);
+   			Restaurant.getInstance().updateClient(ClientGlobal.getInstance().getId(), name, lastname, identification, ClientGlobal.getInstance().getUsername(), new_password);
    			showAlert(AlertType.CONFIRMATION ,"Client update" , "Client is updated in the system");
    			lastname_textfield.setText(EMPTY);
    			name_textfield.setText(EMPTY);

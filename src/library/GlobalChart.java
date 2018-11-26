@@ -1,11 +1,13 @@
 package library;
 
 import library.enumerations.ChartType;
+import library.enumerations.ReportType;
 
 public class GlobalChart 
 {
 	private ChartType chartType;
 	private static GlobalChart globalChart;
+	private ReportType report;
 
 	private GlobalChart()
 	{
@@ -27,5 +29,13 @@ public class GlobalChart
 
 	public void setChartType(ChartType chartType) {
 		this.chartType = chartType;
+	}
+
+	public ReportType getReport() {
+		return report;
+	}
+
+	public void setReport(ReportType report) {
+		this.report = report;
 	}
 }

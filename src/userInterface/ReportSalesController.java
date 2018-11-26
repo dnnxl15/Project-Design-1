@@ -4,10 +4,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controller.Restaurant;
 import domain.Commodity;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +23,7 @@ import javafx.stage.StageStyle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import library.EmployeeUI;
 import library.Gain;
 import library.GlobalChart;
@@ -35,20 +38,18 @@ public class ReportSalesController extends Controller implements IConstantWindow
 	@FXML private TableColumn<Gain, Number> columnSale;
 	@FXML private TableView<Gain> saleTable;
 	@FXML private Button cancel_button;
+	@FXML private Label mount_restaurant_label;
 	
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) 
 	{
 		columnProduct.setText(getTypeText(ReportUI.getInstance().getType()));
 		columnProduct.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getTypeName()));
-		columnSale.setCellValueFactory(cellData->new SimpleIntegerProperty(cellData.getValue().getGain()));
+		columnSale.setCellValueFactory(cellData->new SimpleDoubleProperty(cellData.getValue().getGain()));
 		ObservableList<Gain> newListSale = null;
-		//newListRestaurant = FXCollections.observableArrayList(Restaurant.getInstance().getRestaurant());//ControlSystem.getInstance().loadProduct());
-		//mount_restaurant_label.setText("("+newListRestaurant.size()+")");
-		//employee_table.setItems(newListEmployee);
-		//result_label.setText("("+newListEmployee.size()+")");
-		
+		newListSale = FXCollections.observableArrayList(Restaurant.getInstance().getProductByGeneral());
+		mount_restaurant_label.setText("("+newListSale.size()+")");
+		saleTable.setItems(newListSale);		
 	}
 	
 	public String getTypeText(ReportType pType)

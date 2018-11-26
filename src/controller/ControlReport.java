@@ -61,7 +61,7 @@ public class ControlReport extends Control
             	 listProductTmp.add(data);
               }
              //Combox
-             ResultSet resultSet2 = connectionPool.request(IProcedure.REPORT_PRODUCT_PROCEDURE, null);
+             ResultSet resultSet2 = connectionPool.request(IProcedure.REPORT_COMBO_PROCEDURE, null);
              while (resultSet2.next()) 
              {
             	 String name =  resultSet2.getString("name");
@@ -97,7 +97,7 @@ public class ControlReport extends Control
             	 listGain.add(gainTmp);
               }
              // Combobox
-             ResultSet resultSet2 = connectionPool.request(IProcedure.REPORT_PRODUCT_PROCEDURE, null);
+             ResultSet resultSet2 = connectionPool.request(IProcedure.REPORT_COMBO_PROCEDURE, null);
              while (resultSet2.next()) 
              {
             	 String name =  resultSet2.getString("name");
@@ -131,14 +131,17 @@ public class ControlReport extends Control
             	 String name =  resultSet.getString("name");
             	 float gain = resultSet.getInt("Gain");
             	 series1.getData().add(new XYChart.Data(name, gain));
+            	 System.out.println(name);
               }
              // Combobox
-             ResultSet resultSet2 = connectionPool.request(IProcedure.REPORT_PRODUCT_PROCEDURE, null);
+             ResultSet resultSet2 = connectionPool.request(IProcedure.REPORT_COMBO_PROCEDURE, null);
              while (resultSet2.next()) 
              {
             	 String name =  resultSet2.getString("name");
             	 float gain = resultSet2.getInt("Gain");
             	 series1.getData().add(new XYChart.Data(name, gain));
+            	 System.out.println(name);
+
               }
              return series1;
          }
