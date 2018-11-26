@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import library.ClientGlobal;
 
@@ -22,13 +23,16 @@ public class ClientWindowController extends Controller implements Initializable
 	@FXML private TextField identification_textfield;
 	@FXML private TextField old_password_textfield;
 	@FXML private TextField new_password_textfield;
+	@FXML private Button cancel_button;
+	@FXML private Label label_user;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		lastname_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
-		email_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
-		name_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
-	//	identification_textfield.setText(ClientGlobal.getInstance().getClient().getIdentification());
+		//label_user.setText(ClientGlobal.getInstance().getClient().getUsername());
+		//lastname_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
+		//email_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
+		//name_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
+	    //identification_textfield.setText(ClientGlobal.getInstance().getClient().getIdentification());
 	}
 	
 	public void showHome()
@@ -93,5 +97,14 @@ public class ClientWindowController extends Controller implements Initializable
    			email_textfield.setText(EMPTY);
    			initialize(null, null);
     	}
+	}
+	
+	public void closeWindow()
+	{
+		boolean value = showAlert(AlertType.CONFIRMATION, SIGN_OFF, MESSAGE_SIGN_OFF);
+		if(value)
+		{
+			closeWindow(cancel_button);
+		}
 	}
 }

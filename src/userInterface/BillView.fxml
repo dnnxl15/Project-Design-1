@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.PayClientController">
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.BillViewController">
    <children>
       <DoubleValidator layoutX="459.0" layoutY="197.0" />
       <AnchorPane layoutX="38.0" layoutY="48.0" prefHeight="590.0" prefWidth="799.0" style="-fx-background-color: #ffffff;">
@@ -66,7 +66,7 @@
                </font>
             </Label>
             <JFXTextField fx:id="direction_textfield" layoutX="93.0" layoutY="413.0" prefHeight="26.0" prefWidth="230.0" />
-            <JFXRadioButton fx:id="pickUp_radioButton" layoutX="101.0" layoutY="329.0" onAction="#markPickUp" text="Pick up" />
+            <JFXRadioButton fx:id="pickUp_radioButton" layoutX="101.0" layoutY="329.0" text="Pick up" />
          </children>
       </AnchorPane>
    </children>

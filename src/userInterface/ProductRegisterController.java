@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import library.GlobalUser;
 import javafx.scene.control.Alert.AlertType;
 
 public class ProductRegisterController extends Controller
@@ -35,7 +36,7 @@ public class ProductRegisterController extends Controller
     	}
     	else
     	{
-   			Restaurant.getInstance().createProduct(name, price, description, "dnnxl"); //////////////////////
+   			Restaurant.getInstance().createProduct(name, price, description, GlobalUser.getInstance().getUsername()); //////////////////////
    			showAlert(AlertType.CONFIRMATION ,"Product register" , "Product is registered in the system");
    			name_textfield.setText(EMPTY);
    			description_textarea.setText(EMPTY);

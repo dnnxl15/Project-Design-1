@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import library.GlobalUser;
 import javafx.scene.control.Alert.AlertType;
 
 import domain.*;
@@ -27,7 +28,6 @@ public class ComboRegisterController extends Controller implements Initializable
 	@FXML private TableColumn<Commodity, String> columnName;
 	@FXML private Button add_button;
 	
-	
 	@FXML private TextField name_textfield;
 	@FXML private TextField price_textfield;
 	@FXML private TextArea description_textarea;
@@ -37,7 +37,6 @@ public class ComboRegisterController extends Controller implements Initializable
 	@FXML private TextArea description_textarea1;
 	@FXML private Button cancel_button;
 
-	
 	public void registerCombo()
 	{
     	String name = name_textfield.getText().toString();
@@ -59,7 +58,7 @@ public class ComboRegisterController extends Controller implements Initializable
     	}
     	else
     	{
-   			Restaurant.getInstance().createCombo(name, price, description, "dnnxl");//////////////////////////////////////////////////////
+   			Restaurant.getInstance().createCombo(name, price, description, GlobalUser.getInstance().getUsername());
    			showAlert(AlertType.CONFIRMATION ,"Product register" , "Product is registered in the system");
    			name_textfield.setText(EMPTY);
    			description_textarea.setText(EMPTY);

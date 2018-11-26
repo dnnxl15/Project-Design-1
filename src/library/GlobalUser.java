@@ -1,6 +1,7 @@
 package library;
 
 import domain.Client;
+import domain.Manager;
 
 public class GlobalUser 
 {
@@ -9,6 +10,7 @@ public class GlobalUser
 	private boolean subManager;
 	private String legalNumber;
 	private boolean manager;
+	private String username;
 
 	private GlobalUser()
 	{
@@ -54,6 +56,14 @@ public class GlobalUser
 
 	public void setManager(boolean manager) {
 		this.manager = manager;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 

@@ -1,31 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.validation.DoubleValidator?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.PayClientController">
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.ServiceEvaluationView">
    <children>
       <DoubleValidator layoutX="459.0" layoutY="197.0" />
-      <AnchorPane layoutX="38.0" layoutY="48.0" prefHeight="590.0" prefWidth="799.0" style="-fx-background-color: #ffffff;">
+      <AnchorPane layoutX="38.0" layoutY="48.0" prefHeight="599.0" prefWidth="799.0" style="-fx-background-color: #ffffff;">
          <children>
-            <Label layoutX="291.0" layoutY="36.0" text="Service evaluation" textFill="#1a6dd7">
+            <Label layoutX="294.0" layoutY="25.0" text="Service evaluation" textFill="#1a6dd7">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
-            <JFXButton fx:id="cancel_button" layoutX="320.0" layoutY="530.0" onAction="#closeWindow" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
+            <JFXButton layoutX="208.0" layoutY="529.0" onAction="#sendEvaluation" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #0f9d58;" text="Send" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <Label layoutX="339.0" layoutY="156.0" text="Payment method" textFill="#1a6dd7">
+            <Label layoutX="233.0" layoutY="209.0" text="What do you think about our service ?" textFill="#1a6dd7">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="295.0" layoutY="261.0" text="Please send us the comments" textFill="#1a6dd7">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
+            <JFXTextArea fx:id="textArea_service_evaluation" layoutX="168.0" layoutY="318.0" prefHeight="169.0" prefWidth="464.0" promptText="Comments" />
+            <Line endX="246.0" layoutX="400.0" layoutY="85.0" startX="-242.8000030517578" />
+            <ImageView fitHeight="69.0" fitWidth="73.0" layoutX="367.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/essay.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="cancel_button" layoutX="446.0" layoutY="529.0" onAction="#closeWindow" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
    </children>

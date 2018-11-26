@@ -122,10 +122,7 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	@FXML private Label branch_label_report;
 	@FXML private ImageView branch_image_report;
 	@FXML private Button branch_button_report;
-	
-	
 	@FXML private AnchorPane panel_main;
-
 
 	private boolean submanager;
 	private boolean manager;
@@ -139,10 +136,7 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		showComponentClient(false);
 		showComponentMenu(false);
 		showComponentHome(true);
-		
 	}
-	
-	
 	
 	public void showComponentHome(boolean pVisible)
 	{
@@ -221,10 +215,7 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		showComponentEmployee(false);
 		showComponentClient(false);
 		showComponentUser(true);
-
 	}
-	
-
 	
 	public void showComponentUser(boolean pVisible)
 	{

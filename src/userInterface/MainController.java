@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import library.ClientGlobal;
+import library.GlobalUser;
 import library.IConstant;
 import library.interfaces.IConstantWindow;
 
@@ -48,17 +49,25 @@ public class MainController extends Controller implements Initializable, IConsta
     	boolean mainManagerValue = Restaurant.getInstance().verifyMainManager(username, password);
     	if(clientValue)
     	{
-        	openWindow(SIGN_IN_CLIENT_WINDOW_UI, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+        	openWindow(CLIENT_MAIN_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
         	//ClientGlobal.getInstance().setClient(Restaurant.getInstance().getClientInfo(username, password));
         	closeWindow(enter_button);
     	}
     	else if(branchManagerValue)
     	{
-    		
+    		openWindow(MANAGER_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+        	GlobalUser.getInstance().setSubManager(true);
+        	//GlobalUser.getInstance().setLegalNumber(Restaurant.getInstance().getSubBranchInfo(username, password).getBranch());
+        	//GlobalUser.getInstance().setUsername(Restaurant.getInstance().getSubBranchInfo(username, password).getUsername());
+
+        	closeWindow(enter_button);
     	}
     	else if(mainManagerValue)
     	{
-    		
+    		openWindow(MANAGER_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+        	GlobalUser.getInstance().setManager(true);
+        	//GlobalUser.getInstance().setUsername(Restaurant.getInstance().getManagerInfo(username, password).getUsername());
+        	closeWindow(enter_button);
     	}
     	else
     	{

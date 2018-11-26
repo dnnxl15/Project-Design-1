@@ -77,7 +77,7 @@ public class PayClientController extends Controller implements IConstantWindow, 
 	public void initialize(URL arg0, ResourceBundle arg1) 
 	{		
 	    
-	    comboBoxPaymentMethod.getItems().clear();
+		comboBoxPaymentMethod.getItems().clear();
 	    comboBoxPaymentMethod.getItems().addAll(TRANSFER_TEXT, CHECK_TEXT, CREDIT_TEXT, CASH_TEXT);
 	}
 	
@@ -158,6 +158,22 @@ public class PayClientController extends Controller implements IConstantWindow, 
 		if(value)
 		{
 			closeWindow(cancel_button);
+		}
+	}
+	
+	public void payBill()
+	{
+		try {
+			openWindow(BILL_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+			try {
+				Thread.sleep(OREDER_WAIT);
+				openWindow(SERVICE_EVALUATION_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
