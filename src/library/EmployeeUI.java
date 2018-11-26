@@ -10,7 +10,7 @@ public class EmployeeUI
 	private double salary;
 	private String rol;
 	private int idEmployee;
-        private int restaurant;
+    private int restaurant;
 
     public EmployeeUI(int idEmployee,String name, String lastname, String email, double salary, String rol,int idRestaurant) {
         this.name = name;
@@ -19,7 +19,7 @@ public class EmployeeUI
         this.salary = salary;
         this.rol = rol;
         this.idEmployee = idEmployee;
-        this.restaurant = idRestaurant;
+        this.setRestaurant(idRestaurant);
     }
         
         
@@ -63,6 +63,20 @@ public class EmployeeUI
 	}
 	public void setSalary(double salary) {
 		this.salary = salary;
+	}
+
+
+
+
+	public int getRestaurant() {
+		return restaurant;
+	}
+
+
+
+
+	public void setRestaurant(int restaurant) {
+		this.restaurant = restaurant;
 	}
 
 }

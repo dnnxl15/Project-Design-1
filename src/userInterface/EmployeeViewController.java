@@ -53,7 +53,7 @@ public class EmployeeViewController extends Controller implements Initializable,
 		columnLastaname.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getLastname()));
 		columnSalary.setCellValueFactory(cellData->new SimpleDoubleProperty(cellData.getValue().getSalary()));
 		columnRol.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getRol()));
-		//columnRestaurant.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue()));
+		columnRestaurant.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getRestaurant()));
 		employee_table.getSelectionModel().selectedItemProperty().addListener(
 	            (observable, oldValue, newValue) -> showInfoEmployeeUI((EmployeeUI) newValue));
 		ObservableList<EmployeeUI> newListEmployee;
@@ -93,7 +93,7 @@ public class EmployeeViewController extends Controller implements Initializable,
 			lastname_textfield.setText(String.valueOf(pEmployeeUI.getLastname()));
 			slary_textfield.setText(String.valueOf(pEmployeeUI.getSalary()));
 			role_combobox.getSelectionModel().select(pEmployeeUI.getRol());
-			//restaurant_combobox.getSelectionModel().select(pEmployeeUI.getRol());
+			restaurant_combobox.getSelectionModel().select(pEmployeeUI.getRestaurant());
 			selected = pEmployeeUI;
 		}
 	}
