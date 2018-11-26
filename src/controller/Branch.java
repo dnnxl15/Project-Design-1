@@ -185,7 +185,7 @@ public class Branch
 		return ManagerFacade.getInstance().getEmployee();
 	}
         
-        public void updateEmployee(int pEmployeeID,String newName, String newLastName , float newSalary,String newRol ,int newidRestaurant)
+        public void updateEmployee(int pEmployeeID,String newName, String newLastName , float newSalary,String newRol ,String newidRestaurant)
 	{
 		ArrayList<Object> listParameters = new ArrayList<Object>();
 		listParameters.add(pEmployeeID);

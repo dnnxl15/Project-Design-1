@@ -131,7 +131,7 @@ public class Restaurant
 	{
 		Branch.getInstance().disableCombo(name);
 	}
-        public void updateEmployee(int pEmployeeID,String newName, String newLastName , float newSalary,String newRol,int newidRestaurant){
+        public void updateEmployee(int pEmployeeID,String newName, String newLastName , float newSalary,String newRol,String newidRestaurant){
                 Branch.getInstance().updateEmployee(pEmployeeID,newName,newLastName,newSalary,newRol,newidRestaurant);
         }
         public void updateClient(int pClientID,String pNewName, String pNewLastname , int pNewIdentification,String pNewUsername ,int pNewPassword	)
