@@ -1,5 +1,6 @@
 package userInterface;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -12,8 +13,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import library.ClientGlobal;
+import library.interfaces.IConstantWindow;
 
-public class ClientWindowController extends Controller implements Initializable
+public class ClientWindowController extends Controller implements Initializable, IConstantWindow
 {
 	@FXML private AnchorPane panel_home;
 	@FXML private AnchorPane panel_user;
@@ -33,6 +35,20 @@ public class ClientWindowController extends Controller implements Initializable
 		//email_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
 		//name_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
 	    //identification_textfield.setText(ClientGlobal.getInstance().getClient().getIdentification());
+	}
+	
+	public void showMenuWindow()
+	{
+		try {
+			openWindow(ORDER_CLIENT_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+	}
+	
+	public void showPageConstruction()
+	{
+		showAlert(AlertType.WARNING ,"Page underconstruction" , "Page underconstruction please come back later");
 	}
 	
 	public void showHome()

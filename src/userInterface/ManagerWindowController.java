@@ -379,7 +379,6 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 	
 	public void openRegisterManager()

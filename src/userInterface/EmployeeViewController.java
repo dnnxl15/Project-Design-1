@@ -61,6 +61,7 @@ public class EmployeeViewController extends Controller implements Initializable,
 		if(GlobalUser.getInstance().isManager())
 		{
 			newListEmployee = FXCollections.observableArrayList(Restaurant.getInstance().getEmployee());
+			employee_table.setItems(newListEmployee);
 		}
 		else
 		{

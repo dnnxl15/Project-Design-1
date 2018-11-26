@@ -14,6 +14,18 @@ public class GlobalCart
 		setListCommodity(new ArrayList<Commodity>());
 	}
 	
+	public double calculateMount()
+	{
+		int index = 0;
+    	double mount = 0;
+    	while(index < listCommodity.size())
+    	{
+    		mount = mount + listCommodity.get(index).getMount()*listCommodity.get(index).getPrice();
+    		index++;
+    	}
+    	return mount;
+	}
+	
 	public static GlobalCart getInstance()
 	{
 		if(globalCart == null)

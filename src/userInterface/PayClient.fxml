@@ -17,13 +17,13 @@
       <DoubleValidator layoutX="459.0" layoutY="197.0" />
       <AnchorPane layoutX="38.0" layoutY="48.0" prefHeight="590.0" prefWidth="799.0" style="-fx-background-color: #ffffff;">
          <children>
-            <StackPane fx:id="stackPanel" layoutX="-1.0" layoutY="-3.0" prefHeight="597.0" prefWidth="799.0" />
+            <StackPane fx:id="stackPanel" layoutX="-1.0" layoutY="-3.0" prefHeight="607.0" prefWidth="799.0" />
             <Label layoutX="375.0" layoutY="31.0" text="Pay" textFill="#1a6dd7">
                <font>
                   <Font size="27.0" />
                </font>
             </Label>
-            <JFXButton fx:id="signUp_button1" layoutX="228.0" layoutY="528.0" onAction="#payBill" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #0f9d58;" text="Pay" textFill="WHITE">
+            <JFXButton fx:id="signUp_button1" layoutX="228.0" layoutY="545.0" onAction="#payMethod" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #0f9d58;" text="Pay" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -40,7 +40,7 @@
                   <Font size="19.0" />
                </font>
             </Label>
-            <JFXButton fx:id="cancel_button" layoutX="487.0" layoutY="528.0" onAction="#closeWindow" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
+            <JFXButton fx:id="cancel_button" layoutX="487.0" layoutY="547.0" onAction="#closeWindow" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
@@ -55,31 +55,37 @@
                   <Font size="14.0" />
                </font>
             </JFXButton>
-            <Label layoutX="94.0" layoutY="110.0" text="Payment method" textFill="#1a6dd7">
+            <Label layoutX="94.0" layoutY="93.0" text="Payment method" textFill="#1a6dd7">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="comboBoxPaymentMethod" layoutX="93.0" layoutY="145.0" onAction="#handleComboBoxAction" prefHeight="26.0" prefWidth="229.0" promptText="Payment method" />
-            <JFXTextField fx:id="number_card_something" layoutX="93.0" layoutY="230.0" prefHeight="26.0" prefWidth="230.0" />
-            <Label fx:id="label_something" layoutX="93.0" layoutY="192.0" text="Credit card number" textFill="#1a6dd7">
+            <JFXComboBox fx:id="comboBoxPaymentMethod" layoutX="93.0" layoutY="137.0" onAction="#handleComboBoxAction" prefHeight="26.0" prefWidth="229.0" promptText="Payment method" />
+            <JFXTextField fx:id="number_card_something" layoutX="93.0" layoutY="220.0" prefHeight="26.0" prefWidth="230.0" />
+            <Label fx:id="label_something" layoutX="93.0" layoutY="183.0" text="Credit card number" textFill="#1a6dd7">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="91.0" layoutY="278.0" text="Deliver form" textFill="#1a6dd7">
+            <Label layoutX="91.0" layoutY="263.0" text="Deliver form" textFill="#1a6dd7">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="labelDirection" layoutX="93.0" layoutY="375.0" text="Direction" textFill="#1a6dd7">
+            <Label fx:id="labelDirection" layoutX="93.0" layoutY="348.0" text="Direction" textFill="#1a6dd7">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="direction_textfield" layoutX="93.0" layoutY="413.0" prefHeight="26.0" prefWidth="230.0" />
-            <JFXRadioButton fx:id="express_radioButton" layoutX="231.0" layoutY="327.0" onAction="#markExpress" text="Express" />
-            <JFXRadioButton fx:id="pickUp_radioButton" layoutX="101.0" layoutY="329.0" onAction="#markPickUp" text="Pick up" />
+            <JFXTextField fx:id="direction_textfield" layoutX="94.0" layoutY="387.0" prefHeight="26.0" prefWidth="230.0" />
+            <JFXRadioButton fx:id="express_radioButton" layoutX="231.0" layoutY="308.0" onAction="#markExpress" text="Express" />
+            <JFXRadioButton fx:id="pickUp_radioButton" layoutX="101.0" layoutY="309.0" onAction="#markPickUp" text="Pick up" />
+            <Label fx:id="labelRestaurant" layoutX="93.0" layoutY="433.0" text="Restaurant" textFill="#1a6dd7">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <JFXComboBox fx:id="comboboxrestaurant" layoutX="94.0" layoutY="472.0" prefHeight="26.0" prefWidth="229.0" promptText="Payment method" />
          </children>
       </AnchorPane>
    </children>

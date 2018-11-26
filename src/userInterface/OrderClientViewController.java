@@ -87,14 +87,22 @@ public class OrderClientViewController extends Controller implements Initializab
 	
 	public void selectedProduct()
 	{
-		// Set Amount
-		GlobalCart.getInstance().addProduct(comoditySelected);
+		if(comoditySelected == null)
+		{
+			showAlert(AlertType.ERROR, "Must select an item", "Must select an item to add to the cart");
+		}
+		else
+		{
+			comoditySelected.setMount(spinner.getValue().intValue());
+			GlobalCart.getInstance().addProduct(comoditySelected);
+		}
 	}
 	
 	public void openCartWindow()
 	{
 		try {
 			openWindow(CART_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+			minimizeWindow(cancel_button);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -1,5 +1,6 @@
 package userInterface;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -79,6 +80,16 @@ public class SeeCartClient extends Controller implements Initializable, IConstan
 		boolean value = showAlert(AlertType.CONFIRMATION, SIGN_OFF, MESSAGE_SIGN_OFF);
 		if(value){
 			closeWindow(cancel_button);
+		}
+	}
+	
+	public void openCartPayWindow()
+	{
+		try {
+			openWindow(PAY_CLIENT_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

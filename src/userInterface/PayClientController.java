@@ -2,6 +2,7 @@ package userInterface;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -23,6 +24,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import library.ClientGlobal;
+import library.GlobalCart;
+import library.GlobalPay;
+import library.IConstant;
+import library.RestaurantUI;
 import library.interfaces.IConstantWindow;
 
 public class PayClientController extends Controller implements IConstantWindow, Initializable
@@ -41,6 +47,9 @@ public class PayClientController extends Controller implements IConstantWindow, 
 	@FXML private Label label_something;
 	@FXML private TextField direction_textfield;
 	@FXML private Label labelDirection;
+	@FXML private Label labelRestaurant;
+	@FXML private ComboBox<String> comboboxrestaurant;
+
 	
 	public void payMethod() throws IOException
     {
@@ -70,16 +79,31 @@ public class PayClientController extends Controller implements IConstantWindow, 
     		number_card_something.setText(EMPTY);
 			showAlert(AlertType.CONFIRMATION ,"Transaction" , "Transaction completed");
     	}	
+    	payBill();
     	
     }
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) 
 	{		
-	    
+		comboboxrestaurant.getItems().clear();
+		comboboxrestaurant.getItems().addAll(getDirections(Restaurant.getInstance().getRestaurant()));
 		comboBoxPaymentMethod.getItems().clear();
 	    comboBoxPaymentMethod.getItems().addAll(TRANSFER_TEXT, CHECK_TEXT, CREDIT_TEXT, CASH_TEXT);
+	    labelMountTotal.setText(String.valueOf(GlobalCart.getInstance().calculateMount()));
 	}
+	
+	public ArrayList<String> getDirections(ArrayList<RestaurantUI> pListRestaurant)
+	{
+		ArrayList<String> listDirections = new ArrayList<String>();
+		int index = 0;
+		while(pListRestaurant.size()>index){
+			listDirections.add(pListRestaurant.get(index).getAddress());
+			index++;
+		}
+		return listDirections;
+	}
+	
 	
 	@FXML
 	private void handleComboBoxAction() {
@@ -161,8 +185,81 @@ public class PayClientController extends Controller implements IConstantWindow, 
 		}
 	}
 	
+	public String getRestaurantLegalNumber(String pDirection, ArrayList<RestaurantUI> pListRestaurant)
+	{
+		String legal;
+		int index = 0;
+		while(pListRestaurant.size()>index)
+		{
+			if(pListRestaurant.get(index).getAddress().equals(pDirection))
+			{
+				return pListRestaurant.get(index).getLegalNumber();
+			}
+			index++;
+		}
+		return "";
+	}
+	
+	public int translatePaymentMethod(String pPayment)
+	{
+		if(pPayment.equals(IConstant.CASH_TEXT))
+		{
+			return 0;
+		}
+		else if(pPayment.equals(IConstant.CHECK_TEXT))
+		{
+			return 1;
+		}
+		else if(pPayment.equals(IConstant.CREDIT_TEXT))
+		{
+			return 2;
+		}
+		else
+		{
+			return 3;
+		}
+	}
+
+	
+	public int translateDeliveryType()
+	{
+		if(express_radioButton.isSelected())
+		{
+			return 1;
+			}
+		else
+		{
+			return 0;
+			}
+	}
+	
+	public String translateDeliveryTypeString()
+	{
+		if(express_radioButton.isSelected())
+		{
+			return "Express";
+			}
+		else
+		{
+			return "Pick up";
+			}
+	}
+	
 	public void payBill()
 	{
+		String username = ClientGlobal.getInstance().getClient().getUsername();
+		int typeDelivery = translateDeliveryType();
+		int paymethod = translatePaymentMethod(comboBoxPaymentMethod.getSelectionModel().getSelectedItem().toString());
+		String restaurant = comboboxrestaurant.getSelectionModel().getSelectedItem().toString();
+		String legalNumber = getRestaurantLegalNumber(restaurant, Restaurant.getInstance().getRestaurant());
+		
+		GlobalPay.getInstance().setDeliever(translateDeliveryTypeString());
+		GlobalPay.getInstance().setDirection(direction_textfield.getText().toString());
+		GlobalPay.getInstance().setInfo(direction_textfield.getText().toString());
+		GlobalPay.getInstance().setListCommodity(GlobalCart.getInstance().getListCommodity());
+		GlobalPay.getInstance().setPaymentMethod(comboBoxPaymentMethod.getSelectionModel().getSelectedItem().toString());
+		GlobalPay.getInstance().setRestaurant(restaurant);
+		
 		try {
 			openWindow(BILL_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
 			try {

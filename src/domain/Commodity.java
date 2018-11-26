@@ -13,6 +13,7 @@ public class Commodity {
     private String name;
     private double price;
     private int idPerson;
+    private int mount;
    
     public int getIdPerson() {
         return idPerson;
@@ -69,6 +70,14 @@ public class Commodity {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public int getMount() {
+		return mount;
+	}
+
+	public void setMount(int mount) {
+		this.mount = mount;
 	}
     
     
