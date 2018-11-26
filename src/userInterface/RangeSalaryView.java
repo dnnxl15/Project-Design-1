@@ -113,8 +113,8 @@ public class RangeSalaryView extends Controller implements Initializable
     	}
     	else
     	{
-   			//Restaurant.getInstance().updateProduct(product.getIdPerson(), name, price, description, value);//////////////////////////////////////////////////////
-   			showAlert(AlertType.CONFIRMATION ,"Combo update" , "Combo is updated in the system");
+   			//Restaurant.getInstance()max.(product.getIdPerson(), name, price, description, value);//////////////////////////////////////////////////////
+   			showAlert(AlertType.CONFIRMATION ,"Role created" , "Role created in the system");
    			minimum_textfield.setText(EMPTY);
    			maximum_textfield.setText(EMPTY);
    			initialize(null,null);

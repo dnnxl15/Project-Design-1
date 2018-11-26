@@ -62,6 +62,9 @@ public class EmployeeViewController extends Controller implements Initializable,
 		employee_table.setItems(newListEmployee);
 		role_combobox.getItems().clear();
 		role_combobox.getItems().addAll(getRole(Restaurant.getInstance().getJobTitle()));
+		
+		restaurant_combobox.getItems().clear();
+		restaurant_combobox.getItems().addAll(getLegalNumber(Restaurant.getInstance().getRestaurant()));
 	}
 	
 	public void closeWindow()
@@ -145,7 +148,7 @@ public class EmployeeViewController extends Controller implements Initializable,
     	}
     	else
     	{
-   		//	Restaurant.getInstance().updateEmployee(selected.getIdEmployee(), name, lastname, salary, value);////////////
+   			Restaurant.getInstance().updateEmployee(selected.getIdEmployee(), name, lastname, salary, value, restaurant);
    			showAlert(AlertType.CONFIRMATION ,"Employee update" , "Employee is updated in the system");
    			lastname_textfield.setText(EMPTY);
    			name_textfield.setText(EMPTY);
