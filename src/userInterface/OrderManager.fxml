@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.validation.DoubleValidator?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="687.0" prefWidth="879.0" style="-fx-background-color: #2a23a5; -fx-background-image: url('file:/C:/Users/dnnxl/git/Project-Design-1/src/image/03.jpg');" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="userInterface.OrderManager">
+   <children>
+      <DoubleValidator layoutX="459.0" layoutY="197.0" />
+      <AnchorPane layoutX="38.0" layoutY="48.0" prefHeight="590.0" prefWidth="799.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="365.0" layoutY="26.0" text="Order" textFill="#1a6dd7">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <TableView fx:id="product_table" layoutX="33.0" layoutY="113.0" prefHeight="378.0" prefWidth="446.0">
+               <columns>
+                  <TableColumn fx:id="columnName" prefWidth="134.39999389648438" text="Username" />
+                  <TableColumn fx:id="columnPrice" minWidth="0.0" prefWidth="138.3999786376953" text="Date" />
+               </columns>
+            </TableView>
+            <Label layoutX="539.0" layoutY="85.0" text="Username" textFill="#1a6dd7">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="name_textfield" editable="false" layoutX="544.0" layoutY="128.0" prefHeight="26.0" prefWidth="202.0" promptText="Name" />
+            <JFXTextField fx:id="price_textfield" editable="false" layoutX="544.0" layoutY="228.0" prefHeight="26.0" prefWidth="202.0" promptText="Price" />
+            <JFXButton fx:id="cancel_button" layoutX="320.0" layoutY="535.0" onAction="#closeWindow" prefHeight="39.0" prefWidth="158.0" style="-fx-background-color: #d32a0f;" text="Cancel" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="signUp_button112" layoutX="596.0" layoutY="475.0" onAction="#selectedProduct" prefHeight="31.0" prefWidth="98.0" style="-fx-background-color: #1a6dd7;" text="Add bonus" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="546.0" layoutY="184.0" text="Date" textFill="#1a6dd7">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label layoutX="540.0" layoutY="281.0" text="Employee" textFill="#1a6dd7">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <JFXComboBox layoutX="544.0" layoutY="322.0" prefHeight="26.0" prefWidth="202.0" />
+            <Label layoutX="540.0" layoutY="372.0" text="Bonus" textFill="#1a6dd7">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="price_textfield1" editable="false" layoutX="544.0" layoutY="415.0" prefHeight="26.0" prefWidth="202.0" promptText="Bonus" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
