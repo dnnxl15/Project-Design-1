@@ -12,7 +12,9 @@ import domain.Combo;
 import domain.Product;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import library.EmployeeUI;
+import library.Gain;
 import library.JobTitleUI;
 
 
@@ -142,6 +144,15 @@ public class ManagerFacade extends Facade
         public ObservableList<PieChart.Data> getPieChartDataProductByGeneral()
         {
                 return ControlReport.getInstance().getPieChartDataProductByGeneral();
+        }
+        public ArrayList<Gain> getProductByGeneral()
+        {
+                return ControlReport.getInstance().getProductByGeneral();
+        }
+        
+        public XYChart.Series<String,Number> getProductBarByGeneral()
+        {
+            return ControlReport.getInstance().getProductBarByGeneral();
         }
 
     @Override

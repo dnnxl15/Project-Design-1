@@ -13,12 +13,22 @@ public class JobTitleUI {
         private String name;
         private int minSalary;
 	private int maxSalary;
+        private int idJobTitle;
 
-    public JobTitleUI(String jName, int jMinSalary, int jMaxSalary)
+    public JobTitleUI(String jName, int jMinSalary, int jMaxSalary, int idJobTitle)
     {   
 	name = jName;
 	minSalary = jMinSalary;
         maxSalary = jMaxSalary;
+        this.idJobTitle = idJobTitle;
+    }
+
+    public int getIdJobTitle() {
+        return idJobTitle;
+    }
+
+    public void setIdJobTitle(int idJobTitle) {
+        this.idJobTitle = idJobTitle;
     }
     public String getName() {
         return name;

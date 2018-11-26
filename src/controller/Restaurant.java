@@ -6,7 +6,9 @@ import domain.Product;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import library.EmployeeUI;
+import library.Gain;
 import library.JobTitleUI;
 
 import library.RestaurantUI;
@@ -145,7 +147,14 @@ public class Restaurant
         {
                 return Branch.getInstance().getPieChartDataProductByGeneral();
         }
-                
+        public ArrayList<Gain> getProductByGeneral()
+        {
+                return Branch.getInstance().getProductByGeneral();
+        }
+        public XYChart.Series<String,Number> getProductBarByGeneral()
+        {
+            return Branch.getInstance().getProductBarByGeneral();
+        }
         public Branch getBranch() 
         {
 		return branch;

@@ -7,7 +7,9 @@ import domain.Product;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import library.EmployeeUI;
+import library.Gain;
 import library.JobTitleUI;
 
 public class Branch 
@@ -221,6 +223,12 @@ public class Branch
         {
                 return ManagerFacade.getInstance().getPieChartDataProductByGeneral();
         }
-        
-        
+        public ArrayList<Gain> getProductByGeneral()
+        {
+                return ManagerFacade.getInstance().getProductByGeneral();
+        }
+        public XYChart.Series<String,Number> getProductBarByGeneral()
+        {
+            return ManagerFacade.getInstance().getProductBarByGeneral();
+        }
 }
