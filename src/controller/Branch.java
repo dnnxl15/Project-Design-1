@@ -231,4 +231,17 @@ public class Branch
         {
             return ManagerFacade.getInstance().getProductBarByGeneral();
         }
+        public ObservableList<PieChart.Data> getPieChartDataComboByGeneral()
+        {
+                return ManagerFacade.getInstance().getPieChartDataComboByGeneral();
+        }
+        public ArrayList<Gain> getComboByGeneral()
+        {
+                return ManagerFacade.getInstance().getComboByGeneral();
+        }
+        
+        public XYChart.Series<String,Number> getComboBarByGeneral()
+        {
+            return ManagerFacade.getInstance().getComboBarByGeneral();
+        }
 }

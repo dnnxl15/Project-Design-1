@@ -155,6 +155,19 @@ public class Restaurant
         {
             return Branch.getInstance().getProductBarByGeneral();
         }
+        public ObservableList<PieChart.Data> getPieChartDataComboByGeneral()
+        {
+                return Branch.getInstance().getPieChartDataComboByGeneral();
+        }
+        public ArrayList<Gain> getComboByGeneral()
+        {
+                return Branch.getInstance().getComboByGeneral();
+        }
+        
+        public XYChart.Series<String,Number> getComboBarByGeneral()
+        {
+            return Branch.getInstance().getComboBarByGeneral();
+        }
         public Branch getBranch() 
         {
 		return branch;

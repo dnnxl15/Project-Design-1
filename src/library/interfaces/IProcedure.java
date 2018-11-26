@@ -44,6 +44,7 @@ public interface IProcedure
     public final String UPDATE_JOBTITLE_PROCEDURE  = "{call  updateJobTitle(?,?,?,?)}";
     
     public final String REPORT_PRODUCT_PROCEDURE  = "{call  getGainAllProducts()}";
+    public final String REPORT_COMBO_PROCEDURE  = "{call  getGainAllCombos()}";
     
     
 }

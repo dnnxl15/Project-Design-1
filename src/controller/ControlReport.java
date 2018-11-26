@@ -148,4 +148,111 @@ public class ControlReport extends Control
 		 }
          return null;
      }
+    	public ObservableList<PieChart.Data> getPieChartDataComboByGeneral()
+	{       
+            //Fechas
+		 try
+		 {
+			 //Product
+             ResultSet resultSet = connectionPool.request(IProcedure.REPORT_COMBO_PROCEDURE, null);
+             ObservableList<PieChart.Data> listProductTmp = FXCollections.observableArrayList();
+             while (resultSet.next()) 
+             {
+            	 String name =  resultSet.getString("name");
+            	 float gain = resultSet.getInt("Gain");
+            	 PieChart.Data data = new PieChart.Data(name, gain);
+            	 listProductTmp.add(data);
+              }
+             //Combox
+             ResultSet resultSet2 = connectionPool.request(IProcedure.REPORT_COMBO_PROCEDURE, null);
+             while (resultSet2.next()) 
+             {
+            	 String name =  resultSet2.getString("name");
+            	 float gain = resultSet2.getInt("Gain");
+            	 PieChart.Data data = new PieChart.Data(name, gain);
+            	 listProductTmp.add(data);
+              }
+             return listProductTmp;
+         }
+		 catch (SQLException e) 
+		 {
+			e.printStackTrace();
+		 }
+         return null;
+     }
+	
+	/**
+	 * Table data
+	 * @return
+	 */
+	public ArrayList<Gain> getComboByGeneral()
+	{
+		 try
+		 {
+			 // Product
+             ResultSet resultSet = connectionPool.request(IProcedure.REPORT_COMBO_PROCEDURE, null);
+             ArrayList<Gain> listGain = new ArrayList<Gain>();
+             while (resultSet.next()) 
+             {
+            	 String name =  resultSet.getString("name");
+            	 float gain = resultSet.getInt("Gain");
+            	 Gain gainTmp = new Gain(name, gain);
+            	 listGain.add(gainTmp);
+              }
+             // Combobox
+             ResultSet resultSet2 = connectionPool.request(IProcedure.REPORT_COMBO_PROCEDURE, null);
+             while (resultSet2.next()) 
+             {
+            	 String name =  resultSet2.getString("name");
+            	 float gain = resultSet2.getInt("Gain");
+            	 Gain gainTmp = new Gain(name, gain);
+            	 listGain.add(gainTmp);
+              }
+             return listGain;
+         }
+		 catch (SQLException e) 
+		 {
+			e.printStackTrace();
+		 }
+         return null;
+     }
+	
+	/**
+	 * Bar chart data
+	 * @return
+	 */
+	public XYChart.Series<String,Number> getComboBarByGeneral()
+	{
+		 try
+		 {
+	     //Product
+             XYChart.Series<String,Number> series1 = new XYChart.Series();
+	     series1.setName("Product");
+             ResultSet resultSet = connectionPool.request(IProcedure.REPORT_COMBO_PROCEDURE, null);
+             while (resultSet.next()) 
+             {
+            	 String name =  resultSet.getString("name");
+            	 float gain = resultSet.getInt("Gain");
+            	 series1.getData().add(new XYChart.Data(name, gain));
+              }
+             // Combobox
+             ResultSet resultSet2 = connectionPool.request(IProcedure.REPORT_COMBO_PROCEDURE, null);
+             while (resultSet2.next()) 
+             {
+            	 String name =  resultSet2.getString("name");
+            	 float gain = resultSet2.getInt("Gain");
+            	 series1.getData().add(new XYChart.Data(name, gain));
+              }
+             return series1;
+         }
+		 catch (SQLException e) 
+		 {
+			e.printStackTrace();
+		 }
+         return null;
+     }    
+        
+        
+        
+        
 }
