@@ -43,7 +43,7 @@ public interface IProcedure
     public final String INSERT_JOBTITLE_PROCEDURE  = "{call  insertJobTitle(?,?,?)}";
     public final String UPDATE_JOBTITLE_PROCEDURE  = "{call  updateJobTitle(?,?,?,?)}";
     
-    
+    public final String REPORT_PRODUCT_PROCEDURE  = "{call  getGainAllProducts()}";
     
     
 }

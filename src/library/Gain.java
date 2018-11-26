@@ -3,9 +3,9 @@ package library;
 public class Gain 
 {
 	private String typeName;
-	private int gain;
+	private float gain;
 	
-	public Gain(String pTypeName, int pGain)
+	public Gain(String pTypeName, float pGain)
 	{
 		setTypeName(pTypeName);
 		setGain(pGain);
@@ -19,11 +19,11 @@ public class Gain
 		this.typeName = typeName;
 	}
 
-	public int getGain() {
+	public float getGain() {
 		return gain;
 	}
 
-	public void setGain(int gain) {
+	public void setGain(float gain) {
 		this.gain = gain;
 	}
 }

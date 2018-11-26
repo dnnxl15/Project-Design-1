@@ -46,25 +46,26 @@ public class ControlReport extends Control
 	 * @return
 	 */
 	public ObservableList<PieChart.Data> getPieChartDataProductByGeneral()
-	{
+	{       
+            //Fechas
 		 try
 		 {
 			 //Product
-             ResultSet resultSet = connectionPool.request(IProcedure.GET_RESTAURAN_PROCEDURE, null);
+             ResultSet resultSet = connectionPool.request(IProcedure.REPORT_PRODUCT_PROCEDURE, null);
              ObservableList<PieChart.Data> listProductTmp = FXCollections.observableArrayList();
              while (resultSet.next()) 
              {
             	 String name =  resultSet.getString("name");
-            	 int gain = resultSet.getInt("Gain");
+            	 float gain = resultSet.getInt("Gain");
             	 PieChart.Data data = new PieChart.Data(name, gain);
             	 listProductTmp.add(data);
               }
              //Combox
-             ResultSet resultSet2 = connectionPool.request(IProcedure.GET_RESTAURAN_PROCEDURE, null);
+             ResultSet resultSet2 = connectionPool.request(IProcedure.REPORT_PRODUCT_PROCEDURE, null);
              while (resultSet2.next()) 
              {
             	 String name =  resultSet2.getString("name");
-            	 int gain = resultSet2.getInt("Gain");
+            	 float gain = resultSet2.getInt("Gain");
             	 PieChart.Data data = new PieChart.Data(name, gain);
             	 listProductTmp.add(data);
               }
@@ -86,21 +87,21 @@ public class ControlReport extends Control
 		 try
 		 {
 			 // Product
-             ResultSet resultSet = connectionPool.request(IProcedure.GET_RESTAURAN_PROCEDURE, null);
+             ResultSet resultSet = connectionPool.request(IProcedure.REPORT_PRODUCT_PROCEDURE, null);
              ArrayList<Gain> listGain = new ArrayList<Gain>();
              while (resultSet.next()) 
              {
             	 String name =  resultSet.getString("name");
-            	 int gain = resultSet.getInt("Gain");
+            	 float gain = resultSet.getInt("Gain");
             	 Gain gainTmp = new Gain(name, gain);
             	 listGain.add(gainTmp);
               }
              // Combobox
-             ResultSet resultSet2 = connectionPool.request(IProcedure.GET_RESTAURAN_PROCEDURE, null);
+             ResultSet resultSet2 = connectionPool.request(IProcedure.REPORT_PRODUCT_PROCEDURE, null);
              while (resultSet2.next()) 
              {
             	 String name =  resultSet2.getString("name");
-            	 int gain = resultSet2.getInt("Gain");
+            	 float gain = resultSet2.getInt("Gain");
             	 Gain gainTmp = new Gain(name, gain);
             	 listGain.add(gainTmp);
               }
@@ -121,22 +122,22 @@ public class ControlReport extends Control
 	{
 		 try
 		 {
-			 //Product
-			 XYChart.Series<String,Number> series1 = new XYChart.Series();
-		     series1.setName("Product");
-             ResultSet resultSet = connectionPool.request(IProcedure.GET_RESTAURAN_PROCEDURE, null);
+	     //Product
+             XYChart.Series<String,Number> series1 = new XYChart.Series();
+	     series1.setName("Product");
+             ResultSet resultSet = connectionPool.request(IProcedure.REPORT_PRODUCT_PROCEDURE, null);
              while (resultSet.next()) 
              {
             	 String name =  resultSet.getString("name");
-            	 int gain = resultSet.getInt("Gain");
+            	 float gain = resultSet.getInt("Gain");
             	 series1.getData().add(new XYChart.Data(name, gain));
               }
              // Combobox
-             ResultSet resultSet2 = connectionPool.request(IProcedure.GET_RESTAURAN_PROCEDURE, null);
+             ResultSet resultSet2 = connectionPool.request(IProcedure.REPORT_PRODUCT_PROCEDURE, null);
              while (resultSet2.next()) 
              {
             	 String name =  resultSet2.getString("name");
-            	 int gain = resultSet2.getInt("Gain");
+            	 float gain = resultSet2.getInt("Gain");
             	 series1.getData().add(new XYChart.Data(name, gain));
               }
              return series1;
