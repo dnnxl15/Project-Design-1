@@ -10,6 +10,8 @@ import connection.*;
 import domain.Client;
 import domain.Combo;
 import domain.Product;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import library.EmployeeUI;
 import library.JobTitleUI;
 
@@ -137,7 +139,10 @@ public class ManagerFacade extends Facade
 	{
 		ControlUser.getInstance().updateClient(cListObject);
 	}
-
+        public ObservableList<PieChart.Data> getPieChartDataProductByGeneral()
+        {
+                return ControlReport.getInstance().getPieChartDataProductByGeneral();
+        }
 
     @Override
     public void loadData() {

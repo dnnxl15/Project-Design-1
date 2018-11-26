@@ -4,6 +4,8 @@ import domain.Client;
 import domain.Combo;
 import domain.Product;
 import java.util.ArrayList;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import library.EmployeeUI;
 import library.JobTitleUI;
 
@@ -138,6 +140,10 @@ public class Restaurant
         {
                Branch.getInstance().updateClient( pClientID, pNewName,  pNewLastname ,  pNewIdentification, pNewUsername , pNewPassword);
         
+        }
+        public ObservableList<PieChart.Data> getPieChartDataProductByGeneral()
+        {
+                return Branch.getInstance().getPieChartDataProductByGeneral();
         }
                 
         public Branch getBranch() 

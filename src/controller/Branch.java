@@ -5,6 +5,8 @@ import domain.Combo;
 import domain.Manager;
 import domain.Product;
 import java.util.ArrayList;
+import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import library.EmployeeUI;
 import library.JobTitleUI;
 
@@ -215,7 +217,10 @@ public class Branch
 		public void setFacade(Facade facade) {
 			this.facade = facade;
 		}
-
+        public ObservableList<PieChart.Data> getPieChartDataProductByGeneral()
+        {
+                return ManagerFacade.getInstance().getPieChartDataProductByGeneral();
+        }
         
         
 }
