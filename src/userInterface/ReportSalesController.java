@@ -47,7 +47,31 @@ public class ReportSalesController extends Controller implements IConstantWindow
 		columnProduct.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getTypeName()));
 		columnSale.setCellValueFactory(cellData->new SimpleDoubleProperty(cellData.getValue().getGain()));
 		ObservableList<Gain> newListSale = null;
-		newListSale = FXCollections.observableArrayList(Restaurant.getInstance().getProductByGeneral());
+		//if(ReportUI.getInstance().getType() == ReportType.)
+		if(ReportType.Branch_Type_Branch == ReportUI.getInstance().getType())
+		{
+			//newListSale = FXCollections.observableArrayList(Restaurant.getInstance().getProductByGeneral());
+		}
+		else if(ReportType.Date_Type_Branch == ReportUI.getInstance().getType())
+		{
+			//newListSale = FXCollections.observableArrayList(Restaurant.getInstance().getProductByGeneral());
+		}
+		else if(ReportType.Product_Type_Branch == ReportUI.getInstance().getType())
+		{
+			//newListSale = FXCollections.observableArrayList(Restaurant.getInstance().getProductByGeneral());
+		}
+		else if(ReportType.Branch_Type_General == ReportUI.getInstance().getType())
+		{
+			//newListSale = FXCollections.observableArrayList(Restaurant.getInstance().getProductByGeneral());
+		}
+		else if(ReportType.Date_Type_Manager == ReportUI.getInstance().getType())
+		{
+			//newListSale = FXCollections.observableArrayList(Restaurant.getInstance().getProductByGeneral());
+		}
+		else
+		{
+			newListSale = FXCollections.observableArrayList(Restaurant.getInstance().getProductByGeneral());
+		}
 		mount_restaurant_label.setText("("+newListSale.size()+")");
 		saleTable.setItems(newListSale);		
 	}
@@ -75,7 +99,6 @@ public class ReportSalesController extends Controller implements IConstantWindow
 	public void closeWindow()
 	{
 		closeWindow(cancel_button);
-		
 	}
 	
 	public void openGraphPie() throws IOException

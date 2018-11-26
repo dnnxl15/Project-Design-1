@@ -25,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert.AlertType;
 import library.EmployeeUI;
+import library.GlobalUser;
 import library.JobTitleUI;
 import library.RestaurantUI;
 import library.interfaces.IConstantWindow;
@@ -57,9 +58,16 @@ public class EmployeeViewController extends Controller implements Initializable,
 		employee_table.getSelectionModel().selectedItemProperty().addListener(
 	            (observable, oldValue, newValue) -> showInfoEmployeeUI((EmployeeUI) newValue));
 		ObservableList<EmployeeUI> newListEmployee;
-		newListEmployee = FXCollections.observableArrayList(Restaurant.getInstance().getEmployee());
-		result_label.setText("("+newListEmployee.size()+")");
-		employee_table.setItems(newListEmployee);
+		if(GlobalUser.getInstance().isManager())
+		{
+			newListEmployee = FXCollections.observableArrayList(Restaurant.getInstance().getEmployee());
+		}
+		else
+		{
+			//newListEmployee = FXCollections.observableArrayList(Restaurant.getInstance().getEmployee());
+		}
+		//result_label.setText("("+newListEmployee.size()+")");
+		//employee_table.setItems(newListEmployee);
 		role_combobox.getItems().clear();
 		role_combobox.getItems().addAll(getRole(Restaurant.getInstance().getJobTitle()));
 		

@@ -431,6 +431,11 @@ public class ManagerWindowController extends Controller implements IConstantWind
 		{
 			closeWindow(home_button);
 		}
+		try {
+			openWindow(MAIN_WINDOW_UI, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void showFormRegisterEmployee()

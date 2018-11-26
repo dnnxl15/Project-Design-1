@@ -46,14 +46,21 @@ public class GraphViewController extends Controller implements IConstantWindow, 
 		if(chartType== ChartType.Pie_Chart_Type)
 		{
 
-			if(ReportType.Branch_Type_Branch == ReportUI.getInstance().getType() || ReportType.Branch_Type_General == ReportUI.getInstance().getType() )
+			if(ReportType.Branch_Type_Branch == ReportUI.getInstance().getType())
 			{
 				
 			}
-			else if(ReportType.Date_Type_Branch == ReportUI.getInstance().getType() || ReportType.Date_Type_Manager == ReportUI.getInstance().getType())
+			if(ReportType.Branch_Type_General == ReportUI.getInstance().getType())
+			{
+				
+			}
+			else if(ReportType.Date_Type_Branch == ReportUI.getInstance().getType())
 			{
 			}
-			else if(ReportType.Product_Type_Branch == ReportUI.getInstance().getType() || ReportType.Product_Type_Manager == ReportUI.getInstance().getType())
+			else if(ReportType.Date_Type_Manager == ReportUI.getInstance().getType())
+			{
+			}
+			else if(ReportType.Product_Type_Manager == ReportUI.getInstance().getType())
 			{
 				pie_chart.setData(Restaurant.getInstance().getPieChartDataProductByGeneral());
 				pie_chart.setTitle("Product vs Sale");
@@ -72,23 +79,28 @@ public class GraphViewController extends Controller implements IConstantWindow, 
 		}
 		else if(chartType== ChartType.Bar_Chart_Type)
 		{
-			
-			if(ReportType.Branch_Type_Branch == ReportUI.getInstance().getType() || ReportType.Branch_Type_General == ReportUI.getInstance().getType() )
+			if(ReportType.Branch_Type_Branch == ReportUI.getInstance().getType())
 			{
 				
 			}
-			else if(ReportType.Date_Type_Branch == ReportUI.getInstance().getType() || ReportType.Date_Type_Manager == ReportUI.getInstance().getType())
+			if(ReportType.Branch_Type_General == ReportUI.getInstance().getType())
+			{
+				
+			}
+			else if(ReportType.Date_Type_Branch == ReportUI.getInstance().getType())
 			{
 			}
-			else if(ReportType.Product_Type_Branch == ReportUI.getInstance().getType() || ReportType.Product_Type_Manager == ReportUI.getInstance().getType())
+			else if(ReportType.Date_Type_Manager == ReportUI.getInstance().getType())
+			{
+			}
+			else if(ReportType.Product_Type_Manager == ReportUI.getInstance().getType())
 			{
 		        category_axis.setLabel("Product");
 		        number_axis.setLabel("Sales");
 		        bar_chart.setTitle("Product vs Sales");
 		        bar_chart.getData().addAll(Restaurant.getInstance().getProductBarByGeneral());
-
 				pie_chart.setTitle("Product vs Sale");
-				
+
 				bar_chart.setVisible(true);
 				line_chart.setVisible(false);
 				pie_chart.setVisible(false);
@@ -96,23 +108,42 @@ public class GraphViewController extends Controller implements IConstantWindow, 
 			else
 			{
 			}	
-
 	        //bar_chart.setVisible(false);
 	    	//line_chart.setVisible(false);
 	    	//pie_chart.setVisible(true);
 		}
 		else
 		{
-			category_axis.setLabel("Product");
-	        number_axis.setLabel("Sales");
-	        line_chart.setTitle("Product vs Sales");
-	        line_chart.getData().addAll(Restaurant.getInstance().getProductBarByGeneral());
+			if(ReportType.Branch_Type_Branch == ReportUI.getInstance().getType())
+			{
+				
+			}
+			if(ReportType.Branch_Type_General == ReportUI.getInstance().getType())
+			{
+				
+			}
+			else if(ReportType.Date_Type_Branch == ReportUI.getInstance().getType())
+			{
+			}
+			else if(ReportType.Date_Type_Manager == ReportUI.getInstance().getType())
+			{
+			}
+			else if(ReportType.Product_Type_Manager == ReportUI.getInstance().getType())
+			{
+				category_axis.setLabel("Product");
+		        number_axis.setLabel("Sales");
+		        line_chart.setTitle("Product vs Sales");
+		        line_chart.getData().addAll(Restaurant.getInstance().getProductBarByGeneral());
 
-			pie_chart.setTitle("Product vs Sale");
-			
-			bar_chart.setVisible(false);
-			line_chart.setVisible(true);
-			pie_chart.setVisible(false);
+				pie_chart.setTitle("Product vs Sale");
+				
+				bar_chart.setVisible(false);
+				line_chart.setVisible(true);
+				pie_chart.setVisible(false);
+			}
+			else
+			{
+			}	
 		}
 	}
 	
