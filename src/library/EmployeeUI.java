@@ -10,9 +10,9 @@ public class EmployeeUI
 	private double salary;
 	private String rol;
 	private int idEmployee;
-    private int restaurant;
+        private String restaurant;
 
-    public EmployeeUI(int idEmployee,String name, String lastname, String email, double salary, String rol,int idRestaurant) {
+    public EmployeeUI(int idEmployee,String name, String lastname, String email, double salary, String rol,String idRestaurant) {
         this.name = name;
         this.lastname = lastname;
         this.email = email;
@@ -68,14 +68,14 @@ public class EmployeeUI
 
 
 
-	public int getRestaurant() {
+	public String getRestaurant() {
 		return restaurant;
 	}
 
 
 
 
-	public void setRestaurant(int restaurant) {
+	public void setRestaurant(String restaurant) {
 		this.restaurant = restaurant;
 	}
 

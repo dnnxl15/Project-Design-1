@@ -135,7 +135,7 @@ public class ControlUser extends Control implements IProcedure
                         String eEmail= resultSet.getString("email");
                         float eSalary = resultSet.getFloat("salary");
                         String eRol = resultSet.getString("rol");
-                        int idRestaurant = resultSet.getInt("restaurant");
+                        String idRestaurant = resultSet.getString("restaurant");
                         EmployeeUI employee = new EmployeeUI(idEmployee,eName, eLastName,eEmail,eSalary,eRol,idRestaurant);
                         listEmployeeTmp.add(employee);
                         }
