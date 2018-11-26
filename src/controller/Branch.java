@@ -65,6 +65,25 @@ public class Branch
                 listParameters.add(cpersonid);
 	    ManagerFacade.getInstance().createCombo(listParameters);
 	}
+        public void createJobTitle(String cname, float minSalary,float maxSalary)
+	{
+		ArrayList<Object> listParameters = new ArrayList<Object>();
+		listParameters.add(cname);
+		listParameters.add(minSalary);
+                listParameters.add(maxSalary);
+
+	    ManagerFacade.getInstance().createJobTitle(listParameters);
+	}
+        public void updateJobTitle(int idJobTitle,String cname, float minSalary,float maxSalary)
+	{
+		ArrayList<Object> listParameters = new ArrayList<Object>();
+		listParameters.add(idJobTitle);
+                listParameters.add(cname);
+		listParameters.add(minSalary);
+                listParameters.add(maxSalary);
+
+	    ManagerFacade.getInstance().updateJobTitle(listParameters);
+	}
         public void updateProduct(int productID, String newName, float newPrice , String newDescription,Boolean status)
 	{
 		ArrayList<Object> listParameters = new ArrayList<Object>();

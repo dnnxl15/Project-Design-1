@@ -82,6 +82,15 @@ public class ControlUser extends Control implements IProcedure
 			e.printStackTrace();
 		}	
 	}
+       public void createJobTitle(ArrayList<Object> pListObject)
+	{
+		try {
+			connectionPool.request(INSERT_JOBTITLE_PROCEDURE, pListObject);
+                        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
         
         
         //Insertar manager
@@ -164,6 +173,15 @@ public class ControlUser extends Control implements IProcedure
 	{
 		try {
 			connectionPool.request(UPDATE_EMPLOYEE_PROCEDURE, pListObject);
+                        
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+        public void updateJobTitle(ArrayList<Object> pListObject)
+	{
+		try {
+			connectionPool.request(UPDATE_JOBTITLE_PROCEDURE, pListObject);
                         
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -54,6 +54,10 @@ public class Restaurant
 	{
              Branch.getInstance().createEmployee(eName, eLastName, eIdentification, email, eJobTitle, eSalary, eRestNum); 
         }
+        public void createJobTitle(String cname, float minSalary,float maxSalary)
+        {
+             Branch.getInstance().createJobTitle(cname, minSalary, maxSalary);
+        }
 	public void createRestaurant(String pAddress, String pLegalNumber)
 	{
 		Branch.getInstance().createRestaurant(pAddress, pLegalNumber);
@@ -73,6 +77,10 @@ public class Restaurant
         public void updateProduct(int productID, String newName, float newPrice , String newDescription,Boolean status)
 	{
 		Branch.getInstance().updateProduct(productID,newName,newPrice,newDescription,status);
+	}
+        public void updateJobTitle(int idJobTitle,String cname, float minSalary,float maxSalary)
+	{
+		Branch.getInstance().updateJobTitle(idJobTitle,cname,minSalary,maxSalary);
 	}
 	public ArrayList<Product> getAllProducts()
 	{
@@ -124,15 +132,17 @@ public class Restaurant
 		Branch.getInstance().disableCombo(name);
 	}
         public void updateEmployee(int pEmployeeID,String newName, String newLastName , float newSalary,String newRol){
-            Branch.getInstance().updateEmployee(pEmployeeID,newName,newLastName,newSalary,newRol);
+                Branch.getInstance().updateEmployee(pEmployeeID,newName,newLastName,newSalary,newRol);
         }
 
-		public Branch getBranch() {
-			return branch;
-		}
+        public Branch getBranch() 
+        {
+		return branch;
+	}
 
-		public void setBranch(Branch branch) {
-			this.branch = branch;
-		}
+	public void setBranch(Branch branch) 
+        {
+		this.branch = branch;
+	}
         
 }

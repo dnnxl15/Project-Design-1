@@ -97,6 +97,15 @@ public class ManagerFacade extends Facade
 	{
 		ControlMenu.getInstance().updateProduct(pListObject);
 	}
+        public void createJobTitle(ArrayList<Object> pListObject)
+	{
+		ControlUser.getInstance().createJobTitle(pListObject);
+	}
+        public void updateJobTitle(ArrayList<Object> pListObject)
+	{
+		ControlUser.getInstance().updateJobTitle(pListObject);
+	}
+        
         //------------------------------------------
         
         
