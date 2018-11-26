@@ -42,10 +42,10 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="minimum_textfield" layoutX="507.0" layoutY="457.0" prefHeight="26.0" prefWidth="202.0" promptText="Minimun" />
-            <JFXTextField fx:id="maximum_textfield" layoutX="141.0" layoutY="457.0" prefHeight="26.0" prefWidth="202.0" promptText="Maximum" />
-            <JFXComboBox fx:id="role_combobox" layoutX="141.0" layoutY="389.0" prefHeight="26.0" prefWidth="202.0" promptText="Rol" />
-            <JFXTextField fx:id="newRole_textfield" layoutX="507.0" layoutY="396.0" prefHeight="26.0" prefWidth="202.0" promptText="Role" />
+            <JFXTextField fx:id="minimum_textfield" labelFloat="true" layoutX="507.0" layoutY="457.0" prefHeight="26.0" prefWidth="202.0" promptText="Minimun" />
+            <JFXTextField fx:id="maximum_textfield" labelFloat="true" layoutX="141.0" layoutY="457.0" prefHeight="26.0" prefWidth="202.0" promptText="Maximum" />
+            <JFXComboBox fx:id="role_combobox" labelFloat="true" layoutX="141.0" layoutY="389.0" prefHeight="26.0" prefWidth="202.0" promptText="Rol" />
+            <JFXTextField fx:id="newRole_textfield" labelFloat="true" layoutX="507.0" layoutY="396.0" prefHeight="26.0" prefWidth="202.0" promptText="Role" />
             <JFXButton fx:id="signUp_button1" layoutX="197.0" layoutY="527.0" onAction="#addRole" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #0f9d58;" text="Add" textFill="WHITE">
                <font>
                   <Font size="18.0" />

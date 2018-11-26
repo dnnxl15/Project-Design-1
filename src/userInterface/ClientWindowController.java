@@ -25,8 +25,10 @@ public class ClientWindowController extends Controller implements Initializable
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
+		lastname_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
+		email_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
+		name_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
+	//	identification_textfield.setText(ClientGlobal.getInstance().getClient().getIdentification());
 	}
 	
 	public void showHome()
@@ -81,7 +83,7 @@ public class ClientWindowController extends Controller implements Initializable
     	}
     	else
     	{
-   			Restaurant.getInstance().updateClient(ClientGlobal.getInstance().getId(), name, lastname, identification, ClientGlobal.getInstance().getUsername(), new_password);
+   			Restaurant.getInstance().updateClient(ClientGlobal.getInstance().getClient().getId(), name, lastname, identification, ClientGlobal.getInstance().getClient().getUsername(), new_password);
    			showAlert(AlertType.CONFIRMATION ,"Client update" , "Client is updated in the system");
    			lastname_textfield.setText(EMPTY);
    			name_textfield.setText(EMPTY);

@@ -113,11 +113,17 @@ public class RangeSalaryView extends Controller implements Initializable
 			showAlert(AlertType.ERROR ,"All fields" , "All fields must be complete");
 			return;
     	}
+    	else if(max<min)
+    	{
+			showAlert(AlertType.ERROR ,"Salary" , "Maximum salary must be > minimum salary");
+			return;
+    	}
     	else
     	{
    			Restaurant.getInstance().createJobTitle(value, min, max);
    			showAlert(AlertType.CONFIRMATION ,"Role created" , "Role created in the system");
    			minimum_textfield.setText(EMPTY);
+   			newRole_textfield.setText(EMPTY);
    			maximum_textfield.setText(EMPTY);
    			initialize(null,null);
     	}
@@ -138,9 +144,14 @@ public class RangeSalaryView extends Controller implements Initializable
 			showAlert(AlertType.ERROR ,"Maximum and minimum" , "Must be a number");
 			return;
 		}
-    	if(value.equals(EMPTY))
+    	if(value == null)
     	{
 			showAlert(AlertType.ERROR ,"All fields" , "All fields must be complete");
+			return;
+    	}
+    	else if(max<min)
+    	{
+			showAlert(AlertType.ERROR ,"Salary" , "Maximum salary must be > minimum salary");
 			return;
     	}
     	else
