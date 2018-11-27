@@ -8,14 +8,14 @@ public class Person {
 
     public Person(String name, String lastName, int id,int identification) {
         this.name = name;
-        this.setLastName(lastName);
+        this.lastName= lastName;
         this.id = id;
         this.identification = identification;
     }
     
     public Person(String name, String lastName, int id) {
         this.name = name;
-        this.setLastName(lastName);
+        this.lastName= lastName;
         this.id = id;
     }
 
