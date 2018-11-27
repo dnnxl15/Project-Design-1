@@ -48,6 +48,6 @@ public interface IProcedure
     
     public final String REPORT_BYDATE_PROCEDURE  = "{call  getGainByDate()}";
     
-    
-    
+    public final String INSERT_COMBO_PURCHASE = "{call insertComboPurchase(?,?,?,?,?,?,?)}";
+    public final String INSERT_PRODUCT_PURCHASE = "{call insertProductPurchase(?,?,?,?,?,?,?)}";
 }
