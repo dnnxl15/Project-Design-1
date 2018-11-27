@@ -57,9 +57,10 @@ public class PayClientController extends Controller implements IConstantWindow, 
     	boolean pickUp = pickUp_radioButton.isSelected();
     	boolean express = express_radioButton.isSelected();
     	String direction = direction_textfield.getText().toString();
-    	String payment = comboBoxPaymentMethod.getSelectionModel().getSelectedItem().toString();
+    	String payment;
     	try
 		{
+        	payment = comboBoxPaymentMethod.getSelectionModel().getSelectedItem().toString();
     		numberCard =  Integer.parseInt(number_card_something.getText().toString());
 		}
 		catch(Exception e)
@@ -67,7 +68,7 @@ public class PayClientController extends Controller implements IConstantWindow, 
 			showAlert(AlertType.ERROR ,"Number" , "Must be a number");
 			return;
 		}
-    	if(payment.equals(EMPTY) || direction.equals(EMPTY) || pickUp == false || express == false)
+    	if(payment.equals(EMPTY))
     	{
 			showAlert(AlertType.ERROR ,"All fields" , "All fields must be complete");
 			return;
@@ -255,7 +256,7 @@ public class PayClientController extends Controller implements IConstantWindow, 
 		
 		GlobalPay.getInstance().setDeliever(translateDeliveryTypeString());
 		GlobalPay.getInstance().setDirection(direction_textfield.getText().toString());
-		GlobalPay.getInstance().setInfo(direction_textfield.getText().toString());
+		GlobalPay.getInstance().setInfo(number_card_something.getText().toString());
 		GlobalPay.getInstance().setListCommodity(GlobalCart.getInstance().getListCommodity());
 		GlobalPay.getInstance().setPaymentMethod(comboBoxPaymentMethod.getSelectionModel().getSelectedItem().toString());
 		GlobalPay.getInstance().setRestaurant(restaurant);

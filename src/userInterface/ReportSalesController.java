@@ -27,6 +27,7 @@ import javafx.scene.control.Label;
 import library.EmployeeUI;
 import library.Gain;
 import library.GlobalChart;
+import library.GlobalUser;
 import library.ReportUI;
 import library.enumerations.ChartType;
 import library.enumerations.ReportType;
@@ -46,7 +47,7 @@ public class ReportSalesController extends Controller implements IConstantWindow
 		columnProduct.setText(getTypeText(ReportUI.getInstance().getType()));
 		columnProduct.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getTypeName()));
 		columnSale.setCellValueFactory(cellData->new SimpleDoubleProperty(cellData.getValue().getGain()));
-		ObservableList<Gain> newListSale = null;
+		ObservableList<Gain> newListSale = FXCollections.observableArrayList();
 		//if(ReportUI.getInstance().getType() == ReportType.)
 		if(ReportType.Branch_Type_Branch == ReportUI.getInstance().getType())
 		{
@@ -66,11 +67,25 @@ public class ReportSalesController extends Controller implements IConstantWindow
 		}
 		else if(ReportType.Date_Type_Manager == ReportUI.getInstance().getType())
 		{
-			//newListSale = FXCollections.observableArrayList(Restaurant.getInstance().getProductByGeneral());
+			if(GlobalUser.getInstance().isSubManager())
+			{
+				
+			}
+			else
+			{
+				newListSale = FXCollections.observableArrayList(Restaurant.getInstance().getByDateByGeneral());
+			}
 		}
 		else
 		{
-			newListSale = FXCollections.observableArrayList(Restaurant.getInstance().getProductByGeneral());
+			if(GlobalUser.getInstance().isSubManager())
+			{
+				
+			}
+			else
+			{
+				newListSale = FXCollections.observableArrayList(Restaurant.getInstance().getProductByGeneral());
+			}
 		}
 		mount_restaurant_label.setText("("+newListSale.size()+")");
 		saleTable.setItems(newListSale);		

@@ -202,25 +202,45 @@ public class ControlUser extends Control implements IProcedure
         
         public Client getClientInfo(ArrayList<Object> pListObject){
             try{
+                System.out.println("fuera");  
+
                 ResultSet resultSet = connectionPool.request(IProcedure.GET_CLIENT_INFO, pListObject);
                 Client c = null;
-                
-                    
- 
-                String eName =  resultSet.getString("name");
-                String eLastName = resultSet.getString("lastname");
-                int eIde = resultSet.getInt("identification");
-                int idClient = resultSet.getInt("clientID");
-                String eUsername = resultSet.getString("username");
-                String eEmail= resultSet.getString("email");
-                String ePassword = resultSet.getString("password");
-                c = new Client(eUsername, ePassword, eEmail, eName, eLastName, idClient, eIde);
-                        
-                        
-                        
+                System.out.println("fuera");  
+
+                while(resultSet.next())
+                {
+                    System.out.println("durante");  
+
+	                String eName =  resultSet.getString("name");
+	                System.out.println(eName);  
+	                String eLastName = resultSet.getString("lastname");
+	                System.out.println(eLastName);  
+
+	                int eIde = resultSet.getInt("identification");
+	                System.out.println(eIde);  
+
+	                int idClient = resultSet.getInt("clientID");
+	                System.out.println(idClient);  
+
+	                String eUsername = resultSet.getString("username");
+                    System.out.println(eUsername);  
+
+	                String eEmail= resultSet.getString("email");
+                    System.out.println(eEmail);  
+
+	                String ePassword = resultSet.getString("password");
+                    System.out.println(ePassword);  
+
+	                c = new Client(eUsername, ePassword, eEmail, eName, eLastName, idClient, eIde);
+                }     
+                System.out.println("despues");  
                 return c;
+
                 
-            }catch (SQLException e) {
+            }
+            catch (SQLException e)
+            {
 			e.printStackTrace();
 		}
             return null;

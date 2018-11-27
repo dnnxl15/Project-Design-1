@@ -59,6 +59,12 @@ public class GraphViewController extends Controller implements IConstantWindow, 
 			}
 			else if(ReportType.Date_Type_Manager == ReportUI.getInstance().getType())
 			{
+				pie_chart.setData(Restaurant.getInstance().getPieChartDataByDateByGeneral());
+				pie_chart.setTitle("Date vs Sale");
+				
+				bar_chart.setVisible(false);
+				line_chart.setVisible(false);
+				pie_chart.setVisible(true);
 			}
 			else if(ReportType.Product_Type_Manager == ReportUI.getInstance().getType())
 			{
@@ -92,6 +98,15 @@ public class GraphViewController extends Controller implements IConstantWindow, 
 			}
 			else if(ReportType.Date_Type_Manager == ReportUI.getInstance().getType())
 			{
+				category_axis.setLabel("Date");
+		        number_axis.setLabel("Sales");
+		        bar_chart.setTitle("Date vs Sales");
+		        bar_chart.getData().addAll(Restaurant.getInstance().getByDateBarByGeneral());
+				pie_chart.setTitle("Product vs Sale");
+
+				bar_chart.setVisible(true);
+				line_chart.setVisible(false);
+				pie_chart.setVisible(false);
 			}
 			else if(ReportType.Product_Type_Manager == ReportUI.getInstance().getType())
 			{
@@ -127,6 +142,16 @@ public class GraphViewController extends Controller implements IConstantWindow, 
 			}
 			else if(ReportType.Date_Type_Manager == ReportUI.getInstance().getType())
 			{
+				category_axis.setLabel("Date");
+		        number_axis.setLabel("Sales");
+		        line_chart.setTitle("Date vs Sales");
+		        line_chart.getData().addAll(Restaurant.getInstance().getProductBarByGeneral());
+
+				pie_chart.setTitle("Date vs Sale");
+				
+				bar_chart.setVisible(false);
+				line_chart.setVisible(true);
+				pie_chart.setVisible(false);
 			}
 			else if(ReportType.Product_Type_Manager == ReportUI.getInstance().getType())
 			{

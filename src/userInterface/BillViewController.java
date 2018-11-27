@@ -35,37 +35,38 @@ public class BillViewController extends Controller implements IConstantWindow, I
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		paymentTextfield.setText(GlobalPay.getInstance().getPaymentMethod());
-		paymentTextfield.setText(GlobalPay.getInstance().getPaymentMethod());
-		paymentTextfield.setText(GlobalPay.getInstance().getPaymentMethod());
 		String selectedMethod = GlobalPay.getInstance().getPaymentMethod();
 		  if(selectedMethod.equals(TRANSFER_TEXT))
 		  {
 			  labelCreditCard.setText("Transfer number account");
+			  creditTextfield.setText(GlobalPay.getInstance().getInfo());
 		  }
 		  else if(selectedMethod.equals(CHECK_TEXT))
 		  {
 			  labelCreditCard.setText("Check number");
+			  creditTextfield.setText(GlobalPay.getInstance().getInfo());
 		  }
 		  else if(selectedMethod.equals(CREDIT_TEXT))
 		  {
 			  labelCreditCard.setText("Credit card number");
+			  creditTextfield.setText(GlobalPay.getInstance().getInfo());
 		  }
 		  else 
 		  {
 			  labelCreditCard.setText("Mount cash");
+			  creditTextfield.setText(GlobalPay.getInstance().getInfo());
 		  }
-		  creditTextfield.setText(GlobalPay.getInstance().getInfo());
 		  deliverTextField.setText(GlobalPay.getInstance().getDeliever());
 		 
 		  if(GlobalPay.getInstance().getDeliever().equals("Express"))
 			{
-				labelDirection.setVisible(false);
-				direction_textfield.setVisible(false);
+				labelDirection.setVisible(true);
+				direction_textfield.setVisible(true);
 			}
 			else
 			{
-				labelDirection.setVisible(true);
-				direction_textfield.setVisible(true);
+				labelDirection.setVisible(false);
+				direction_textfield.setVisible(false);
 				direction_textfield.setText(GlobalPay.getInstance().getDirection());
 
 			}

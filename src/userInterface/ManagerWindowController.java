@@ -311,9 +311,15 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	
 	public void openSaleProductWindow()
 	{
-		ReportUI.getInstance().setType(ReportType.Product_Type_Branch);
-		ReportUI.getInstance().setType(ReportType.Product_Type_Manager);
+		if(GlobalUser.getInstance().isSubManager())
+		{
+			ReportUI.getInstance().setType(ReportType.Product_Type_Branch);
 
+		}
+		else
+		{
+			ReportUI.getInstance().setType(ReportType.Product_Type_Manager);
+		}
 		try {
 			openWindow(REPORT_SALES_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
 		} catch (IOException e) {
@@ -323,8 +329,16 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	
 	public void openSaleDateWindow()
 	{
-		ReportUI.getInstance().setType(ReportType.Date_Type_Branch);
-		ReportUI.getInstance().setType(ReportType.Date_Type_Manager);
+		
+		if(GlobalUser.getInstance().isSubManager())
+		{
+			ReportUI.getInstance().setType(ReportType.Date_Type_Branch);
+
+		}
+		else
+		{
+			ReportUI.getInstance().setType(ReportType.Date_Type_Manager);
+		}
 		try {
 			openWindow(REPORT_SALES_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
 		} catch (IOException e) {
@@ -472,6 +486,15 @@ public class ManagerWindowController extends Controller implements IConstantWind
 	{
 		try {
 			openWindow(CLIENT_MANAGER_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void openOrderWindowView()
+	{
+		try {
+			openWindow("OrderViewManager.fxml", MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

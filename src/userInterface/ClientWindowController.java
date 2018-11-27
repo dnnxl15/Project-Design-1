@@ -32,9 +32,9 @@ public class ClientWindowController extends Controller implements Initializable,
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		label_user.setText(ClientGlobal.getInstance().getClient().getUsername());
 		lastname_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
-		email_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
-		name_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
-	    identification_textfield.setText(ClientGlobal.getInstance().getClient().get);
+		email_textfield.setText(ClientGlobal.getInstance().getClient().getEmail());
+	    name_textfield.setText(ClientGlobal.getInstance().getClient().getName());
+	    identification_textfield.setText(String.valueOf(ClientGlobal.getInstance().getClient().getIdentification()));
 		showHome();
 	}
 	

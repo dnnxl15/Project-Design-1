@@ -7,8 +7,10 @@ package userInterface;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import controller.ControlUser;
 import controller.Restaurant;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -49,8 +51,11 @@ public class MainController extends Controller implements Initializable, IConsta
     	boolean mainManagerValue = Restaurant.getInstance().verifyMainManager(username, password);
     	if(clientValue)
     	{
+        	ArrayList<Object> listObject = new ArrayList<Object>();
+        	listObject.add(username);
+        	listObject.add(password);
+        	ClientGlobal.getInstance().setClient(ControlUser.getInstance().getClientInfo(listObject));
         	openWindow(CLIENT_MAIN_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
-        	//ClientGlobal.getInstance().setClient(Restaurant.getInstance().getClientInfo(username, password));
         	closeWindow(enter_button);
     	}
     	else if(branchManagerValue)
