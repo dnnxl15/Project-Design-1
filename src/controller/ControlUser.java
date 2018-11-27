@@ -199,5 +199,32 @@ public class ControlUser extends Control implements IProcedure
 			e.printStackTrace();
 		}	
 	}
+        
+        public Client getClientInfo(ArrayList<Object> pListObject){
+            try{
+                ResultSet resultSet = connectionPool.request(IProcedure.GET_CLIENT_INFO, pListObject);
+                Client c = null;
+                
+                    
+ 
+                String eName =  resultSet.getString("name");
+                String eLastName = resultSet.getString("lastname");
+                int eIde = resultSet.getInt("identification");
+                int idClient = resultSet.getInt("clientID");
+                String eUsername = resultSet.getString("username");
+                String eEmail= resultSet.getString("email");
+                String ePassword = resultSet.getString("password");
+                c = new Client(eUsername, ePassword, eEmail, eName, eLastName, idClient);
+                        
+                        
+                        
+                return c;
+                
+            }catch (SQLException e) {
+			e.printStackTrace();
+		}
+            return null;
+           
+        }
 
 }

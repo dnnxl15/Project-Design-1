@@ -50,4 +50,6 @@ public interface IProcedure
     
     public final String INSERT_COMBO_PURCHASE = "{call insertComboPurchase(?,?,?,?,?,?,?)}";
     public final String INSERT_PRODUCT_PURCHASE = "{call insertProductPurchase(?,?,?,?,?,?,?)}";
+    
+    public final String GET_CLIENT_INFO = "{call getClientInfo(?,?)}";
 }
