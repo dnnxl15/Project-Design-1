@@ -244,4 +244,20 @@ public class Branch
         {
             return ManagerFacade.getInstance().getComboBarByGeneral();
         }
+        
+        public ObservableList<PieChart.Data> getPieChartDataByDateByGeneral()
+        {
+                return ManagerFacade.getInstance().getPieChartDataByDateByGeneral();
+        }
+        public ArrayList<Gain> getByDateByGeneral()
+        {
+                return ManagerFacade.getInstance().getByDateByGeneral();
+        }
+        
+        public XYChart.Series<String,Number> getByDateBarByGeneral()
+        {
+            return ManagerFacade.getInstance().getByDateBarByGeneral();
+        }
+        
+        
 }

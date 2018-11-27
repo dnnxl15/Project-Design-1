@@ -255,7 +255,90 @@ public class ControlReport extends Control
          return null;
      }    
         
+        	public ObservableList<PieChart.Data> getPieChartDataByDateByGeneral()
+	{       
+            //Fechas
+		 try
+		 {
+			 //Product
+             ResultSet resultSet = connectionPool.request(IProcedure.REPORT_BYDATE_PROCEDURE, null);
+             ObservableList<PieChart.Data> listProductTmp = FXCollections.observableArrayList();
+             while (resultSet.next()) 
+             {
+            	 String name =  resultSet.getString("Gain");
+            	 float gain = resultSet.getInt("pDATE");
+            	 PieChart.Data data = new PieChart.Data(name, gain);
+            	 listProductTmp.add(data);
+              }
+             //Combox
+
+             return listProductTmp;
+         }
+		 catch (SQLException e) 
+		 {
+			e.printStackTrace();
+		 }
+         return null;
+     }
+	
+	/**
+	 * Table data
+	 * @return
+	 */
+	public ArrayList<Gain> getByDateByGeneral()
+	{
+		 try
+		 {
+			 // Product
+             ResultSet resultSet = connectionPool.request(IProcedure.REPORT_BYDATE_PROCEDURE, null);
+             ArrayList<Gain> listGain = new ArrayList<Gain>();
+             while (resultSet.next()) 
+             {
+            	 String name =  resultSet.getString("Gain");
+            	 float gain = resultSet.getInt("pDATE");
+            	 Gain gainTmp = new Gain(name, gain);
+            	 listGain.add(gainTmp);
+              }
+             // Combobox
+
+             return listGain;
+         }
+		 catch (SQLException e) 
+		 {
+			e.printStackTrace();
+		 }
+         return null;
+     }
+	
+	/**
+	 * Bar chart data
+	 * @return
+	 */
+	public XYChart.Series<String,Number> getByDateBarByGeneral()
+	{
+		 try
+		 {
+	     //Product
+             XYChart.Series<String,Number> series1 = new XYChart.Series();
+	     series1.setName("Product");
+             ResultSet resultSet = connectionPool.request(IProcedure.REPORT_BYDATE_PROCEDURE, null);
+             while (resultSet.next()) 
+             {
+            	 String name =  resultSet.getString("Gain");
+            	 float gain = resultSet.getInt("pDATE");
+            	 series1.getData().add(new XYChart.Data(name, gain));
+              }
+             // Combobox
+             return series1;
+         }
+		 catch (SQLException e) 
+		 {
+			e.printStackTrace();
+		 }
+         return null;
+     }    
         
+            
         
         
 }

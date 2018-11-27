@@ -46,5 +46,8 @@ public interface IProcedure
     public final String REPORT_PRODUCT_PROCEDURE  = "{call  getGainAllProducts()}";
     public final String REPORT_COMBO_PROCEDURE  = "{call  getGainAllCombos()}";
     
+    public final String REPORT_BYDATE_PROCEDURE  = "{call  getGainByDate()}";
+    
+    
     
 }

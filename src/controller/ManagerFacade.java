@@ -167,6 +167,19 @@ public class ManagerFacade extends Facade
         {
             return ControlReport.getInstance().getComboBarByGeneral();
         }
+        public ObservableList<PieChart.Data> getPieChartDataByDateByGeneral()
+        {
+                return ControlReport.getInstance().getPieChartDataByDateByGeneral();
+        }
+        public ArrayList<Gain> getByDateByGeneral()
+        {
+                return ControlReport.getInstance().getByDateByGeneral();
+        }
+        
+        public XYChart.Series<String,Number> getByDateBarByGeneral()
+        {
+            return ControlReport.getInstance().getByDateBarByGeneral();
+        }
     @Override
     public void loadData() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

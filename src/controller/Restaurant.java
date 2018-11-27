@@ -168,6 +168,21 @@ public class Restaurant
         {
             return Branch.getInstance().getComboBarByGeneral();
         }
+        public ObservableList<PieChart.Data> getPieChartDataByDateByGeneral()
+        {
+                return Branch.getInstance().getPieChartDataByDateByGeneral();
+        }
+        public ArrayList<Gain> getByDateByGeneral()
+        {
+                return Branch.getInstance().getByDateByGeneral();
+        }
+        
+        public XYChart.Series<String,Number> getByDateBarByGeneral()
+        {
+            return Branch.getInstance().getByDateBarByGeneral();
+        }
+        
+        
         public Branch getBranch() 
         {
 		return branch;
