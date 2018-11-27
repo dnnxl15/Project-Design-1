@@ -30,11 +30,12 @@ public class ClientWindowController extends Controller implements Initializable,
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		//label_user.setText(ClientGlobal.getInstance().getClient().getUsername());
-		//lastname_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
-		//email_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
-		//name_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
-	    //identification_textfield.setText(ClientGlobal.getInstance().getClient().getIdentification());
+		label_user.setText(ClientGlobal.getInstance().getClient().getUsername());
+		lastname_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
+		email_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
+		name_textfield.setText(ClientGlobal.getInstance().getClient().getLastName());
+	    identification_textfield.setText(ClientGlobal.getInstance().getClient().get);
+		showHome();
 	}
 	
 	public void showMenuWindow()
