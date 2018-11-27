@@ -16,6 +16,13 @@ public abstract class User extends Person{
     private String password;
     private String email;
 
+    public User(String username, String password, String email, String name, String lastName, int id,int identification) {
+        super(name, lastName, id, identification);
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+    
     public User(String username, String password, String email, String name, String lastName, int id) {
         super(name, lastName, id);
         this.username = username;

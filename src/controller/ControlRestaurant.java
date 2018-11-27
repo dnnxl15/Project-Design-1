@@ -9,6 +9,7 @@ import domain.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import library.EmployeeUI;
 import library.IConstant;
 import library.RestaurantUI;
 import library.interfaces.IProcedure;
@@ -61,6 +62,34 @@ public class ControlRestaurant extends Control{
                         }
                         
                     return listProductTmp;
+                
+            }catch (SQLException e) {
+			e.printStackTrace();
+		}
+            return null;
+        }
+        
+        //Obtener todos lo empleados
+        public ArrayList<EmployeeUI> getEmployee(String legalNumber){
+            ArrayList objectArray = new ArrayList();
+            objectArray.add(legalNumber);
+            try{
+                ResultSet resultSet = connectionPool.request(IProcedure.GET_EMPLOYEE_PROCEDURE, objectArray);
+                ArrayList<EmployeeUI> listEmployeeTmp = new ArrayList<EmployeeUI>();
+                
+                    while (resultSet.next()) {
+                        int idEmployee = resultSet.getInt("employeeID");
+                        String eName =  resultSet.getString("name");
+                        String eLastName = resultSet.getString("lastname");
+                        String eEmail= resultSet.getString("email");
+                        float eSalary = resultSet.getFloat("salary");
+                        String eRol = resultSet.getString("rol");
+                        String idRestaurant = resultSet.getString("restaurant");
+                        EmployeeUI employee = new EmployeeUI(idEmployee,eName, eLastName,eEmail,eSalary,eRol,idRestaurant);
+                        listEmployeeTmp.add(employee);
+                        }
+                        
+                    return listEmployeeTmp;
                 
             }catch (SQLException e) {
 			e.printStackTrace();

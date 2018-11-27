@@ -18,7 +18,7 @@ abstract class Employee extends Person implements IConstant {
     private double salary;
     private int branch;
 
-    public Employee(String name, String lastName, int id,double minimunSalary, double maximunSalary, double salary, int branch) {
+    public Employee(String name, String lastName, int id,double minimunSalary, double maximunSalary, double salary, int branch, int identification) {
         super(name, lastName,id);
         this.minimunSalary = minimunSalary;
         this.maximunSalary = maximunSalary;
@@ -33,6 +33,7 @@ abstract class Employee extends Person implements IConstant {
         this.minimunSalary = MINIMUN_SALARY;
         this.maximunSalary = MAXIMUN_SALARY;
     }
+    
 
     public double getSalary() {
         return salary;

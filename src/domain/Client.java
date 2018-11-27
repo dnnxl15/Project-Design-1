@@ -13,6 +13,10 @@ import library.enumerations.UserType;
  */
 public class Client extends User{
 
+    public Client(String username, String password, String email, String name, String lastName, int id,int identification) {
+        super(username, password, email, name, lastName, id, identification);
+    }
+    
     public Client(String username, String password, String email, String name, String lastName, int id) {
         super(username, password, email, name, lastName, id);
     }

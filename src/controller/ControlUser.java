@@ -214,7 +214,7 @@ public class ControlUser extends Control implements IProcedure
                 String eUsername = resultSet.getString("username");
                 String eEmail= resultSet.getString("email");
                 String ePassword = resultSet.getString("password");
-                c = new Client(eUsername, ePassword, eEmail, eName, eLastName, idClient);
+                c = new Client(eUsername, ePassword, eEmail, eName, eLastName, idClient, eIde);
                         
                         
                         
