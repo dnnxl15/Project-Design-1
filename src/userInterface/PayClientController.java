@@ -11,6 +11,11 @@ import com.jfoenix.controls.JFXDialogLayout;
 
 import controller.Restaurant;
 import domain.Commodity;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -76,11 +81,12 @@ public class PayClientController extends Controller implements IConstantWindow, 
     	else
     	{
     		//Restaurant.getInstance().createEmployee(name, lastname, identification, email, role, salary, restaurant);
+			showAlert(AlertType.CONFIRMATION ,"Transaction" , "Transaction completed");
+    		payBill();
     		direction_textfield.setText(EMPTY);
     		number_card_something.setText(EMPTY);
-			showAlert(AlertType.CONFIRMATION ,"Transaction" , "Transaction completed");
     	}	
-    	payBill();
+    	
     	
     }
 	
@@ -92,6 +98,13 @@ public class PayClientController extends Controller implements IConstantWindow, 
 		comboBoxPaymentMethod.getItems().clear();
 	    comboBoxPaymentMethod.getItems().addAll(TRANSFER_TEXT, CHECK_TEXT, CREDIT_TEXT, CASH_TEXT);
 	    labelMountTotal.setText(String.valueOf(GlobalCart.getInstance().calculateMount()));
+	    
+	    columnName.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getName()));
+	    colunmAmount.setCellValueFactory(cellData->new SimpleIntegerProperty(cellData.getValue().getMount()));
+		columnPrice.setCellValueFactory(cellData->new SimpleDoubleProperty(cellData.getValue().getPrice()));
+		ObservableList<Commodity> newListProduct;
+		newListProduct = FXCollections.observableArrayList(GlobalCart.getInstance().getListCommodity());
+		product_table.setItems(newListProduct);
 	}
 	
 	public ArrayList<String> getDirections(ArrayList<RestaurantUI> pListRestaurant)

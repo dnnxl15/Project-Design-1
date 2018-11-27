@@ -45,7 +45,7 @@
                   <Font size="18.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="signUp_button112" layoutX="604.0" layoutY="419.0" onAction="#closeWindow" prefHeight="31.0" prefWidth="82.0" style="-fx-background-color: #d32a0f;" text="Delete" textFill="WHITE">
+            <JFXButton fx:id="signUp_button112" layoutX="604.0" layoutY="419.0" onAction="#deleteCommodity" prefHeight="31.0" prefWidth="82.0" style="-fx-background-color: #d32a0f;" text="Delete" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -70,11 +70,6 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <JFXButton fx:id="signUp_button11" layoutX="14.0" layoutY="15.0" prefHeight="26.0" prefWidth="54.0" style="-fx-background-color: #0f9d58;" text="Back" textFill="WHITE">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </JFXButton>
          </children>
       </AnchorPane>
    </children>

@@ -2,9 +2,14 @@ package userInterface;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import controller.ControlMenu;
 import controller.Restaurant;
+import domain.Combo;
 import domain.Commodity;
+import domain.Product;
 import javafx.application.Application;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -51,7 +56,8 @@ public class OrderClientViewController extends Controller implements Initializab
 		product_table.getSelectionModel().selectedItemProperty().addListener(
 	            (observable, oldValue, newValue) -> showInfoComodity((Commodity) newValue));
 		ObservableList<Commodity> newListProduct;
-		//newListProduct = FXCollections.observableArrayList(Restaurant.getInstance().getEmployee());
+		newListProduct = FXCollections.observableArrayList(getCommodity());
+		product_table.setItems(newListProduct);
 	}
 	
 	/**
@@ -95,6 +101,8 @@ public class OrderClientViewController extends Controller implements Initializab
 		{
 			comoditySelected.setMount(spinner.getValue().intValue());
 			GlobalCart.getInstance().addProduct(comoditySelected);
+			showAlert(AlertType.CONFIRMATION, "Item selected", "Item selected to the cart");
+
 		}
 	}
 	
@@ -106,5 +114,32 @@ public class OrderClientViewController extends Controller implements Initializab
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public ArrayList<Commodity> getCommodity()
+	{
+		ArrayList<Combo> listCombo = ControlMenu.getInstance().getAllCombos();
+		ArrayList<Product> listProduct = ControlMenu.getInstance().getAllProducts();
+
+		ArrayList<Commodity> listCommodity2 = new ArrayList<Commodity>(); 
+		int index = 0;
+		while(listCombo.size()> index)
+		{
+			if(listCombo.get(index).getEnabled())
+			{
+				listCommodity2.add(listCombo.get(index));
+			}
+			index++;
+		}
+		int index2 = 0;
+		while(listProduct.size()> index2)
+		{
+			if(listProduct.get(index2).getEnabled())
+			{
+				listCommodity2.add(listProduct.get(index2));
+			}
+			index2++;
+		}
+		return listCommodity2;
 	}
 }

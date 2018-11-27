@@ -7,6 +7,8 @@ package controller;
 
 import domain.Product;
 import domain.Combo;
+import domain.Commodity;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -83,6 +85,41 @@ public class ControlMenu extends Control{
                         listCombosTmp.add(combo);
                         }
                         
+                    return listCombosTmp;
+                
+            }catch (SQLException e) {
+			e.printStackTrace();
+		}
+            return null;
+        }
+        
+        public ArrayList<Commodity> getAllCommodity(){
+            try{
+                ResultSet resultSet = connectionPool.request(IProcedure.GET_ALL_COMBOS_PROCEDURE, null);
+                ArrayList<Commodity> listCombosTmp = new ArrayList<Commodity>();
+                
+                    while (resultSet.next()) {
+                        
+                        String pName =  resultSet.getString("name");
+                        float pPrice = resultSet.getFloat("price");
+                        String pDescription = resultSet.getString("description");  
+                        int pProductID = resultSet.getInt("comboID"); 
+                        int pstatus = resultSet.getInt("status");
+                        Combo combo = new Combo(pName,pPrice,pDescription,pProductID,pstatus);
+                        listCombosTmp.add(combo);
+                        }
+                    ResultSet resultSet2 = connectionPool.request(IProcedure.GET_ALL_PRODUCTS_PROCEDURE, null);
+                    while (resultSet2.next()) {
+                        
+                    	 String pName =  resultSet.getString("name");
+                         float pPrice = resultSet.getFloat("price");
+                         String pDescription = resultSet.getString("description");
+                         int pcomboID = resultSet.getInt("productID");
+                         int pstatus = resultSet.getInt("status");
+                        Product product = new Product(pName,pPrice,pDescription,pcomboID,pstatus);
+                        listCombosTmp.add(product);
+                        }
+
                     return listCombosTmp;
                 
             }catch (SQLException e) {

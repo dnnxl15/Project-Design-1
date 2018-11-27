@@ -62,7 +62,7 @@ public class SeeCartClient extends Controller implements Initializable, IConstan
 		else
 		{
 			name_label.setText(pComoditySelected.getName().toString());
-			//amount_label.setText(String.valueOf(pComoditySelected.getPrice()));
+			amount_label.setText(String.valueOf(pComoditySelected.getMount()));
 			price_label.setText(String.valueOf(pComoditySelected.getPrice()));
 			selected = pComoditySelected;
 		}
@@ -70,7 +70,11 @@ public class SeeCartClient extends Controller implements Initializable, IConstan
 	
 	public void deleteCommodity()
 	{
-		GlobalCart.getInstance().deleteProduct(selected);
+		boolean value = showAlert(AlertType.CONFIRMATION, "Delete product", "Are you sure you wanna delete it?");
+		if(value){
+			GlobalCart.getInstance().deleteProduct(selected);
+			initialize(null,null);
+		}
 	}
 	
 	/**
@@ -86,6 +90,11 @@ public class SeeCartClient extends Controller implements Initializable, IConstan
 	public void openCartPayWindow()
 	{
 		try {
+			if(GlobalCart.getInstance().getListCommodity().isEmpty())
+			{
+				showAlert(AlertType.ERROR, "Product", "You must have something in your cart");
+				return;
+			}
 			openWindow(PAY_CLIENT_VIEW_WINDOW, MAX_HEIGHT_WINDOW, MAX_WIDTH_WINDOW, OVNI_IMAGE_COLOR_PATH, OVNIRESTAURANT_TITLE);
 			
 		} catch (IOException e) {

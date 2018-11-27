@@ -4,6 +4,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import domain.Commodity;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -12,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import library.GlobalCart;
 import library.GlobalPay;
 import library.interfaces.IConstantWindow;
 
@@ -70,7 +76,15 @@ public class BillViewController extends Controller implements IConstantWindow, I
 				direction_textfield.setText(GlobalPay.getInstance().getDirection());
 
 			}
+		  labelMount.setText(String.valueOf(GlobalCart.getInstance().calculateMount()));
 		  restaurant_textfield.setText(GlobalPay.getInstance().getRestaurant());
+		  
+		  columnName.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getName()));
+		  colunmMount.setCellValueFactory(cellData->new SimpleIntegerProperty(cellData.getValue().getMount()));
+			columnPrice.setCellValueFactory(cellData->new SimpleDoubleProperty(cellData.getValue().getPrice()));
+			ObservableList<Commodity> newListProduct;
+			newListProduct = FXCollections.observableArrayList(GlobalCart.getInstance().getListCommodity());
+			product_table.setItems(newListProduct);
 	}
 	
 	public void closeWindow()
