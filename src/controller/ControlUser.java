@@ -171,6 +171,7 @@ public class ControlUser extends Control implements IProcedure
 		}
             return null;
         }
+        
         public void updateEmployee(ArrayList<Object> pListObject)
 	{
 		try {
@@ -198,4 +199,5 @@ public class ControlUser extends Control implements IProcedure
 			e.printStackTrace();
 		}	
 	}
+
 }
